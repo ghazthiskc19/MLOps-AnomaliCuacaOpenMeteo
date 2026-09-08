@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# Virtual Environment
+venv/*
+.venv/*
+env/
+.env
+
+# Data files (large - tracked by DVC later)
+data/raw/*.csv
+data/raw/*.json
+data/raw/*.parquet
+data/processed/*.csv
+data/processed/*.json
+data/processed/*.parquet
+
+# Models (large - tracked by MLflow later)
+models/*.pkl
+models/*.joblib
+models/*.h5
+models/*.onnx
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+logs/
+*.log
+
+# Docker (for later phases)
+mlruns/
