@@ -133,16 +133,39 @@ Proyek ini menggunakan **[Open-Meteo API](https://open-meteo.com/)** sebagai sum
 
 ## 📈 Pipeline MLOps
 
-```
-┌─────────────┐    ┌──────────────────┐    ┌─────────────────┐    ┌────────────────┐
-│  Tahap 1:   │    │    Tahap 2:      │    │    Tahap 3:     │    │   Tahap 4:     │
-│  Data       │───▶│  Continuous      │───▶│  Model Serving  │───▶│  Monitoring &  │
-│  Ingestion  │    │  Training        │    │  & Deployment   │    │  Feedback Loop │
-│  & DVC      │    │  & MLflow        │    │  (FastAPI)      │    │  (Evidently)   │
-└─────────────┘    └──────────────────┘    └─────────────────┘    └────────────────┘
-     ▲                                                                    │
-     └────────────────────── Retraining Trigger ◄─────────────────────────┘
-```
+![Pipeline MLOps yang digunakan dalam project ini](Documentation/MLOps%20LK01-Page-1.jpg)
+
+### 6.1 Diagram Alur End-to-End (Data → Training → Deployment → Monitoring)
+
+#### **Tahap 1: Data Ingestion & Data Versioning (Setiap 1 Jam)**
+- **Cara Kerja**: Apache Airflow mengeksekusi DAG harian/jam-jaman. Airflow mengirim HTTP GET Request ke Open-Meteo API.
+- **Proses**:
+  1. Data JSON dari API ditarik, diekstrak variabelnya (`temperature_2m`, `precipitation`, `soil_moisture`), dan diubah menjadi DataFrame Pandas.
+  2. Data divalidasi (memastikan tidak ada kolom hilang). Data baru lalu digabungkan (*appended*) ke file `dataset_current.csv`.
+  3. DVC (*Data Version Control*) mencatat hash MD5 dari file data terbaru. Ini memastikan kita bisa kembali (*rollback*) ke versi data jam tertentu jika ada masalah.
+
+#### **Tahap 2: Continuous Training & Model Registry (Saat Trigger Aktif)**
+- **Cara Kerja**: Jika Airflow menerima sinyal *Retraining Trigger* (jadwal 2 mingguan atau alarm dari Evidently AI), Airflow akan menjalankan *Retraining DAG*.
+- **Proses**:
+  1. Airflow memanggil script Python untuk *preprocessing*, *feature scaling*, dan melatih model (antara XGBoost / Random Forest) dengan data 30 hari terakhir.
+  2. MLflow Tracking mencatat semua parameter (*hyperparameter*), metrik evaluasi (F1-Score, Confusion Matrix), dan menyimpan file artefak model (`model.pkl`).
+  3. Model yang baru dilatih didaftarkan ke MLflow Model Registry dengan status **Staging** (Model Challenger).
+
+#### **Tahap 3: Model Serving & Deployment (Real-Time Inference)**
+- **Cara Kerja**: Model dipaketkan ke dalam FastAPI yang berjalan di dalam Docker Container.
+- **Proses**:
+  1. FastAPI membuka endpoint REST API (misal: `POST /predict`).
+  2. Saat ada data baru dari Open-Meteo API, sistem memanggil endpoint tersebut.
+  3. FastAPI memuat model dari MLflow, melakukan inferensi cepat (< 100 ms), dan mengembalikan respons JSON: `{"prediction": "Class 0", "confidence": 0.94}`.
+  4. Dalam strategi **Shadow Deployment**, FastAPI mengeksekusi prediksi dari model Champion (Lama) dan model Challenger (Baru) secara beriringan untuk membandingkan akurasi di latar belakang.
+
+#### **Tahap 4: Monitoring, Observability & Feedback Loop**
+- **Cara Kerja**: Sistem tidak dilepas begitu saja, melainkan terus diawasi secara *real-time*.
+- **Proses**:
+  1. Setiap input data dari Open-Meteo API beserta hasil prediksi dari FastAPI dicatat ke dalam *Log Database*.
+  2. Setiap hari, Evidently AI membandingkan data 24 jam terakhir dengan data *reference* saat training.
+  3. Evidently menghitung statistik Data Drift dan Concept Drift.
+  4. **Feedback Loop**: Jika Evidently menemukan drift score > 0.1, Evidently mengirimkan panggilan *Webhook / API Call* ke Apache Airflow untuk mengaktifkan kembali **Tahap 2 (Continuous Training)** secara otomatis.
 
 ---
 
