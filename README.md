@@ -133,7 +133,7 @@ Proyek ini menggunakan **[Open-Meteo API](https://open-meteo.com/)** sebagai sum
 
 ## 📈 Pipeline MLOps
 
-![Pipeline MLOps yang digunakan dalam project ini](Documentation/MLOps%20LK01-Page-1.jpg)
+![Pipeline MLOps yang digunakan dalam project ini](Documentation/LK01/MLOps%20LK01-Page-1.jpg)
 
 ### 6.1 Diagram Alur End-to-End (Data → Training → Deployment → Monitoring)
 
@@ -187,9 +187,10 @@ Proyek ini menggunakan **[Open-Meteo API](https://open-meteo.com/)** sebagai sum
 
 | Dokumen | Deskripsi |
 |---|---|
-| [LK01](Documentation/) | Rancangan sistem MLOps lengkap |
-| [LK02 - Kriteria Penilaian](Documentation/LK02-Grading-Criteria.md) | Indikator & kriteria penilaian |
-| [GitHub Flow Guide](Documentation/GITHUB_FLOW.md) | Panduan branching strategy |
+| [LK01](Documentation/LK01/LK01-Muhammad%20Ghazy%20Humaidi-245150200111071.pdf) | Rancangan sistem MLOps lengkap |
+| [LK02 - Kriteria Penilaian](Documentation/LK02/LK02-Grading-Criteria.md) | Indikator & kriteria penilaian |
+| [LK03 - Perancangan Arsitektur Data](Documentation/LK03/LK03-Perancangan-Arsitektur-Data.md) | Desain pipeline ETL, skema data awal & DVC |
+| [GitHub Flow Guide](Documentation/LK02/GITHUB_FLOW.md) | Panduan branching strategy |
 
 ---
 
