@@ -12,7 +12,6 @@ Diagram berikut menggambarkan bagaimana sistem operasi Linux di VM lab, daemon A
 ```mermaid
 flowchart TB
     subgraph VM ["🖥️ Ubuntu VM Server Lab (2 Core, 2 GB RAM, 20 GB Disk)"]
-        
         subgraph OS ["⚙️ Linux Systemd Daemon (24/7 Background Service)"]
             SRV_SCHED["airflow-scheduler.service<br/>(Daemon Penjadwal Otomatis)"]
             SRV_WEB["airflow-webserver.service<br/>(Daemon Dashboard UI :8080)"]
@@ -53,9 +52,10 @@ flowchart TB
     SCHEDULER -->|Trigger tiap jam menit 00| DAG_FILE
     DAG_FILE -->|Spawn BashOperator Subprocess| VENV
     VENV -->|Eksekusi script| SCRIPT
-    SCRIPT <-->|HTTP GET (past_days=1/30)| API
+    SCRIPT <-->|HTTP GET past_days=1 atau 30| API
     SCRIPT -->|Simpan atomik| DISK_RAW
 
+    %% Styling Warna Grafis
     style VM fill:#f8f9fa,stroke:#343a40,stroke-width:2px
     style OS fill:#e9ecef,stroke:#495057,stroke-width:1px
     style AIRFLOW_CORE fill:#e8f4f8,stroke:#0288d1,stroke-width:2px
@@ -121,8 +121,8 @@ flowchart TD
         FETCH --> REQ["HTTP GET Request (timeout=10s)"]
         REQ --> STATUS_CHECK{"Status Response?"}
         STATUS_CHECK -->|200 OK| PARSE["Ekstrak 6 Fitur Cuaca + Timestamp<br/>Ubah ke Pandas DataFrame"]
-        STATUS_CHECK -->|4xx Client Error (kecuali 429)| FAIL_FAST["Fail-Fast: Lempar ValueError seketika<br/>(Tanpa retry sia-sia)"]
-        STATUS_CHECK -->|5xx Server Error / Timeout / 429| RETRY_LOOP{"Sudah 3x Retry?"}
+        STATUS_CHECK -->|"4xx Client Error (kecuali 429)"| FAIL_FAST["Fail-Fast: Lempar ValueError seketika<br/>(Tanpa retry sia-sia)"]
+        STATUS_CHECK -->|"5xx Server Error / Timeout / 429"| RETRY_LOOP{"Sudah 3x Retry?"}
         RETRY_LOOP -->|Belum| BACKOFF["Jeda Eksponensial (2s, 4s)<br/>Coba lagi..."] --> REQ
         RETRY_LOOP -->|Sudah| ERR["Lempar ConnectionError"]
     end

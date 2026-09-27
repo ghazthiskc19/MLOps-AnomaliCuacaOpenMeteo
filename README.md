@@ -33,24 +33,31 @@ Data cuaca bersifat dinamis dan mengalami **Data Drift** (pergeseran distribusi 
 
 ```
 MLOps-AnomaliCuacaOpenMeteo/
+├── dags/                       # Apache Airflow DAGs
+│   └── weather_ingestion_dag.py# DAG orkestrasi data ingestion per jam
 ├── data/
-│   ├── raw/                    # Data mentah dari Open-Meteo API
-│   └── processed/              # Data yang sudah diproses & dilabel
+│   ├── raw/                    # Buffer data mentah (weather_raw_current.csv)
+│   └── processed/              # Fitur diproses & dilabel (weather_features_v1.0.csv)
 ├── models/                     # Model artifacts (.pkl, .joblib)
 ├── src/                        # Source code Python utama
 │   ├── __init__.py
-│   └── data_ingestion.py       # Modul ingestion data dari API
+│   ├── data_ingestion.py       # Modul ingestion API Open-Meteo & buffer 30 hari
+│   ├── ingest_data.py          # Entrypoint / CLI wrapper ingestion
+│   ├── data_preprocessing.py   # Pipeline ETL, Quality Gate, Anomaly Labeling, & Feature Eng.
+│   └── preprocess.py           # Entrypoint / CLI wrapper preprocessing
 ├── notebooks/                  # Jupyter notebooks (EDA, PoC, eksperimen)
-├── tests/                      # Unit tests
-├── docs/                       # Dokumentasi teknis tambahan
-├── configs/                    # File konfigurasi (YAML, JSON)
-├── Documentation/              # Dokumen akademik (LK01, LK02, dll)
+├── tests/                      # Unit tests komprehensif
+│   ├── test_dags.py            # Pengujian DAG Airflow
+│   ├── test_data_ingestion.py  # Pengujian pipeline ingestion
+│   └── test_data_preprocessing.py # Pengujian Quality Gate, Anomaly Labeler, & Features
+├── configs/                    # File konfigurasi
+├── Documentation/              # Dokumen akademik (LK01, LK02, LK03, LK04)
+│   ├── LK03/                   # Perancangan arsitektur data & DVC
+│   └── LK04/                   # Laporan implementasi ingestion & preprocessing
 ├── .devcontainer/              # GitHub Codespaces configuration
-│   └── devcontainer.json
-├── .gitignore                  # Git ignore rules
 ├── requirements.txt            # Python dependencies
 ├── LICENSE                     # MIT License
-└── README.md                   # Dokumentasi ini
+└── README.md                   # Dokumentasi proyek
 ```
 
 ---
@@ -89,14 +96,45 @@ python -c "import requests; import pandas; print('Setup berhasil!')"
 2. Tunggu setup selesai (2-3 menit, otomatis install dependencies)
 3. Verifikasi: `python --version`
 
-### Menjalankan Data Ingestion
+### Menjalankan Pipeline Data
+
+#### 1. Data Ingestion (Open-Meteo API)
+Mengambil data cuaca per jam untuk Kota Malang dengan mekanisme retry backoff dan rolling buffer 30 hari (720 baris).
 
 ```bash
-# Jalankan script data ingestion
+# Menjalankan modul ingestion utama
 python src/data_ingestion.py
 
-# Atau buka notebook di Jupyter
-jupyter notebook notebooks/
+# Atau melalui entrypoint wrapper
+python src/ingest_data.py --past-days 30 --buffer-size 720
+```
+
+#### 2. Data Preprocessing & Feature Engineering
+Mengeksekusi Quality Gate, pelabelan anomali 3-kelas (Normal, Hardware Fault, Extreme Weather), dan ekstraksi 40 fitur temporal serta agrometeorologi (VPD, Dew Point, rolling statistics).
+
+```bash
+# Menjalankan modul preprocessing utama
+python src/data_preprocessing.py
+
+# Atau melalui entrypoint wrapper
+python src/preprocess.py --input-path data/raw/weather_raw_current.csv --output-path data/processed/weather_features_v1.0.csv
+```
+
+#### 3. Menjalankan Unit Tests
+Menjalankan seluruh 64 unit tests yang mencakup pengujian DAG Airflow, modul ingestion, dan modul preprocessing.
+
+```bash
+# Menjalankan seluruh rangkaian tes unit
+python -m unittest discover tests
+```
+
+#### 4. Menjalankan Apache Airflow DAG (Opsional / VM Server)
+```bash
+# Verifikasi integritas DAG
+python dags/weather_ingestion_dag.py
+
+# Trigger DAG secara manual via Airflow CLI
+airflow dags test weather_data_ingestion
 ```
 
 ---
@@ -190,6 +228,7 @@ Proyek ini menggunakan **[Open-Meteo API](https://open-meteo.com/)** sebagai sum
 | [LK01](Documentation/LK01/LK01-Muhammad%20Ghazy%20Humaidi-245150200111071.pdf) | Rancangan sistem MLOps lengkap |
 | [LK02 - Kriteria Penilaian](Documentation/LK02/LK02-Grading-Criteria.md) | Indikator & kriteria penilaian |
 | [LK03 - Perancangan Arsitektur Data](Documentation/LK03/LK03-Perancangan-Arsitektur-Data.md) | Desain pipeline ETL, skema data awal & DVC |
+| [LK04 - Ingestion & Preprocessing](Documentation/LK04/LK04-Muhammad%20Ghazy%20Humaidi-245150200111071.pdf) | Implementasi Airflow ingestion, Quality Gate, Anomaly Labeling, & Feature Engineering |
 | [GitHub Flow Guide](Documentation/LK02/GITHUB_FLOW.md) | Panduan branching strategy |
 
 ---
