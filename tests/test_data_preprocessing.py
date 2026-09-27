@@ -245,11 +245,21 @@ class TestAnomalyLabeler(unittest.TestCase):
 
     def test_class_1_gradient_spiking(self):
         """Verifikasi lonjakan suhu drastis > 8°C/jam tanpa presipitasi sebagai Class 1."""
-        row_spike = self._create_base_row(
+        # Lonjakan positif (+9.5°C/jam)
+        row_spike_pos = self._create_base_row(
             temp_diff_1h=9.5,
             precipitation_mm=0.0,
         )
-        cls, reason = self.labeler.classify_row(row_spike)
+        cls, reason = self.labeler.classify_row(row_spike_pos)
+        self.assertEqual(cls, 1)
+        self.assertIn("Temperature spike", reason)
+
+        # Penurunan drastis negatif (-9.5°C/jam) tanpa presipitasi
+        row_spike_neg = self._create_base_row(
+            temp_diff_1h=-9.5,
+            precipitation_mm=0.0,
+        )
+        cls, reason = self.labeler.classify_row(row_spike_neg)
         self.assertEqual(cls, 1)
         self.assertIn("Temperature spike", reason)
 
@@ -272,6 +282,37 @@ class TestAnomalyLabeler(unittest.TestCase):
         cls, reason = self.labeler.classify_row(row_wind_stuck)
         self.assertEqual(cls, 1)
         self.assertIn("Anemometer stuck at 0.0 km/h", reason)
+
+    def test_class_1_stuck_temperature_float_precision(self):
+        """Verifikasi ketahanan terhadap floating-point roundoff (std non-zero misal 3.71e-15 untuk 25.1°C konstan)."""
+        series_float = pd.Series([25.1] * 12)
+        std_val = float(series_float.std())
+        # Pastikan std_val adalah float non-zero kecil (IEEE 754 epsilon)
+        row_stuck_float = self._create_base_row(temp_std_12h=std_val)
+        cls, reason = self.labeler.classify_row(row_stuck_float)
+        self.assertEqual(cls, 1)
+        self.assertIn("Temperature sensor stuck", reason)
+
+    def test_class_1_night_radiation_timezone_aware(self):
+        """Verifikasi konversi timezone pada deteksi night radiation glitch (UTC 16:00 = 23:00 WIB)."""
+        ts_utc = pd.Timestamp("2026-09-20 16:00:00+00:00")  # 16:00 UTC == 23:00 WIB
+        row_utc = self._create_base_row(
+            timestamp=ts_utc,
+            radiation_wm2=50.0,
+        )
+        cls, reason = self.labeler.classify_row(row_utc)
+        self.assertEqual(cls, 1)
+        self.assertIn("Night radiation glitch", reason)
+
+    def test_class_1_numpy_bool_indicators(self):
+        """Verifikasi bahwa numpy.bool_(True) dievaluasi dengan benar tanpa galat 'is True' pointer check."""
+        row_np_bool = self._create_base_row(
+            humidity_stuck_100_24h=np.bool_(True),
+            wind_zero_48h=np.bool_(True),
+        )
+        cls, reason = self.labeler.classify_row(row_np_bool)
+        self.assertEqual(cls, 1)
+        self.assertTrue("Humidity" in reason or "Anemometer" in reason)
 
     def test_class_2_extreme_weather(self):
         """Verifikasi kondisi iklim ekstrem agrikultur diklasifikasikan sebagai Class 2."""

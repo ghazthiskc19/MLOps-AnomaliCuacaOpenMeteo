@@ -11,6 +11,7 @@ Modul ini bertanggung jawab untuk tahapan ETL & Feature Engineering (LK-03 & LK-
 """
 
 import argparse
+from datetime import datetime
 import logging
 import math
 import os
@@ -264,7 +265,11 @@ class AnomalyLabeler:
         # 1.3 Night Radiation Glitch (Kebocoran fotodioda antara 20:00 - 04:00 WIB)
         ts = row.get("timestamp")
         if ts is not None and not pd.isna(ts):
-            hour = ts.hour if hasattr(ts, "hour") else pd.to_datetime(ts).hour
+            ts_dt = ts if isinstance(ts, (pd.Timestamp, datetime)) else pd.to_datetime(ts)
+            if hasattr(ts_dt, "tzinfo") and ts_dt.tzinfo is not None:
+                # Konversi ke waktu lokal WIB (Asia/Jakarta / UTC+7) jika timestamp timezone-aware
+                ts_dt = ts_dt.tz_convert("Asia/Jakarta") if hasattr(ts_dt, "tz_convert") else ts_dt
+            hour = ts_dt.hour
             if (hour >= 20 or hour < 4) and rad > 0.0:
                 return 1, f"Hardware Fault: Night radiation glitch ({rad:.1f} W/m² at {hour:02d}:00 WIB)"
 
@@ -282,18 +287,20 @@ class AnomalyLabeler:
         # 1.5 Gradient Spiking (Transient Jump tanpa presipitasi)
         temp_diff = row.get("temp_diff_1h")
         if temp_diff is not None and not pd.isna(temp_diff):
-            if temp_diff > 8.0 and precip == 0.0:
-                return 1, f"Hardware Fault: Temperature spike (|ΔT|={temp_diff:.1f}°C/hr without rain)"
+            if abs(float(temp_diff)) > 8.0 and precip == 0.0:
+                return 1, f"Hardware Fault: Temperature spike (|ΔT|={abs(float(temp_diff)):.1f}°C/hr without rain)"
 
         # 1.6 Stuck Value (Zero Variance / Sensor Macet)
         temp_std = row.get("temp_std_12h")
-        if temp_std is not None and not pd.isna(temp_std) and temp_std == 0.0:
+        if temp_std is not None and not pd.isna(temp_std) and abs(float(temp_std)) < 1e-4:
             return 1, "Hardware Fault: Temperature sensor stuck (constant value for 12 hours)"
 
-        if row.get("humidity_stuck_100_24h") is True:
+        hum_stuck = row.get("humidity_stuck_100_24h")
+        if hum_stuck is not None and not pd.isna(hum_stuck) and bool(hum_stuck):
             return 1, "Hardware Fault: Humidity saturated 100% stuck for >24 hours"
 
-        if row.get("wind_zero_48h") is True:
+        wind_stuck = row.get("wind_zero_48h")
+        if wind_stuck is not None and not pd.isna(wind_stuck) and bool(wind_stuck):
             return 1, "Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours"
 
         # =====================================================================
@@ -321,7 +328,11 @@ class AnomalyLabeler:
             return 2, f"Extreme Weather: Critical Drought / Wilting Point ({soil:.3f} m³/m³ < 0.08)"
 
         # 2.6 Kejenuhan Berlebih / Waterlogging (> 0.48 m³/m³)
-        if row.get("soil_waterlogged_48h") is True or soil > 0.48:
+        soil_waterlogged = row.get("soil_waterlogged_48h")
+        is_waterlogged = (
+            soil_waterlogged is not None and not pd.isna(soil_waterlogged) and bool(soil_waterlogged)
+        )
+        if is_waterlogged or soil > 0.48:
             return 2, f"Extreme Weather: Waterlogging / Root Anoxia ({soil:.3f} m³/m³ > 0.48)"
 
         # 2.7 Radiasi Matahari Ekstrem (> 1100.0 W/m²) -> Sunscald & Klorosis

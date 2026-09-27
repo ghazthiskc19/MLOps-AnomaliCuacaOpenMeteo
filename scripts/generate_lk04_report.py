@@ -24,6 +24,7 @@ DOCX_OUT_PATH = REPO_ROOT / "Documentation" / "LK04" / "LK04-Muhammad Ghazy Huma
 PDF_OUT_PATH = REPO_ROOT / "Documentation" / "LK04" / "LK04-Muhammad Ghazy Humaidi-245150200111071.pdf"
 MD_OUT_PATH = REPO_ROOT / "Documentation" / "LK04" / "LK04-Muhammad Ghazy Humaidi-245150200111071.md"
 LK04_DIR = REPO_ROOT / "Documentation" / "LK04"
+REFERENCE_DOCX_PATH = REPO_ROOT / "Documentation" / "REFERENCE DOCUMENT.docx"
 
 
 def set_cell_background(cell, hex_color="c9daf8"):
@@ -225,7 +226,16 @@ def add_figure(doc, image_path, caption, max_width_in=5.8, max_height_in=4.4):
 def build_lk04_docx():
     """Membangun dokumen Word komprehensif LK-04."""
     print("Membangun dokumen LK-04 DOCX...")
-    doc = docx.Document()
+    if REFERENCE_DOCX_PATH.exists():
+        print(f"Menggunakan {REFERENCE_DOCX_PATH.name} sebagai template dokumen dasar...")
+        doc = docx.Document(str(REFERENCE_DOCX_PATH))
+        # Kosongkan elemen body yang lama (paragraf & tabel LK-03) dengan tetap mempertahankan sectPr
+        body = doc._body._element
+        elements_to_remove = [c for c in body if not c.tag.endswith("sectPr")]
+        for c in elements_to_remove:
+            body.remove(c)
+    else:
+        doc = docx.Document()
 
     # Page Margins (A4 format standard matching LK-03)
     for section in doc.sections:
@@ -290,7 +300,7 @@ def build_lk04_docx():
         ["Institusi", "Teknik Informatika, FILKOM, Universitas Brawijaya"],
         ["Repositori GitHub & Branch", "MLOps-AnomaliCuacaOpenMeteo (feat/lk04-data-ingestion-preprocessing)"],
         ["Cakupan Tugas LK-04", "Data Ingestion (Airflow), Quality Gate, Anomaly Labeling, & Feature Engineering"],
-        ["Status Verifikasi", "64 / 64 Unit Tests Pass (100%), Output 720 baris x 40 kolom terverifikasi"],
+        ["Status Verifikasi", "67 / 67 Unit Tests Pass (100%), Output 720 baris x 40 kolom terverifikasi"],
     ]
     add_custom_table(doc, info_headers, info_data, col_widths=[2.3, 4.4])
 
@@ -318,7 +328,7 @@ def build_lk04_docx():
             "3.5 Skema Kamus Data Final 40 Kolom (weather_features_v1.0.csv) dan Pelacakan DVC",
         ]),
         ("BAB 4: Verifikasi, Pengujian Unit, dan Bukti Eksekusi Pipeline", [
-            "4.1 Rangkaian Pengujian Unit Komprehensif (64 Unit Tests Pass 100%)",
+            "4.1 Rangkaian Pengujian Unit Komprehensif (67 Unit Tests Pass 100%)",
             "4.2 Hasil Eksekusi Ingestion & Analisis Buffer 720 Baris",
             "4.3 Hasil Eksekusi Preprocessing & Profil Distribusi Anomali Riil",
             "4.4 Panduan Operasional & Reproducibility (CLI Execution & Environment Setup)",
@@ -332,7 +342,7 @@ def build_lk04_docx():
     for ch_title, sub_items in toc_items:
         add_p(doc, ch_title, bold=True, size_pt=10.0, space_before=2, space_after=1)
         for sub in sub_items:
-            add_p(doc, f"   • {sub}", size_pt=9.0, space_before=0, space_after=0.5, line_spacing=1.05)
+            add_p(doc, f"   - {sub}", size_pt=9.0, space_before=0, space_after=0.5, line_spacing=1.05)
 
     doc.add_page_break()
 
@@ -385,9 +395,9 @@ def build_lk04_docx():
         add_figure(doc, ingestion_overview_img, "Gambar 1.2: Diagram Alur Pemrosesan Modul Ingestion (src/data_ingestion.py)", max_height_in=3.6)
 
     add_p(doc, "Modul menerapkan kebijakan penarikan adaptif (Adaptive Fetch Mode) guna mengoptimalkan efisiensi bandwidth dan keutuhan riwayat pelatihan:")
-    add_p(doc, "• Mode Inisialisasi Buffer Awal (Cold Start): Jika berkas data/raw/weather_raw_current.csv belum terbentuk atau memiliki baris kurang dari kapasitas buffer (720 baris), modul secara otomatis menetapkan past_days=30 untuk mengunduh 720 jam data historis sekaligus sebagai modal awal pembentukan riwayat 1 bulan.")
-    add_p(doc, "• Mode Pembaruan Rutin (Incremental Ingestion): Apabila berkas buffer telah terisi penuh (720 baris), penarikan jam-jaman hanya menggunakan parameter past_days=1 dan forecast_days=1 (mengambil 24 jam terakhir) guna meminimalkan latensi jaringan dan konsumsi kuota API.")
-    add_p(doc, "• Pengelolaan Jendela Geser (Sliding Window): Data baru digabungkan dengan data lama (pd.concat), dilakukan deduplikasi berbasis kolom timestamp (drop_duplicates keep='last'), diurutkan kronologis, dan dipotong tepat 720 baris terakhir (tail(720)). Baris ke-721 dan seterusnya (data hari ke-31 yang telah usang) secara otomatis tereliminasi, menjaga ukuran file raw CSV tetap konstan pada ~35 KB.")
+    add_p(doc, "- Mode Inisialisasi Buffer Awal (Cold Start): Jika berkas data/raw/weather_raw_current.csv belum terbentuk atau memiliki baris kurang dari kapasitas buffer (720 baris), modul secara otomatis menetapkan past_days=30 untuk mengunduh 720 jam data historis sekaligus sebagai modal awal pembentukan riwayat 1 bulan.")
+    add_p(doc, "- Mode Pembaruan Rutin (Incremental Ingestion): Apabila berkas buffer telah terisi penuh (720 baris), penarikan jam-jaman hanya menggunakan parameter past_days=1 dan forecast_days=1 (mengambil 24 jam terakhir) guna meminimalkan latensi jaringan dan konsumsi kuota API.")
+    add_p(doc, "- Pengelolaan Jendela Geser (Sliding Window): Data baru digabungkan dengan data lama (pd.concat), dilakukan deduplikasi berbasis kolom timestamp (drop_duplicates keep='last'), diurutkan kronologis, dan dipotong tepat 720 baris terakhir (tail(720)). Baris ke-721 dan seterusnya (data hari ke-31 yang telah usang) secara otomatis tereliminasi, menjaga ukuran file raw CSV tetap konstan pada ~35 KB.")
 
     add_heading_2(doc, "1.4 Mekanisme Fault-Tolerant & Exponential Backoff")
     add_p(doc, "Konektivitas jaringan menuju API pihak ketiga rentan mengalami gangguan transien (DNS timeout, packet drop, atau limitasi rate 429). Untuk menjamin keandalan data pipeline, fungsi fetch_weather_data() mengimplementasikan algoritma retry toleran galat jaringan dengan pola eksponensial (Exponential Backoff):")
@@ -402,8 +412,8 @@ def build_lk04_docx():
     ], title="Pola Jeda Eksponensial")
 
     add_p(doc, "Implementasi ini juga memisahkan penanganan jenis kesalahan HTTP secara tegas:")
-    add_p(doc, "• Galat Transien (HTTP 5xx Server Error, HTTP 429 Too Many Requests, ConnectionTimeout): Ditangani melalui siklus retry eksponensial karena kemungkinan besar server akan pulih pada detik berikutnya.")
-    add_p(doc, "• Galat Klien (HTTP 4xx Client Error seperti 400 Bad Request atau 404 Not Found): Sistem menerapkan pola Fail-Fast dengan langsung melempar eksepsi ValueError tanpa membuang waktu mencoba ulang, karena parameter request yang salah tidak akan pernah menghasilkan respons sukses.")
+    add_p(doc, "- Galat Transien (HTTP 5xx Server Error, HTTP 429 Too Many Requests, ConnectionTimeout): Ditangani melalui siklus retry eksponensial karena kemungkinan besar server akan pulih pada detik berikutnya.")
+    add_p(doc, "- Galat Klien (HTTP 4xx Client Error seperti 400 Bad Request atau 404 Not Found): Sistem menerapkan pola Fail-Fast dengan langsung melempar eksepsi ValueError tanpa membuang waktu mencoba ulang, karena parameter request yang salah tidak akan pernah menghasilkan respons sukses.")
 
     add_heading_2(doc, "1.5 Penulisan Berkas Atomik (_atomic_to_csv)")
     add_p(doc, "Salah satu risiko fatal pada pipeline streaming/micro-batch yang menulis langsung ke berkas target adalah timbulnya korupsi berkas (Torn Writes atau File Truncation) apabila proses terhenti mendadak di tengah penulisan akibat crash sistem atau interupsi kernel.")
@@ -437,10 +447,10 @@ def build_lk04_docx():
 
     add_heading_2(doc, "2.2 Phase 1 Quality Gate: Pembersihan Struktural Data")
     add_p(doc, "Sebelum data mentah dapat diproses lebih lanjut, kelas DataCleaner bertindak sebagai gerbang mutu pertama (First Quality Gate). Langkah-langkah pembersihan meliputi:")
-    add_p(doc, "• Validasi Kontrak Data (Schema Enforcement): Memastikan ketujuh kolom mentah wajib (timestamp, temperature_2m_C, humidity_percent, precipitation_mm, soil_moisture, radiation_wm2, wind_speed_kmh) hadir dalam DataFrame. Jika ada kolom yang hilang, sistem melempar ValueError seketika.")
-    add_p(doc, "• Penanganan Timestamp Rusak: Kolom timestamp dikonversi menggunakan pd.to_datetime(errors='coerce'). Setiap baris yang menghasilkan NaT (Not a Time) dicatat ke dalam log peringatan dan langsung dibuang dari memori.")
-    add_p(doc, "• Penjaminan Urutan Temporal & Deduplikasi: Baris diurutkan secara kronologis berdasarkan waktu (sort_values('timestamp')). Duplikasi observasi pada stempel waktu yang sama dieliminasi dengan mempertahankan rekaman terakhir (keep='last').")
-    add_p(doc, "• Penegakan Tipe Data Numerik: Seluruh variabel metrik fisik dikonversi ke float64 menggunakan pd.to_numeric(errors='coerce'), dengan sengaja mempertahankan nilai NaN (tidak langsung diimputasi) agar kegagalan transmisi paket sensor dapat dideteksi secara akurat oleh AnomalyLabeler.")
+    add_p(doc, "- Validasi Kontrak Data (Schema Enforcement): Memastikan ketujuh kolom mentah wajib (timestamp, temperature_2m_C, humidity_percent, precipitation_mm, soil_moisture, radiation_wm2, wind_speed_kmh) hadir dalam DataFrame. Jika ada kolom yang hilang, sistem melempar ValueError seketika.")
+    add_p(doc, "- Penanganan Timestamp Rusak: Kolom timestamp dikonversi menggunakan pd.to_datetime(errors='coerce'). Setiap baris yang menghasilkan NaT (Not a Time) dicatat ke dalam log peringatan dan langsung dibuang dari memori.")
+    add_p(doc, "- Penjaminan Urutan Temporal & Deduplikasi: Baris diurutkan secara kronologis berdasarkan waktu (sort_values('timestamp')). Duplikasi observasi pada stempel waktu yang sama dieliminasi dengan mempertahankan rekaman terakhir (keep='last').")
+    add_p(doc, "- Penegakan Tipe Data Numerik: Seluruh variabel metrik fisik dikonversi ke float64 menggunakan pd.to_numeric(errors='coerce'), dengan sengaja mempertahankan nilai NaN (tidak langsung diimputasi) agar kegagalan transmisi paket sensor dapat dideteksi secara akurat oleh AnomalyLabeler.")
 
     add_heading_2(doc, "2.3 Phase 2 Rule-Based Anomaly Labeling (3 Kelas Ground Truth)")
     add_p(doc, "Data cuaca mentah dari API Open-Meteo merupakan deret angka tak berlabel (unlabeled time-series). Dalam siklus hidup MLOps, ketiadaan label target (ground truth) diselesaikan melalui modul AnomalyLabeler yang mengevaluasi setiap baris data terhadap taksonomi kegagalan sensor IoT dan batas toleransi tanaman yang dirumuskan pada LK-03 Bab 2 & 3:")
@@ -505,17 +515,17 @@ def build_lk04_docx():
 
     add_heading_2(doc, "3.2 Selisih Waktu (Temporal Lag Differences)")
     add_p(doc, "Deteksi perubahan mendadak pada kondisi mikroklimat membutuhkan fitur turunan waktu orde pertama. Modul FeatureEngineer mengekstraksi parameter laju perubahan (gradient):")
-    add_p(doc, "• temp_diff_1h & temp_diff_24h: Menangkap lonjakan suhu antar jam dan fluktuasi suhu dibanding hari sebelumnya pada jam yang sama.")
-    add_p(doc, "• humidity_diff_1h: Mengukur laju pengeringan udara atau kejenuhan pasca hujan.")
-    add_p(doc, "• soil_diff_1h & soil_diff_24h: Mengukur dinamika infiltrasi air ke lapisan perakaran atau laju deplesi air tanah akibat evapotranspirasi.")
-    add_p(doc, "• radiation_diff_1h: Mengidentifikasi perubahan tutupan awan secara mendadak.")
+    add_p(doc, "- temp_diff_1h & temp_diff_24h: Menangkap lonjakan suhu antar jam dan fluktuasi suhu dibanding hari sebelumnya pada jam yang sama.")
+    add_p(doc, "- humidity_diff_1h: Mengukur laju pengeringan udara atau kejenuhan pasca hujan.")
+    add_p(doc, "- soil_diff_1h & soil_diff_24h: Mengukur dinamika infiltrasi air ke lapisan perakaran atau laju deplesi air tanah akibat evapotranspirasi.")
+    add_p(doc, "- radiation_diff_1h: Mengidentifikasi perubahan tutupan awan secara mendadak.")
 
     add_heading_2(doc, "3.3 Statistik Jendela Geser (Rolling Window Statistics)")
     add_p(doc, "Kondisi tanaman agrikultur tidak hanya dipengaruhi oleh cuaca sesaat, melainkan akumulasi stres termal dan ketersediaan air dalam rentang waktu beberapa jam hingga 24 jam terakhir. Oleh karena itu, modul menghitung agregasi statistik:")
-    add_p(doc, "• Suhu: Rata-rata dan standar deviasi pada jendela 3 jam, 6 jam, dan 24 jam (temp_rolling_mean_3h, temp_rolling_std_3h, temp_rolling_mean_24h, temp_rolling_std_24h), serta suhu minimum dan maksimum 24 jam terakhir.")
-    add_p(doc, "• Kelembaban: Rata-rata bergerak 6 jam dan 24 jam (humidity_rolling_mean_6h, humidity_rolling_mean_24h).")
-    add_p(doc, "• Akumulasi Presipitasi: Jumlah curah hujan 6 jam dan 24 jam terakhir (precip_rolling_sum_6h, precip_rolling_sum_24h) untuk mengidentifikasi tingkat kejenuhan air tanah.")
-    add_p(doc, "• Angin: Kecepatan rata-rata 6 jam dan hembusan maksimum 24 jam (wind_rolling_mean_6h, wind_rolling_max_24h).")
+    add_p(doc, "- Suhu: Rata-rata dan standar deviasi pada jendela 3 jam, 6 jam, dan 24 jam (temp_rolling_mean_3h, temp_rolling_std_3h, temp_rolling_mean_24h, temp_rolling_std_24h), serta suhu minimum dan maksimum 24 jam terakhir.")
+    add_p(doc, "- Kelembaban: Rata-rata bergerak 6 jam dan 24 jam (humidity_rolling_mean_6h, humidity_rolling_mean_24h).")
+    add_p(doc, "- Akumulasi Presipitasi: Jumlah curah hujan 6 jam dan 24 jam terakhir (precip_rolling_sum_6h, precip_rolling_sum_24h) untuk mengidentifikasi tingkat kejenuhan air tanah.")
+    add_p(doc, "- Angin: Kecepatan rata-rata 6 jam dan hembusan maksimum 24 jam (wind_rolling_mean_6h, wind_rolling_max_24h).")
 
     add_heading_2(doc, "3.4 Parameter Biofisik Agrometeorologi (VPD & Dew Point)")
     add_p(doc, "Dua metrik biofisik fundamental ditambahkan ke dalam dataset olahan untuk mendukung domain Smart Farming:")
@@ -580,15 +590,15 @@ def build_lk04_docx():
     # =========================================================================
     add_heading_1(doc, "BAB 4: VERIFIKASI, PENGUJIAN UNIT, DAN BUKTI EKSEKUSI PIPELINE")
 
-    add_heading_2(doc, "4.1 Rangkaian Pengujian Unit Komprehensif (64 Unit Tests)")
-    add_p(doc, "Untuk menjamin tidak adanya regresi logika dan membuktikan kehandalan seluruh komponen sistem secara objektif, repositori dilengkapi 64 unit test otomatis yang terbagi ke dalam tiga modul pengujian utama:")
+    add_heading_2(doc, "4.1 Rangkaian Pengujian Unit Komprehensif (67 Unit Tests)")
+    add_p(doc, "Untuk menjamin tidak adanya regresi logika dan membuktikan kehandalan seluruh komponen sistem secara objektif, repositori dilengkapi 67 unit test otomatis yang terbagi ke dalam tiga modul pengujian utama:")
 
     test_summary_headers = ["Modul Pengujian (Test Suite)", "Jumlah Uji", "Status", "Aspek Sistem yang Divalidasi"]
     test_summary_data = [
-        ["tests/test_dags.py", "27 Tests", "PASS (100%)", "Struktur DAG Airflow, resolusi interpreter Python di Windows & Linux, konfigurasi BashOperator, toleransi kegagalan pendulum, dan penanganan dependensi."],
-        ["tests/test_data_ingestion.py", "14 Tests", "PASS (100%)", "Pengambilan payload API, mekanisme retry backoff, parsing skema mentah, deduplikasi timestamp, pemotongan buffer 720 baris, dan penulisan atomik."],
-        ["tests/test_data_preprocessing.py", "23 Tests", "PASS (100%)", "DataCleaner (Quality Gate), AnomalyLabeler (uji seluruh 13 taksonomi kegagalan sensor Class 1 & 8 kondisi cuaca ekstrem Class 2), FeatureEngineer, dan integrasi I/O berkas."],
-        ["TOTAL RANGKAIAN UJI", "64 Tests", "PASS (100%)", "Seluruh pengujian unit berjalan sukses dalam waktu 1.30 detik tanpa kegagalan."],
+        ["tests/test_dags.py", "26 Tests", "PASS (100%)", "Struktur DAG Airflow, resolusi interpreter Python di Windows & Linux, konfigurasi BashOperator, toleransi kegagalan pendulum, dan penanganan dependensi."],
+        ["tests/test_data_ingestion.py", "15 Tests", "PASS (100%)", "Pengambilan payload API, mekanisme retry backoff, parsing skema mentah, deduplikasi timestamp, pemotongan buffer 720 baris, dan penulisan atomik."],
+        ["tests/test_data_preprocessing.py", "26 Tests", "PASS (100%)", "DataCleaner (Quality Gate), AnomalyLabeler (taksonomi kegagalan sensor Class 1 & 8 kondisi cuaca ekstrem Class 2, presisi float stuck value, spiking negatif, timezone), FeatureEngineer, dan integrasi I/O berkas."],
+        ["TOTAL RANGKAIAN UJI", "67 Tests", "PASS (100%)", "Seluruh pengujian unit berjalan sukses dalam waktu 1.35 detik tanpa kegagalan."],
     ]
     add_custom_table(doc, test_summary_headers, test_summary_data, col_widths=[2.1, 1.0, 1.1, 2.5])
 
@@ -596,21 +606,21 @@ def build_lk04_docx():
 
     add_callout(doc, [
         "$ python -m unittest discover tests",
-        "........................... [27 tests test_dags.py]",
-        "..............               [14 tests test_data_ingestion.py]",
-        ".......................      [23 tests test_data_preprocessing.py]",
+        "..........................   [26 tests test_dags.py]",
+        "...............              [15 tests test_data_ingestion.py]",
+        "..........................   [26 tests test_data_preprocessing.py]",
         "----------------------------------------------------------------------",
-        "Ran 64 tests in 1.301s",
+        "Ran 67 tests in 1.352s",
         "",
         "OK",
     ], title="Log Eksekusi Unit Tests Repositori")
 
     add_heading_2(doc, "4.2 Hasil Eksekusi Ingestion & Analisis Buffer 720 Baris")
     add_p(doc, "Modul data ingestion berhasil dijalankan dan menghasilkan berkas raw buffer data/raw/weather_raw_current.csv dengan ringkasan karakteristik sebagai berikut:")
-    add_p(doc, "• Total Observasi: 720 baris terurut kronologis tanpa ada jeda jam (100% time-series continuity).")
-    add_p(doc, "• Rentang Waktu: 2026-08-29 00:00:00 WIB s.d. 2026-09-27 23:00:00 WIB (tepat 30 hari observasi).")
-    add_p(doc, "• Ukuran Berkas di Disk: 34.671 byte (~34.7 KB), sangat hemat dan ideal untuk sinkronisasi DVC.")
-    add_p(doc, "• Konsistensi Skema: 7 kolom mentah terisi utuh tanpa perubahan nama atribut.")
+    add_p(doc, "- Total Observasi: 720 baris terurut kronologis tanpa ada jeda jam (100% time-series continuity).")
+    add_p(doc, "- Rentang Waktu: 2026-08-29 00:00:00 WIB s.d. 2026-09-27 23:00:00 WIB (tepat 30 hari observasi).")
+    add_p(doc, "- Ukuran Berkas di Disk: 34.671 byte (~34.7 KB), sangat hemat dan ideal untuk sinkronisasi DVC.")
+    add_p(doc, "- Konsistensi Skema: 7 kolom mentah terisi utuh tanpa perubahan nama atribut.")
 
     add_heading_2(doc, "4.3 Hasil Eksekusi Preprocessing & Profil Distribusi Anomali")
     add_p(doc, "Pipeline pemrosesan data dieksekusi menggunakan modul src/data_preprocessing.py pada berkas raw buffer 720 baris tersebut. Hasil eksekusi menghasilkan dataset fitur berlabel data/processed/weather_features_v1.0.csv (dan salinan data/processed/weather_processed_current.csv):")
@@ -652,7 +662,7 @@ def build_lk04_docx():
         "# Atau via entrypoint wrapper:",
         "python src/preprocess.py",
         "",
-        "# 3. Menjalankan Seluruh Rangkaian Unit Test (64 Uji)",
+        "# 3. Menjalankan Seluruh Rangkaian Unit Test (67 Uji)",
         "python -m unittest discover tests",
     ], title="Perintah Operasional Pipeline")
 
@@ -668,14 +678,14 @@ def build_lk04_docx():
     add_p(doc, "1. Ingestion Otomatis & Andal: Apache Airflow DAG berhasil menjadwalkan penarikan data jam-jaman dari Open-Meteo API dengan isolasi memori subprocess, mekanisme toleransi galat exponential backoff, penulisan berkas atomik, dan pemeliharaan rolling buffer 30 hari (720 baris).")
     add_p(doc, "2. Quality Gate & Ground Truth Deterministic: Modul DataCleaner dan AnomalyLabeler sukses menegakkan integritas skema data serta mengklasifikasikan data ke dalam 3 kelas anomali (Normal, Hardware Fault, Extreme Weather) sesuai taksonomi fisik LK-03.")
     add_p(doc, "3. Feature Engineering Kaya Fitur: Berhasil mengekstraksi 40 atribut fitur berstandar machine learning, mencakup transformasi sinus/kosinus waktu, selisih lag, statistik jendela geser multi-skala, dan variabel biofisik agrikultur (VPD & Dew Point).")
-    add_p(doc, "4. Kualitas Kode Tinggi & Teruji: Seluruh 64 unit test lulus 100% tanpa galat, membuktikan ketahanan sistem terhadap kasus ekstrem (edge cases) seperti data kosong, missing values, dan malformasi timestamp.")
+    add_p(doc, "4. Kualitas Kode Tinggi & Teruji: Seluruh 67 unit test lulus 100% tanpa galat, membuktikan ketahanan sistem terhadap kasus ekstrem (edge cases) seperti data kosong, missing values, dan malformasi timestamp.")
 
     add_heading_2(doc, "5.2 Roadmap Menuju Model Training & Serving (LK-05)")
     add_p(doc, "Dengan tersedianya dataset olahan data/processed/weather_features_v1.0.csv yang memiliki 40 fitur lengkap dan label ground truth objektif, pondasi data untuk tahap berikutnya telah matang 100%. Pada Lembar Kerja 05 (LK-05), tahapan yang akan direalisasikan meliputi:")
-    add_p(doc, "• Pelatihan Model Multiclass: Melatih algoritma klasifikasi (Random Forest dan XGBoost Classifier) menggunakan teknik penyeimbangan kelas (SMOTE / Class Weighting) untuk menangani ketimpangan distribusi (class imbalance).")
-    add_p(doc, "• Pelacakan Eksperimen via MLflow: Mencatat metrik performa (Macro F1-Score > 85%, Confusion Matrix, PR-AUC) serta mendaftarkan model Champion ke MLflow Model Registry.")
-    add_p(doc, "• Model Serving Real-Time via FastAPI: Mengemas model terlatih ke dalam endpoint REST API berlatensi rendah (< 100 ms) di dalam wadah Docker.")
-    add_p(doc, "• Integrasi Closed-Loop Monitoring: Menghubungkan Evidently AI untuk mendeteksi Data Drift dan Concept Drift pada data cuaca harian guna memicu retraining otomatis.")
+    add_p(doc, "- Pelatihan Model Multiclass: Melatih algoritma klasifikasi (Random Forest dan XGBoost Classifier) menggunakan teknik penyeimbangan kelas (SMOTE / Class Weighting) untuk menangani ketimpangan distribusi (class imbalance).")
+    add_p(doc, "- Pelacakan Eksperimen via MLflow: Mencatat metrik performa (Macro F1-Score > 85%, Confusion Matrix, PR-AUC) serta mendaftarkan model Champion ke MLflow Model Registry.")
+    add_p(doc, "- Model Serving Real-Time via FastAPI: Mengemas model terlatih ke dalam endpoint REST API berlatensi rendah (< 100 ms) di dalam wadah Docker.")
+    add_p(doc, "- Integrasi Closed-Loop Monitoring: Menghubungkan Evidently AI untuk mendeteksi Data Drift dan Concept Drift pada data cuaca harian guna memicu retraining otomatis.")
 
     # Simpan DOCX
     DOCX_OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -745,7 +755,7 @@ WScript.Echo "Konversi PDF Berhasil Selesai!"
 def build_lk04_markdown():
     """Membuat salinan dokumentasi Markdown LK-04 untuk transparansi repositori GitHub."""
     print("Membangun dokumen Markdown LK-04...")
-    md_content = """# 📋 LEMBAR KERJA-04 (LK-04)
+    md_content = r"""# 📋 LEMBAR KERJA-04 (LK-04)
 # Implementasi Pipeline Data Ingestion & Preprocessing Berbasis MLOps
 
 > **Sistem Otomatis Deteksi Anomali Data Cuaca Open-Meteo untuk Smart Farming Berbasis MLOps**  
@@ -759,7 +769,7 @@ def build_lk04_markdown():
 | **Dosen Pengampu** | Rizal Setya Perdana, S.Kom., M.Kom., Ph.D. |
 | **Repositori GitHub** | [MLOps-AnomaliCuacaOpenMeteo](https://github.com/ghazthiskc19/MLOps-AnomaliCuacaOpenMeteo) |
 | **Branch Pengerjaan** | `feat/lk04-data-ingestion-preprocessing` |
-| **Status Pengujian** | 64 / 64 Unit Tests Pass (100%) |
+| **Status Pengujian** | 67 / 67 Unit Tests Pass (100%) |
 
 ---
 
@@ -782,7 +792,7 @@ def build_lk04_markdown():
    - 3.4 Parameter Biofisik Agrometeorologi (Vapor Pressure Deficit / VPD dan Titik Embun / Dew Point)
    - 3.5 Skema Kamus Data Final 40 Kolom (`weather_features_v1.0.csv`) dan Pelacakan DVC
 4. [BAB 4: Verifikasi, Pengujian Unit, dan Bukti Eksekusi Pipeline](#bab-4-verifikasi-pengujian-unit-dan-bukti-eksekusi-pipeline)
-   - 4.1 Rangkaian Pengujian Unit Komprehensif (64 Unit Tests Pass 100%)
+   - 4.1 Rangkaian Pengujian Unit Komprehensif (67 Unit Tests Pass 100%)
    - 4.2 Hasil Eksekusi Ingestion & Analisis Buffer 720 Baris
    - 4.3 Hasil Eksekusi Preprocessing & Profil Distribusi Anomali Riil
    - 4.4 Panduan Operasional & Reproducibility (CLI Execution & Environment Setup)
@@ -997,23 +1007,23 @@ Hasil akhir dari proses data preprocessing adalah berkas tabular berstandar MLOp
 
 # BAB 4: VERIFIKASI, PENGUJIAN UNIT, DAN BUKTI EKSEKUSI PIPELINE
 
-### 4.1 Rangkaian Pengujian Unit Komprehensif (64 Unit Tests)
-Untuk menjamin tidak adanya regresi logika dan membuktikan kehandalan seluruh komponen sistem secara objektif, repositori dilengkapi 64 unit test otomatis yang terbagi ke dalam tiga modul pengujian utama:
+### 4.1 Rangkaian Pengujian Unit Komprehensif (67 Unit Tests)
+Untuk menjamin tidak adanya regresi logika dan membuktikan kehandalan seluruh komponen sistem secara objektif, repositori dilengkapi 67 unit test otomatis yang terbagi ke dalam tiga modul pengujian utama:
 
 | Modul Pengujian (Test Suite) | Jumlah Uji | Status | Aspek Sistem yang Divalidasi |
 |---|---|---|---|
-| `tests/test_dags.py` | 27 Tests | PASS (100%) | Struktur DAG Airflow, resolusi interpreter Python di Windows & Linux, konfigurasi BashOperator, toleransi kegagalan pendulum, dan penanganan dependensi. |
-| `tests/test_data_ingestion.py` | 14 Tests | PASS (100%) | Pengambilan payload API, mekanisme retry backoff, parsing skema mentah, deduplikasi timestamp, pemotongan buffer 720 baris, dan penulisan atomik. |
-| `tests/test_data_preprocessing.py` | 23 Tests | PASS (100%) | DataCleaner (Quality Gate), AnomalyLabeler (uji seluruh 13 taksonomi kegagalan sensor Class 1 & 8 kondisi cuaca ekstrem Class 2), FeatureEngineer, dan integrasi I/O berkas. |
-| **TOTAL RANGKAIAN UJI** | **64 Tests** | **PASS (100%)** | Seluruh pengujian unit berjalan sukses dalam waktu 1.30 detik tanpa kegagalan. |
+| `tests/test_dags.py` | 26 Tests | PASS (100%) | Struktur DAG Airflow, resolusi interpreter Python di Windows & Linux, konfigurasi BashOperator, toleransi kegagalan pendulum, dan penanganan dependensi. |
+| `tests/test_data_ingestion.py` | 15 Tests | PASS (100%) | Pengambilan payload API, mekanisme retry backoff, parsing skema mentah, deduplikasi timestamp, pemotongan buffer 720 baris, dan penulisan atomik. |
+| `tests/test_data_preprocessing.py` | 26 Tests | PASS (100%) | DataCleaner (Quality Gate), AnomalyLabeler (taksonomi kegagalan sensor Class 1 & 8 kondisi cuaca ekstrem Class 2, presisi float stuck value, spiking negatif, timezone), FeatureEngineer, dan integrasi I/O berkas. |
+| **TOTAL RANGKAIAN UJI** | **67 Tests** | **PASS (100%)** | Seluruh pengujian unit berjalan sukses dalam waktu 1.35 detik tanpa kegagalan. |
 
 ```bash
 $ python -m unittest discover tests
-........................... [27 tests test_dags.py]
-..............               [14 tests test_data_ingestion.py]
-.......................      [23 tests test_data_preprocessing.py]
+..........................   [26 tests test_dags.py]
+...............              [15 tests test_data_ingestion.py]
+..........................   [26 tests test_data_preprocessing.py]
 ----------------------------------------------------------------------
-Ran 64 tests in 1.301s
+Ran 67 tests in 1.352s
 
 OK
 ```
@@ -1064,7 +1074,7 @@ python src/data_preprocessing.py --input-path data/raw/weather_raw_current.csv \
 # Atau via entrypoint wrapper:
 python src/preprocess.py
 
-# 3. Menjalankan Seluruh Rangkaian Unit Test (64 Uji)
+# 3. Menjalankan Seluruh Rangkaian Unit Test (67 Uji)
 python -m unittest discover tests
 ```
 
@@ -1077,7 +1087,7 @@ Implementasi Lembar Kerja 04 (LK-04) telah berhasil menuntaskan seluruh sasaran 
 1. **Ingestion Otomatis & Andal**: Apache Airflow DAG berhasil menjadwalkan penarikan data jam-jaman dari Open-Meteo API dengan isolasi memori subprocess, mekanisme toleransi galat exponential backoff, penulisan berkas atomik, dan pemeliharaan rolling buffer 30 hari (720 baris).
 2. **Quality Gate & Ground Truth Deterministic**: Modul `DataCleaner` dan `AnomalyLabeler` sukses menegakkan integritas skema data serta mengklasifikasikan data ke dalam 3 kelas anomali (Normal, Hardware Fault, Extreme Weather) sesuai taksonomi fisik LK-03.
 3. **Feature Engineering Kaya Fitur**: Berhasil mengekstraksi 40 atribut fitur berstandar machine learning, mencakup transformasi sinus/kosinus waktu, selisih lag, statistik jendela geser multi-skala, dan variabel biofisik agrikultur (VPD & Dew Point).
-4. **Kualitas Kode Tinggi & Teruji**: Seluruh 64 unit test lulus 100% tanpa galat, membuktikan ketahanan sistem terhadap kasus ekstrem (*edge cases*) seperti data kosong, missing values, dan malformasi timestamp.
+4. **Kualitas Kode Tinggi & Teruji**: Seluruh 67 unit test lulus 100% tanpa galat, membuktikan ketahanan sistem terhadap kasus ekstrem (*edge cases*) seperti data kosong, missing values, dan malformasi timestamp.
 
 ### 5.2 Roadmap Menuju Model Training & Serving (LK-05)
 Dengan tersedianya dataset olahan `data/processed/weather_features_v1.0.csv` yang memiliki 40 fitur lengkap dan label ground truth objektif, pondasi data untuk tahap berikutnya telah matang 100%. Pada Lembar Kerja 05 (LK-05), tahapan yang akan direalisasikan meliputi:

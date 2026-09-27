@@ -12,7 +12,7 @@
 | **Dosen Pengampu** | Rizal Setya Perdana, S.Kom., M.Kom., Ph.D. |
 | **Repositori GitHub** | [MLOps-AnomaliCuacaOpenMeteo](https://github.com/ghazthiskc19/MLOps-AnomaliCuacaOpenMeteo) |
 | **Branch Pengerjaan** | `feat/lk04-data-ingestion-preprocessing` |
-| **Status Pengujian** | 64 / 64 Unit Tests Pass (100%) |
+| **Status Pengujian** | 67 / 67 Unit Tests Pass (100%) |
 
 ---
 
@@ -35,7 +35,7 @@
    - 3.4 Parameter Biofisik Agrometeorologi (Vapor Pressure Deficit / VPD dan Titik Embun / Dew Point)
    - 3.5 Skema Kamus Data Final 40 Kolom (`weather_features_v1.0.csv`) dan Pelacakan DVC
 4. [BAB 4: Verifikasi, Pengujian Unit, dan Bukti Eksekusi Pipeline](#bab-4-verifikasi-pengujian-unit-dan-bukti-eksekusi-pipeline)
-   - 4.1 Rangkaian Pengujian Unit Komprehensif (64 Unit Tests Pass 100%)
+   - 4.1 Rangkaian Pengujian Unit Komprehensif (67 Unit Tests Pass 100%)
    - 4.2 Hasil Eksekusi Ingestion & Analisis Buffer 720 Baris
    - 4.3 Hasil Eksekusi Preprocessing & Profil Distribusi Anomali Riil
    - 4.4 Panduan Operasional & Reproducibility (CLI Execution & Environment Setup)
@@ -204,13 +204,13 @@ Kondisi tanaman agrikultur tidak hanya dipengaruhi oleh cuaca sesaat, melainkan 
 ### 3.4 Parameter Biofisik Agrometeorologi (VPD & Dew Point)
 Dua metrik biofisik fundamental ditambahkan ke dalam dataset olahan untuk mendukung domain Smart Farming:
 1. **Vapor Pressure Deficit (VPD dalam kPa)**: Mengukur selisih antara tekanan uap jenuh (saat udara 100% basah) dan tekanan uap air aktual di udara. VPD merupakan indikator terbaik untuk laju transpirasi tanaman dan potensi stres kekeringan kanopi daun:
-   $$e_s = 0.61078 	imes \exp\left(rac{17.27 	imes T}{T + 237.3}ight)$$
-   $$e_a = e_s 	imes \left(rac{RH}{100.0}ight)$$
-   $$	ext{VPD} = \max(0.0, e_s - e_a)$$
+   $$e_s = 0.61078 \times \exp\left(\frac{17.27 \times T}{T + 237.3}\right)$$
+   $$e_a = e_s \times \left(\frac{RH}{100.0}\right)$$
+   $$\text{VPD} = \max(0.0, e_s - e_a)$$
 
 2. **Titik Embun / Dew Point (°C)**: Menggunakan aproksimasi formula empiris Magnus-Tetens untuk menentukan suhu di mana udara mencapai titik jenuh uap air dan mulai membentuk embun:
-   $$lpha = rac{17.27 	imes T}{237.3 + T} + \ln\left(rac{\max(RH, 0.01)}{100.0}ight)$$
-   $$T_{	ext{dew}} = rac{237.3 	imes lpha}{17.27 - lpha}$$
+   $$\alpha = \frac{17.27 \times T}{237.3 + T} + \ln\left(\frac{\max(RH, 0.01)}{100.0}\right)$$
+   $$T_{\text{dew}} = \frac{237.3 \times \alpha}{17.27 - \alpha}$$
 
 ### 3.5 Skema Data Final 40 Kolom & Kamus Data
 Hasil akhir dari proses data preprocessing adalah berkas tabular berstandar MLOps `data/processed/weather_features_v1.0.csv` yang memiliki tepat 40 kolom fitur:
@@ -250,23 +250,23 @@ Hasil akhir dari proses data preprocessing adalah berkas tabular berstandar MLOp
 
 # BAB 4: VERIFIKASI, PENGUJIAN UNIT, DAN BUKTI EKSEKUSI PIPELINE
 
-### 4.1 Rangkaian Pengujian Unit Komprehensif (64 Unit Tests)
-Untuk menjamin tidak adanya regresi logika dan membuktikan kehandalan seluruh komponen sistem secara objektif, repositori dilengkapi 64 unit test otomatis yang terbagi ke dalam tiga modul pengujian utama:
+### 4.1 Rangkaian Pengujian Unit Komprehensif (67 Unit Tests)
+Untuk menjamin tidak adanya regresi logika dan membuktikan kehandalan seluruh komponen sistem secara objektif, repositori dilengkapi 67 unit test otomatis yang terbagi ke dalam tiga modul pengujian utama:
 
 | Modul Pengujian (Test Suite) | Jumlah Uji | Status | Aspek Sistem yang Divalidasi |
 |---|---|---|---|
-| `tests/test_dags.py` | 27 Tests | PASS (100%) | Struktur DAG Airflow, resolusi interpreter Python di Windows & Linux, konfigurasi BashOperator, toleransi kegagalan pendulum, dan penanganan dependensi. |
-| `tests/test_data_ingestion.py` | 14 Tests | PASS (100%) | Pengambilan payload API, mekanisme retry backoff, parsing skema mentah, deduplikasi timestamp, pemotongan buffer 720 baris, dan penulisan atomik. |
-| `tests/test_data_preprocessing.py` | 23 Tests | PASS (100%) | DataCleaner (Quality Gate), AnomalyLabeler (uji seluruh 13 taksonomi kegagalan sensor Class 1 & 8 kondisi cuaca ekstrem Class 2), FeatureEngineer, dan integrasi I/O berkas. |
-| **TOTAL RANGKAIAN UJI** | **64 Tests** | **PASS (100%)** | Seluruh pengujian unit berjalan sukses dalam waktu 1.30 detik tanpa kegagalan. |
+| `tests/test_dags.py` | 26 Tests | PASS (100%) | Struktur DAG Airflow, resolusi interpreter Python di Windows & Linux, konfigurasi BashOperator, toleransi kegagalan pendulum, dan penanganan dependensi. |
+| `tests/test_data_ingestion.py` | 15 Tests | PASS (100%) | Pengambilan payload API, mekanisme retry backoff, parsing skema mentah, deduplikasi timestamp, pemotongan buffer 720 baris, dan penulisan atomik. |
+| `tests/test_data_preprocessing.py` | 26 Tests | PASS (100%) | DataCleaner (Quality Gate), AnomalyLabeler (taksonomi kegagalan sensor Class 1 & 8 kondisi cuaca ekstrem Class 2, presisi float stuck value, spiking negatif, timezone), FeatureEngineer, dan integrasi I/O berkas. |
+| **TOTAL RANGKAIAN UJI** | **67 Tests** | **PASS (100%)** | Seluruh pengujian unit berjalan sukses dalam waktu 1.35 detik tanpa kegagalan. |
 
 ```bash
 $ python -m unittest discover tests
-........................... [27 tests test_dags.py]
-..............               [14 tests test_data_ingestion.py]
-.......................      [23 tests test_data_preprocessing.py]
+..........................   [26 tests test_dags.py]
+...............              [15 tests test_data_ingestion.py]
+..........................   [26 tests test_data_preprocessing.py]
 ----------------------------------------------------------------------
-Ran 64 tests in 1.301s
+Ran 67 tests in 1.352s
 
 OK
 ```
@@ -312,12 +312,12 @@ python src/data_ingestion.py --past-days 30 --buffer-size 720
 python src/ingest_data.py
 
 # 2. Eksekusi Data Preprocessing & Feature Engineering
-python src/data_preprocessing.py --input-path data/raw/weather_raw_current.csv \
+python src/data_preprocessing.py --input-path data/raw/weather_raw_current.csv \\
                                  --output-path data/processed/weather_features_v1.0.csv
 # Atau via entrypoint wrapper:
 python src/preprocess.py
 
-# 3. Menjalankan Seluruh Rangkaian Unit Test (64 Uji)
+# 3. Menjalankan Seluruh Rangkaian Unit Test (67 Uji)
 python -m unittest discover tests
 ```
 
@@ -330,7 +330,7 @@ Implementasi Lembar Kerja 04 (LK-04) telah berhasil menuntaskan seluruh sasaran 
 1. **Ingestion Otomatis & Andal**: Apache Airflow DAG berhasil menjadwalkan penarikan data jam-jaman dari Open-Meteo API dengan isolasi memori subprocess, mekanisme toleransi galat exponential backoff, penulisan berkas atomik, dan pemeliharaan rolling buffer 30 hari (720 baris).
 2. **Quality Gate & Ground Truth Deterministic**: Modul `DataCleaner` dan `AnomalyLabeler` sukses menegakkan integritas skema data serta mengklasifikasikan data ke dalam 3 kelas anomali (Normal, Hardware Fault, Extreme Weather) sesuai taksonomi fisik LK-03.
 3. **Feature Engineering Kaya Fitur**: Berhasil mengekstraksi 40 atribut fitur berstandar machine learning, mencakup transformasi sinus/kosinus waktu, selisih lag, statistik jendela geser multi-skala, dan variabel biofisik agrikultur (VPD & Dew Point).
-4. **Kualitas Kode Tinggi & Teruji**: Seluruh 64 unit test lulus 100% tanpa galat, membuktikan ketahanan sistem terhadap kasus ekstrem (*edge cases*) seperti data kosong, missing values, dan malformasi timestamp.
+4. **Kualitas Kode Tinggi & Teruji**: Seluruh 67 unit test lulus 100% tanpa galat, membuktikan ketahanan sistem terhadap kasus ekstrem (*edge cases*) seperti data kosong, missing values, dan malformasi timestamp.
 
 ### 5.2 Roadmap Menuju Model Training & Serving (LK-05)
 Dengan tersedianya dataset olahan `data/processed/weather_features_v1.0.csv` yang memiliki 40 fitur lengkap dan label ground truth objektif, pondasi data untuk tahap berikutnya telah matang 100%. Pada Lembar Kerja 05 (LK-05), tahapan yang akan direalisasikan meliputi:

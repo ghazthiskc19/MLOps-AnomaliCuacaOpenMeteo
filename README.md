@@ -121,7 +121,7 @@ python src/preprocess.py --input-path data/raw/weather_raw_current.csv --output-
 ```
 
 #### 3. Menjalankan Unit Tests
-Menjalankan seluruh 64 unit tests yang mencakup pengujian DAG Airflow, modul ingestion, dan modul preprocessing.
+Menjalankan seluruh 67 unit tests yang mencakup pengujian DAG Airflow, modul ingestion, dan modul preprocessing.
 
 ```bash
 # Menjalankan seluruh rangkaian tes unit
