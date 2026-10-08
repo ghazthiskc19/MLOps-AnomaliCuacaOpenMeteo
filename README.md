@@ -207,6 +207,58 @@ Proyek ini menggunakan **[Open-Meteo API](https://open-meteo.com/)** sebagai sum
 
 ---
 
+## 🗂️ Data Versioning (DVC)
+
+Dataset mentah (`data/raw/weather_raw_current.csv`) dilacak dengan **DVC**. Git hanya menyimpan file penunjuk kecil `weather_raw_current.csv.dvc` (berisi hash MD5 dan ukuran), sedangkan isi CSV disimpan di cache DVC dan di *remote storage* (folder `~/dvc-store` pada VPS lewat SSH, hanya dapat diakses dari jaringan UB).
+
+### Mengapa versioning data krusial untuk reproduksibilitas model
+
+Buffer data cuaca bersifat bergulir (30 hari / 720 baris): setiap jam data lama bergeser keluar dan data baru masuk, sehingga file yang sama berubah isinya dari waktu ke waktu. Tanpa versioning, model yang dilatih hari ini tidak dapat dilatih ulang persis dengan data yang sama minggu depan, dan hasil eksperimen tidak dapat dibandingkan secara adil. Dengan DVC, setiap model dapat dikaitkan ke satu tag data (misal `dataset-v1.0.0`) sehingga kombinasi **kode (commit Git) + data (hash DVC)** dapat dipulihkan kapan saja.
+
+### Versi data yang tercatat
+
+| Tag | Isi | Baris | Rentang waktu | MD5 (`.dvc`) |
+|---|---|---|---|---|
+| `dataset-v1.0.0` | Baseline dari LK-04 | 720 | 2026-08-29 s.d. 2026-09-27 | `e42dc025…` |
+| `dataset-v2.0.0` | Setelah ingestion ulang (`--buffer-size 1000`) | 936 | 2026-08-29 s.d. 2026-10-06 | `8e441262…` |
+
+### Alur menambah versi data baru
+
+```bash
+# 1. Ambil data tambahan (buffer diperbesar agar baris benar-benar bertambah)
+python src/ingest_data.py --buffer-size 1000
+
+# 2. Catat versi baru: hash di file .dvc berubah
+dvc add data/raw/weather_raw_current.csv
+git add data/raw/weather_raw_current.csv.dvc
+git commit -m "data: update raw weather dataset v2"
+git tag dataset-v2.0.0
+
+# 3. Kirim isi data ke remote DULU, baru kirim pointer ke Git
+dvc push --all-tags
+git push origin <branch> --tags
+```
+
+### Audit dan perbandingan versi
+
+```bash
+dvc status                                        # workspace sinkron dengan .dvc?
+dvc diff --show-hash dataset-v1.0.0 dataset-v2.0.0  # Modified: e42dc025..8e441262
+git diff dataset-v1.0.0 dataset-v2.0.0 -- data/raw/weather_raw_current.csv.dvc
+```
+
+### Kembali ke versi tertentu / memulihkan data
+
+```bash
+git checkout dataset-v1.0.0 && dvc checkout   # CSV kembali ke 720 baris
+git checkout <branch>       && dvc checkout   # CSV kembali ke versi terbaru
+# Pada clone baru (jaringan UB): git pull && dvc pull
+```
+
+> **Catatan:** `dvc add` dijalankan manual pada momen penting (baseline, sebelum training), bukan setiap jam. Pengambilan data per jam tetap ditangani Airflow di VPS.
+
+---
+
 ## 🎯 Kriteria Sukses
 
 ### Metrik Teknis
@@ -229,6 +281,7 @@ Proyek ini menggunakan **[Open-Meteo API](https://open-meteo.com/)** sebagai sum
 | [LK02 - Kriteria Penilaian](Documentation/LK02/LK02-Grading-Criteria.md) | Indikator & kriteria penilaian |
 | [LK03 - Perancangan Arsitektur Data](Documentation/LK03/LK03-Perancangan-Arsitektur-Data.md) | Desain pipeline ETL, skema data awal & DVC |
 | [LK04 - Ingestion & Preprocessing](Documentation/LK04/LK04-Muhammad%20Ghazy%20Humaidi-245150200111071.pdf) | Implementasi Airflow ingestion, Quality Gate, Anomaly Labeling, & Feature Engineering |
+| [LK05 - Data Versioning DVC](Documentation/LK05/LK05-Muhammad%20Ghazy%20Humaidi-245150200111071.pdf) | Pelacakan dataset dengan DVC, simulasi data baru, & audit diff antar versi |
 | [GitHub Flow Guide](Documentation/LK02/GITHUB_FLOW.md) | Panduan branching strategy |
 
 ---

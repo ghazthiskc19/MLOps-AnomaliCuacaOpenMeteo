@@ -1,0 +1,4 @@
+[core]
+    remote = vps
+['remote "vps"']
+    url = ssh://member@10.34.211.189/home/member/dvc-store
