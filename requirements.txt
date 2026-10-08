@@ -12,3 +12,5 @@ matplotlib==3.9.0
 # Notebook
 jupyter
 ipykernel
+
+dvc[ssh]==3.67.1
