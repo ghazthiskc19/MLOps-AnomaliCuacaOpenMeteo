@@ -36,6 +36,20 @@ PDF_OUT_PATH = LK05_DIR / f"{BASENAME}.pdf"
 PUSH_EVIDENCE_PATH = LK05_DIR / "dvc_push_evidence.txt"  # opsional: keluaran `dvc push` dari jaringan UB
 
 
+ASSETS_DIR = REPO_ROOT / "Documentation" / "assets"
+LOGO_FILKOM = ASSETS_DIR / "logo-filkom.png"  # diekstrak dari cover LK-03
+LOGO_UB = ASSETS_DIR / "logo-ub.png"
+
+
+def add_logo(doc, image_path, width_in, space_after=10):
+    """Menambahkan logo di tengah halaman sampul (format cover LK-03)."""
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.paragraph_format.space_before = Pt(0)
+    p.paragraph_format.space_after = Pt(space_after)
+    p.add_run().add_picture(str(image_path), width=Inches(width_in))
+
+
 def _set_outline_level(paragraph, level):
     """Menandai paragraf sebagai entri Daftar Isi (outline level) tanpa mengubah tampilan LK-04."""
     paragraph._p.get_or_add_pPr().append(parse_xml(f'<w:outlineLvl {nsdecls("w")} w:val="{level}"/>'))
@@ -99,8 +113,7 @@ def build_lk05_docx():
     C = WD_ALIGN_PARAGRAPH.CENTER
 
     # ------------------------------------------------------------------ COVER
-    add_p(doc, "", space_after=24)
-    add_p(doc, "", space_after=24)
+    add_logo(doc, LOGO_FILKOM, width_in=2.9, space_after=14)
     add_p(doc, "LEMBAR KERJA-05 (LK-05)", align=C, size_pt=20, bold=True, space_after=10)
     add_p(doc, "Manajemen Data Versioning Menggunakan DVC", align=C, size_pt=17, bold=True, space_after=8)
     add_p(
@@ -108,15 +121,15 @@ def build_lk05_docx():
         "Sistem Otomatis Deteksi Anomali Data Cuaca Open-Meteo untuk Smart Farming Berbasis MLOps",
         align=C, size_pt=13.5, bold=True, space_after=12,
     )
-    add_p(doc, "MLOPS TIF-B 2026", align=C, size_pt=15, bold=True, space_after=40)
-    add_p(doc, "", space_after=30)
+    add_p(doc, "MLOPS TIF-B 2026", align=C, size_pt=15, bold=True, space_after=26)
     add_p(doc, "Nama Mahasiswa:", align=C, bold=True, space_after=2)
-    add_p(doc, "Muhammad Ghazy Humaidi (245150200111071)", align=C, space_after=16)
+    add_p(doc, "Muhammad Ghazy Humaidi (245150200111071)", align=C, space_after=14)
     add_p(doc, "Dosen Pengampu:", align=C, bold=True, space_after=2)
-    add_p(doc, "Rizal Setya Perdana, S.Kom., M.Kom., Ph.D.", align=C, space_after=35)
+    add_p(doc, "Rizal Setya Perdana, S.Kom., M.Kom., Ph.D.", align=C, space_after=16)
+    add_logo(doc, LOGO_UB, width_in=2.0, space_after=14)
     add_p(doc, "Program Studi Teknik Informatika", align=C, bold=True, space_after=2)
     add_p(doc, "Jurusan Teknik Informatika", align=C, bold=True, space_after=2)
-    add_p(doc, "Fakultas Ilmu Komputer, Universitas Brawijaya", align=C, bold=True, space_after=2)
+    add_p(doc, "Fakultas Ilmu Komputer, Universitas Brawijaya", align=C, bold=True, space_after=10)
     add_p(doc, "2026", align=C, bold=True, space_after=0)
     doc.add_page_break()
 
