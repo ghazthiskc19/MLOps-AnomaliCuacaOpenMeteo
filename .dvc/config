@@ -1,4 +1,7 @@
 [core]
-    remote = vps
+    remote = r2
 ['remote "vps"']
     url = ssh://member@10.34.211.189/home/member/dvc-store
+['remote "r2"']
+    url = s3://weather-anomaly-mlops/dvc
+    endpointurl = https://cb621e5016743d27bd2582204ce224ef.r2.cloudflarestorage.com

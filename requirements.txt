@@ -14,3 +14,5 @@ jupyter
 ipykernel
 
 dvc[ssh]==3.67.1
+# Cloudflare R2 upload (Airflow -> R2)
+boto3==1.43.106

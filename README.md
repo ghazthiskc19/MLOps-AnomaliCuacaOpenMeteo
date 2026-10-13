@@ -209,7 +209,14 @@ Proyek ini menggunakan **[Open-Meteo API](https://open-meteo.com/)** sebagai sum
 
 ## 🗂️ Data Versioning (DVC)
 
-Dataset mentah (`data/raw/weather_raw_current.csv`) dilacak dengan **DVC**. Git hanya menyimpan file penunjuk kecil `weather_raw_current.csv.dvc` (berisi hash MD5 dan ukuran), sedangkan isi CSV disimpan di cache DVC dan di *remote storage* (folder `~/dvc-store` pada VPS lewat SSH, hanya dapat diakses dari jaringan UB).
+Dataset mentah (`data/raw/weather_raw_current.csv`) dilacak dengan **DVC**. Git hanya menyimpan file penunjuk kecil `weather_raw_current.csv.dvc` (berisi hash MD5 dan ukuran), sedangkan isi CSV disimpan di cache DVC dan di *remote storage* **Cloudflare R2** (bucket `weather-anomaly-mlops`, prefix `dvc/`, dapat diakses dari mana saja). Remote `vps` (SSH, hanya jaringan UB) tetap terdaftar sebagai cadangan.
+
+Kredensial R2 tidak ada di repo. Isi sekali per mesin:
+
+```bash
+dvc remote modify --local r2 access_key_id <KEY_ID>
+dvc remote modify --local r2 secret_access_key <SECRET>
+```
 
 ### Mengapa versioning data krusial untuk reproduksibilitas model
 
@@ -252,10 +259,29 @@ git diff dataset-v1.0.0 dataset-v2.0.0 -- data/raw/weather_raw_current.csv.dvc
 ```bash
 git checkout dataset-v1.0.0 && dvc checkout   # CSV kembali ke 720 baris
 git checkout <branch>       && dvc checkout   # CSV kembali ke versi terbaru
-# Pada clone baru (jaringan UB): git pull && dvc pull
+# Pada clone baru (jaringan apa pun): git pull && dvc pull
 ```
 
 > **Catatan:** `dvc add` dijalankan manual pada momen penting (baseline, sebelum training), bukan setiap jam. Pengambilan data per jam tetap ditangani Airflow di VPS.
+
+### Sinkronisasi otomatis Airflow (VPS) ke R2
+
+Selain versi beku lewat DVC, DAG `weather_data_ingestion` punya task `upload_raw_to_r2` yang berjalan setelah ingestion dan mengunggah CSV lewat `src/r2_sync.py`:
+
+| Key di bucket | Isi |
+|---|---|
+| `raw/weather_raw_<UTC>.csv` | Snapshot per run (riwayat tidak hilang walau buffer bergulir) |
+| `raw/latest.csv` | Salinan terbaru (ditimpa tiap run) |
+
+Kredensial dibaca dari `.env` di root repo (salin dari `.env.example`, sudah di-`.gitignore`).
+
+```bash
+python src/r2_sync.py upload      # dijalankan Airflow di VPS
+python src/r2_sync.py list        # lihat snapshot di bucket
+python src/r2_sync.py download    # laptop: ambil raw/latest.csv ke data/raw/
+```
+
+Alur lengkap: Airflow upload ke R2, laptop `download` data terbaru, lalu bila ingin dibekukan sebagai versi training: `dvc add` + `git commit` + `dvc push`.
 
 ---
 
