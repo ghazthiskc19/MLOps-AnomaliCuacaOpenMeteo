@@ -403,9 +403,19 @@ class TestWeatherIngestionDAG(unittest.TestCase):
 
             # Verifikasi instansiasi BashOperator
             expected_py = get_python_interpreter(DAG_REPO_ROOT)
-            mock_operator_cls.assert_called_once_with(
+            self.assertEqual(mock_operator_cls.call_count, 2)
+            mock_operator_cls.assert_any_call(
                 task_id="fetch_and_save_weather_data",
                 bash_command=f'"{expected_py}" src/data_ingestion.py',
+                cwd=str(DAG_REPO_ROOT),
+                execution_timeout=timedelta(minutes=5),
+                retries=2,
+                retry_delay=timedelta(minutes=2),
+                dag=mock_dag_instance,
+            )
+            mock_operator_cls.assert_any_call(
+                task_id="upload_raw_to_r2",
+                bash_command=f'"{expected_py}" src/r2_sync.py upload',
                 cwd=str(DAG_REPO_ROOT),
                 execution_timeout=timedelta(minutes=5),
                 retries=2,

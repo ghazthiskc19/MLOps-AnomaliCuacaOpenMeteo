@@ -271,8 +271,15 @@ class _BashOperatorFallback:
             else False,
         )
 
+        self.downstream_task_ids: list = []
+
         if effective_dag and hasattr(effective_dag, "add_task"):
             effective_dag.add_task(self)
+
+    def __rshift__(self, other):
+        """Meniru operator `a >> b` Airflow: b dijalankan setelah a."""
+        self.downstream_task_ids.append(other.task_id)
+        return other
 
     def execute(self, context: Optional[dict] = None) -> int:
         """
@@ -350,7 +357,7 @@ def create_weather_ingestion_dag(repo_root: Optional[Union[str, Path]] = None):
         max_active_runs=1,
         tags=["mlops", "data_ingestion", "weather", "open-meteo"],
     ) as dag_instance:
-        BashOperator(
+        fetch_task = BashOperator(
             task_id="fetch_and_save_weather_data",
             bash_command=bash_command,
             cwd=str(root),
@@ -359,6 +366,19 @@ def create_weather_ingestion_dag(repo_root: Optional[Union[str, Path]] = None):
             retry_delay=timedelta(minutes=2),
             dag=dag_instance,
         )
+
+        # Unggah hasil ingestion ke Cloudflare R2 agar bisa diambil dari mana saja (tanpa wifi UB)
+        upload_task = BashOperator(
+            task_id="upload_raw_to_r2",
+            bash_command=f'"{python_executable}" src/r2_sync.py upload',
+            cwd=str(root),
+            execution_timeout=timedelta(minutes=5),
+            retries=2,
+            retry_delay=timedelta(minutes=2),
+            dag=dag_instance,
+        )
+
+        fetch_task >> upload_task
 
     return dag_instance
 
