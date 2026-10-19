@@ -1,0 +1,5 @@
+outs:
+- md5: 64d906e7d0086d1814f5e61b359e22fe
+  size: 36622
+  hash: md5
+  path: weather_faults_s42.csv

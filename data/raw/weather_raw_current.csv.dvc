@@ -1,5 +1,5 @@
 outs:
-- md5: 8e4412625620af93ac368a5692e1a399
-  size: 45033
+- md5: 9684e1329ae170b08883d1ea643eb174
+  size: 33964
   hash: md5
   path: weather_raw_current.csv
