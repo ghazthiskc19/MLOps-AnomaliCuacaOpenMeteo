@@ -22,6 +22,7 @@ data/raw/*.parquet
 data/processed/*.csv
 data/processed/*.json
 data/processed/*.parquet
+data/simulated/*.csv
 
 # Models (large - tracked by MLflow later)
 models/*.pkl

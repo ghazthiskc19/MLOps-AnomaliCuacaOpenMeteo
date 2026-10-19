@@ -44,7 +44,8 @@ MLOps-AnomaliCuacaOpenMeteo/
 │   ├── data_ingestion.py       # Modul ingestion API Open-Meteo & buffer 30 hari
 │   ├── ingest_data.py          # Entrypoint / CLI wrapper ingestion
 │   ├── data_preprocessing.py   # Pipeline ETL, Quality Gate, Anomaly Labeling, & Feature Eng.
-│   └── preprocess.py           # Entrypoint / CLI wrapper preprocessing
+│   ├── preprocess.py           # Entrypoint / CLI wrapper preprocessing
+│   └── simulate_data.py        # Data simulasi: hardware fault & data drift
 ├── notebooks/                  # Jupyter notebooks (EDA, PoC, eksperimen)
 ├── tests/                      # Unit tests komprehensif
 │   ├── test_dags.py            # Pengujian DAG Airflow
@@ -120,8 +121,27 @@ python src/data_preprocessing.py
 python src/preprocess.py --input-path data/raw/weather_raw_current.csv --output-path data/processed/weather_features_v1.0.csv
 ```
 
+#### 2b. Data Simulasi (Hardware Fault & Data Drift)
+Open-Meteo adalah data model cuaca yang selalu bersih, sehingga Class 1 (Hardware Fault) tidak pernah muncul secara alami dan drift musiman butuh waktu berbulan-bulan untuk teramati. `src/simulate_data.py` membuat salinan data yang dimodifikasi di `data/simulated/` tanpa mengubah data asli di `data/raw/`. Label tetap diberikan oleh `AnomalyLabeler` saat preprocessing.
+
+| Skenario | Perubahan | Kegunaan |
+|---|---|---|
+| `faults` | Merusak ±5% baris (OOB, nilai negatif, spike, glitch radiasi malam) + 1 blok sensor suhu stuck 18 jam | Contoh Class 1 untuk training |
+| `drift` | Suhu +3°C, kelembaban −15%, presipitasi ×2 (meniru pergantian musim) | Pengujian Data Drift |
+
+```bash
+python src/simulate_data.py --scenario faults --fault-rate 0.05 --seed 42   # -> data/simulated/weather_faults_s42.csv
+python src/simulate_data.py --scenario drift --temp-shift 3 --humidity-shift -15 --precip-scale 2
+
+# Proses data simulasi dengan pipeline yang sama
+python src/preprocess.py --input-path data/simulated/weather_faults_s42.csv \
+    --output-path data/processed/weather_features_faults_s42.csv --current-path ""
+```
+
+Seed yang sama selalu menghasilkan file yang identik, sehingga dataset simulasi dapat direproduksi.
+
 #### 3. Menjalankan Unit Tests
-Menjalankan seluruh 67 unit tests yang mencakup pengujian DAG Airflow, modul ingestion, dan modul preprocessing.
+Menjalankan seluruh 85 unit tests yang mencakup pengujian DAG Airflow, modul ingestion, preprocessing, simulasi data, dan sinkronisasi R2.
 
 ```bash
 # Menjalankan seluruh rangkaian tes unit
