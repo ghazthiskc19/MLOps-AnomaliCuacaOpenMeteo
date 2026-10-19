@@ -1,5 +1,5 @@
 """
-tests/test_r2_sync.py - Pengujian src/r2_sync.py dengan klien S3 palsu (tanpa jaringan).
+tests/test_r2_sync.py - Pengujian src/2_r2_sync.py dengan klien S3 palsu (tanpa jaringan).
 """
 
 from datetime import datetime, timezone
@@ -10,9 +10,9 @@ import tempfile
 import unittest
 from unittest import mock
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-import r2_sync  # noqa: E402
+from src import r2_sync  # noqa: E402
 
 
 class FakeS3:

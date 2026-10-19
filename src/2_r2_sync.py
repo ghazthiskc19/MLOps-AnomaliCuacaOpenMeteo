@@ -1,5 +1,5 @@
 """
-src/r2_sync.py - Sinkronisasi data mentah cuaca antara VPS (Airflow) dan Cloudflare R2.
+src/2_r2_sync.py - Sinkronisasi data mentah cuaca antara VPS (Airflow) dan Cloudflare R2.
 
 Fungsi utama:
 1. upload   : mengunggah CSV mentah ke bucket R2 sebagai snapshot bertimestamp
@@ -11,9 +11,9 @@ Kredensial dibaca dari environment variable atau file .env di root repo (tidak d
     R2_ENDPOINT_URL, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET
 
 Contoh:
-    python src/r2_sync.py upload
-    python src/r2_sync.py download --dest data/raw/weather_raw_current.csv
-    python src/r2_sync.py list
+    python src/2_r2_sync.py upload
+    python src/2_r2_sync.py download --dest data/raw/weather_raw_current.csv
+    python src/2_r2_sync.py list
 """
 
 import argparse

@@ -1,0 +1,121 @@
+{
+  "name": "WeatherAnomalyRandomForest",
+  "version": "1",
+  "registry_uri": "models:/WeatherAnomalyRandomForest/1",
+  "run_id": "044402f101154e1c8c295161c0542077",
+  "model_uri": "models:/m-5179955d3af649e49fbd4b8a6f8f0bc3",
+  "parameters": {
+    "n_estimators": 100,
+    "max_depth": null,
+    "min_samples_leaf": 1,
+    "class_weight": null,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "selection_metric": "cv_val_f1_macro_mean",
+  "cv_value": 0.8121981302809189,
+  "test_metrics": {
+    "accuracy": 0.9629629629629629,
+    "f1_macro": 0.9039050656671166,
+    "balanced_accuracy": 0.8717948717948718,
+    "support_class_0": 94.0,
+    "f1_class_0": 0.9842931937172775,
+    "recall_class_0": 1.0,
+    "precision_class_0": 0.9690721649484536,
+    "support_class_1": 13.0,
+    "f1_class_1": 0.7619047619047619,
+    "recall_class_1": 0.6153846153846154,
+    "precision_class_1": 1.0,
+    "support_class_2": 28.0,
+    "f1_class_2": 0.9655172413793104,
+    "recall_class_2": 1.0,
+    "precision_class_2": 0.9333333333333333
+  },
+  "fit_scope": {
+    "rows": 537,
+    "start_wib": "2026-09-22 00:00:00",
+    "end_wib": "2026-10-14 08:00:00",
+    "class_counts": {
+      "0": 452,
+      "1": 46,
+      "2": 39
+    }
+  },
+  "dataset": {
+    "path": "data/simulated/weather_faults_s42.csv",
+    "md5": "64d906e7d0086d1814f5e61b359e22fe",
+    "bytes": 36622,
+    "dataset_tag": "dataset-v3.0.0",
+    "dataset_tag_commit": "5ad793089485d56a3de1ffc46e9807b68638c275",
+    "pointer_sha256": "4578272cb96691f2085d8e55d73e21dff728afed9cb971387d4706aceb89dcfc"
+  },
+  "feature_contract": {
+    "feature_names": [
+      "temperature_2m_C",
+      "humidity_percent",
+      "precipitation_mm",
+      "soil_moisture",
+      "radiation_wm2",
+      "wind_speed_kmh",
+      "hour",
+      "hour_sin",
+      "hour_cos",
+      "day_of_week",
+      "is_weekend",
+      "month",
+      "month_sin",
+      "month_cos",
+      "vpd_kpa",
+      "dew_point_C",
+      "temp_diff_1h",
+      "temp_diff_24h",
+      "humidity_diff_1h",
+      "soil_diff_1h",
+      "soil_diff_24h",
+      "radiation_diff_1h",
+      "temp_rolling_mean_3h",
+      "temp_rolling_std_3h",
+      "temp_rolling_mean_6h",
+      "temp_rolling_std_6h",
+      "temp_rolling_mean_24h",
+      "temp_rolling_std_24h",
+      "temp_rolling_min_24h",
+      "temp_rolling_max_24h",
+      "humidity_rolling_mean_6h",
+      "humidity_rolling_mean_24h",
+      "precip_rolling_sum_6h",
+      "precip_rolling_sum_24h",
+      "soil_rolling_mean_24h",
+      "wind_rolling_mean_6h",
+      "wind_rolling_max_24h"
+    ],
+    "feature_dtype": "float64",
+    "labels": {
+      "0": "normal",
+      "1": "hardware fault",
+      "2": "extreme weather"
+    },
+    "input": "37 engineered numeric features; not raw single-row weather",
+    "raw_history_helper": "src.training_data.latest_features",
+    "minimum_raw_history_rows": 49,
+    "timezone": "Asia/Jakarta",
+    "naive_timestamp_means": "Asia/Jakarta",
+    "raw_interval": "1 hour, ordered, unique, finite sensor values",
+    "warmup_policy": "first 48 raw hours context only, never fit/scored",
+    "missing_policy": "reject raw missing/nonfinite and derived nonfinite explicitly",
+    "fault_priority": "hardware fault overrides extreme weather",
+    "limitations": [
+      "rule agreement is not independent field accuracy",
+      "one location, 30 days, fault seed 42",
+      "some fault subtypes absent from validation/test",
+      "not approved for actuator control"
+    ]
+  },
+  "source_sha256": {
+    "train.py": "51c77af0af115508e548114058ba73e09f9eca5f4bd2ced6f21730ada9f01c9a",
+    "src/training_data.py": "67d0566aaab071069d6beef68cdc8efe06a4731715d0749258e4514f305a4d97",
+    "src/model_evaluation.py": "a9bd4dea2b135d9429cb0198744f84cf150c464d42b6fab0129a665586091ae1",
+    "src/data_preprocessing.py": "8e217cc4151e35328fc1fbf1fb8dd690db41e1cca1860203fbf573ec0d6d006e",
+    "requirements.txt": "86950f631c9c2772474e550877ea68b66ae43dad5946f2d80316db34dfb06719"
+  }
+}

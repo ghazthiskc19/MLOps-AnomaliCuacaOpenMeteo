@@ -18,7 +18,7 @@ Menguji:
    - cwd menunjuk ke REPO_ROOT
    - execution_timeout == 5 menit
    - retries == 2, retry_delay == 2 menit
-   - bash_command memanggil src/data_ingestion.py dengan python executable yang valid.
+   - bash_command memanggil src/0_data_ingestion.py dengan python executable yang valid.
 4. Kompatibilitas saat pustaka apache-airflow dan pendulum dimock seolah terpasang di runtime.
 """
 
@@ -66,8 +66,8 @@ class TestWeatherIngestionDAG(unittest.TestCase):
         """Verifikasi bahwa REPO_ROOT teresolusi ke direktori proyek yang valid."""
         self.assertTrue(DAG_REPO_ROOT.is_dir(), "DAG REPO_ROOT harus merupakan direktori")
         self.assertTrue(
-            (DAG_REPO_ROOT / "src" / "data_ingestion.py").is_file(),
-            "File src/data_ingestion.py harus ada di dalam REPO_ROOT",
+            (DAG_REPO_ROOT / "src" / "0_data_ingestion.py").is_file(),
+            "File src/0_data_ingestion.py harus ada di dalam REPO_ROOT",
         )
         self.assertTrue(
             (DAG_REPO_ROOT / "dags" / "weather_ingestion_dag.py").is_file(),
@@ -241,13 +241,13 @@ class TestWeatherIngestionDAG(unittest.TestCase):
         self.assertEqual(task.retry_delay, timedelta(minutes=2))
 
     def test_task_bash_command_format(self):
-        """Verifikasi format bash_command mengeksekusi src/data_ingestion.py."""
+        """Verifikasi format bash_command mengeksekusi src/0_data_ingestion.py."""
         test_dag = create_weather_ingestion_dag(DAG_REPO_ROOT)
         task = test_dag.get_task("fetch_and_save_weather_data")
 
         cmd = task.bash_command
         self.assertIsInstance(cmd, str)
-        self.assertIn("src/data_ingestion.py", cmd)
+        self.assertIn("src/0_data_ingestion.py", cmd)
 
         # Memastikan executable Python di dalam command sesuai dengan get_python_interpreter
         expected_py = get_python_interpreter(DAG_REPO_ROOT)
@@ -406,7 +406,7 @@ class TestWeatherIngestionDAG(unittest.TestCase):
             self.assertEqual(mock_operator_cls.call_count, 2)
             mock_operator_cls.assert_any_call(
                 task_id="fetch_and_save_weather_data",
-                bash_command=f'"{expected_py}" src/data_ingestion.py',
+                bash_command=f'"{expected_py}" src/0_data_ingestion.py',
                 cwd=str(DAG_REPO_ROOT),
                 execution_timeout=timedelta(minutes=5),
                 retries=2,
@@ -415,7 +415,7 @@ class TestWeatherIngestionDAG(unittest.TestCase):
             )
             mock_operator_cls.assert_any_call(
                 task_id="upload_raw_to_r2",
-                bash_command=f'"{expected_py}" src/r2_sync.py upload',
+                bash_command=f'"{expected_py}" src/2_r2_sync.py upload',
                 cwd=str(DAG_REPO_ROOT),
                 execution_timeout=timedelta(minutes=5),
                 retries=2,

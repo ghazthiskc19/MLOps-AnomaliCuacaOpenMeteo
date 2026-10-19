@@ -1,0 +1,136 @@
+timestamp,anomaly_class,anomaly_reason,prediction
+2026-10-14 09:00:00,2,Extreme Weather: Severe Dry Air (37.0% < 40.0%),2
+2026-10-14 10:00:00,2,Extreme Weather: Severe Dry Air (29.0% < 40.0%),2
+2026-10-14 11:00:00,1,"Hardware Fault: Soil moisture OOB (0.800 m³/m³, range: 0.0 s.d. 0.55)",2
+2026-10-14 12:00:00,2,Extreme Weather: Severe Dry Air (30.0% < 40.0%),2
+2026-10-14 13:00:00,2,Extreme Weather: Severe Dry Air (30.0% < 40.0%),2
+2026-10-14 14:00:00,2,Extreme Weather: Severe Dry Air (32.0% < 40.0%),2
+2026-10-14 15:00:00,2,Extreme Weather: Severe Dry Air (33.0% < 40.0%),2
+2026-10-14 16:00:00,1,"Hardware Fault: Temperature OOB (62.5°C, range: -20 s.d. 55°C)",1
+2026-10-14 17:00:00,1,"Hardware Fault: Soil moisture OOB (0.806 m³/m³, range: 0.0 s.d. 0.55)",1
+2026-10-14 18:00:00,0,Normal State,0
+2026-10-14 19:00:00,0,Normal State,0
+2026-10-14 20:00:00,0,Normal State,0
+2026-10-14 21:00:00,0,Normal State,0
+2026-10-14 22:00:00,0,Normal State,0
+2026-10-14 23:00:00,0,Normal State,0
+2026-10-15 00:00:00,0,Normal State,0
+2026-10-15 01:00:00,0,Normal State,0
+2026-10-15 02:00:00,0,Normal State,0
+2026-10-15 03:00:00,0,Normal State,0
+2026-10-15 04:00:00,0,Normal State,0
+2026-10-15 05:00:00,0,Normal State,0
+2026-10-15 06:00:00,0,Normal State,0
+2026-10-15 07:00:00,0,Normal State,0
+2026-10-15 08:00:00,0,Normal State,0
+2026-10-15 09:00:00,0,Normal State,0
+2026-10-15 10:00:00,2,Extreme Weather: Severe Dry Air (35.0% < 40.0%),2
+2026-10-15 11:00:00,2,Extreme Weather: Severe Dry Air (33.0% < 40.0%),2
+2026-10-15 12:00:00,2,Extreme Weather: Severe Dry Air (34.0% < 40.0%),2
+2026-10-15 13:00:00,2,Extreme Weather: Severe Dry Air (30.0% < 40.0%),2
+2026-10-15 14:00:00,2,Extreme Weather: Severe Dry Air (28.0% < 40.0%),2
+2026-10-15 15:00:00,2,Extreme Weather: Severe Dry Air (32.0% < 40.0%),2
+2026-10-15 16:00:00,0,Normal State,0
+2026-10-15 17:00:00,0,Normal State,0
+2026-10-15 18:00:00,0,Normal State,0
+2026-10-15 19:00:00,0,Normal State,0
+2026-10-15 20:00:00,1,"Hardware Fault: Temperature OOB (-25.9°C, range: -20 s.d. 55°C)",1
+2026-10-15 21:00:00,1,Hardware Fault: Temperature spike (|ΔT|=48.6°C/hr without rain),1
+2026-10-15 22:00:00,0,Normal State,0
+2026-10-15 23:00:00,0,Normal State,0
+2026-10-16 00:00:00,0,Normal State,0
+2026-10-16 01:00:00,0,Normal State,0
+2026-10-16 02:00:00,0,Normal State,0
+2026-10-16 03:00:00,0,Normal State,0
+2026-10-16 04:00:00,0,Normal State,0
+2026-10-16 05:00:00,0,Normal State,0
+2026-10-16 06:00:00,0,Normal State,0
+2026-10-16 07:00:00,0,Normal State,0
+2026-10-16 08:00:00,0,Normal State,0
+2026-10-16 09:00:00,2,Extreme Weather: Severe Dry Air (38.0% < 40.0%),2
+2026-10-16 10:00:00,2,Extreme Weather: Severe Dry Air (33.0% < 40.0%),2
+2026-10-16 11:00:00,2,Extreme Weather: Severe Dry Air (31.0% < 40.0%),2
+2026-10-16 12:00:00,2,Extreme Weather: Severe Dry Air (29.0% < 40.0%),2
+2026-10-16 13:00:00,2,Extreme Weather: Heatwave / Heat Stress (34.0°C > 33.5°C),2
+2026-10-16 14:00:00,1,Hardware Fault: Temperature spike (|ΔT|=15.3°C/hr without rain),1
+2026-10-16 15:00:00,1,Hardware Fault: Temperature spike (|ΔT|=11.6°C/hr without rain),0
+2026-10-16 16:00:00,0,Normal State,0
+2026-10-16 17:00:00,0,Normal State,0
+2026-10-16 18:00:00,0,Normal State,0
+2026-10-16 19:00:00,0,Normal State,0
+2026-10-16 20:00:00,0,Normal State,0
+2026-10-16 21:00:00,0,Normal State,0
+2026-10-16 22:00:00,0,Normal State,0
+2026-10-16 23:00:00,0,Normal State,0
+2026-10-17 00:00:00,0,Normal State,0
+2026-10-17 01:00:00,0,Normal State,0
+2026-10-17 02:00:00,0,Normal State,0
+2026-10-17 03:00:00,0,Normal State,0
+2026-10-17 04:00:00,0,Normal State,0
+2026-10-17 05:00:00,0,Normal State,0
+2026-10-17 06:00:00,0,Normal State,0
+2026-10-17 07:00:00,1,"Hardware Fault: Humidity OOB (120.4%, range: 0 s.d. 100%)",1
+2026-10-17 08:00:00,0,Normal State,0
+2026-10-17 09:00:00,0,Normal State,0
+2026-10-17 10:00:00,0,Normal State,0
+2026-10-17 11:00:00,2,Extreme Weather: Severe Dry Air (35.0% < 40.0%),2
+2026-10-17 12:00:00,2,Extreme Weather: Severe Dry Air (34.0% < 40.0%),2
+2026-10-17 13:00:00,2,Extreme Weather: Severe Dry Air (34.0% < 40.0%),2
+2026-10-17 14:00:00,2,Extreme Weather: Severe Dry Air (37.0% < 40.0%),2
+2026-10-17 15:00:00,0,Normal State,0
+2026-10-17 16:00:00,0,Normal State,0
+2026-10-17 17:00:00,0,Normal State,0
+2026-10-17 18:00:00,0,Normal State,0
+2026-10-17 19:00:00,0,Normal State,0
+2026-10-17 20:00:00,0,Normal State,0
+2026-10-17 21:00:00,0,Normal State,0
+2026-10-17 22:00:00,0,Normal State,0
+2026-10-17 23:00:00,0,Normal State,0
+2026-10-18 00:00:00,0,Normal State,0
+2026-10-18 01:00:00,0,Normal State,0
+2026-10-18 02:00:00,0,Normal State,0
+2026-10-18 03:00:00,0,Normal State,0
+2026-10-18 04:00:00,0,Normal State,0
+2026-10-18 05:00:00,1,"Hardware Fault: Humidity OOB (104.4%, range: 0 s.d. 100%)",0
+2026-10-18 06:00:00,0,Normal State,0
+2026-10-18 07:00:00,0,Normal State,0
+2026-10-18 08:00:00,0,Normal State,0
+2026-10-18 09:00:00,0,Normal State,0
+2026-10-18 10:00:00,0,Normal State,0
+2026-10-18 11:00:00,2,Extreme Weather: Severe Dry Air (38.0% < 40.0%),2
+2026-10-18 12:00:00,2,Extreme Weather: Severe Dry Air (38.0% < 40.0%),2
+2026-10-18 13:00:00,2,Extreme Weather: Severe Dry Air (38.0% < 40.0%),2
+2026-10-18 14:00:00,0,Normal State,0
+2026-10-18 15:00:00,0,Normal State,0
+2026-10-18 16:00:00,0,Normal State,0
+2026-10-18 17:00:00,0,Normal State,0
+2026-10-18 18:00:00,0,Normal State,0
+2026-10-18 19:00:00,0,Normal State,0
+2026-10-18 20:00:00,0,Normal State,0
+2026-10-18 21:00:00,0,Normal State,0
+2026-10-18 22:00:00,0,Normal State,0
+2026-10-18 23:00:00,1,Hardware Fault: Negative wind speed (-7.9 km/h),0
+2026-10-19 00:00:00,0,Normal State,0
+2026-10-19 01:00:00,0,Normal State,0
+2026-10-19 02:00:00,0,Normal State,0
+2026-10-19 03:00:00,0,Normal State,0
+2026-10-19 04:00:00,0,Normal State,0
+2026-10-19 05:00:00,0,Normal State,0
+2026-10-19 06:00:00,0,Normal State,0
+2026-10-19 07:00:00,0,Normal State,0
+2026-10-19 08:00:00,0,Normal State,0
+2026-10-19 09:00:00,0,Normal State,0
+2026-10-19 10:00:00,0,Normal State,0
+2026-10-19 11:00:00,2,Extreme Weather: Severe Dry Air (32.0% < 40.0%),2
+2026-10-19 12:00:00,2,Extreme Weather: Severe Dry Air (27.0% < 40.0%),2
+2026-10-19 13:00:00,2,Extreme Weather: Severe Dry Air (25.0% < 40.0%),2
+2026-10-19 14:00:00,2,Extreme Weather: Severe Dry Air (24.0% < 40.0%),2
+2026-10-19 15:00:00,1,"Hardware Fault: Soil moisture OOB (0.599 m³/m³, range: 0.0 s.d. 0.55)",2
+2026-10-19 16:00:00,0,Normal State,0
+2026-10-19 17:00:00,0,Normal State,0
+2026-10-19 18:00:00,1,Hardware Fault: Temperature spike (|ΔT|=11.2°C/hr without rain),1
+2026-10-19 19:00:00,1,Hardware Fault: Temperature spike (|ΔT|=9.6°C/hr without rain),1
+2026-10-19 20:00:00,0,Normal State,0
+2026-10-19 21:00:00,0,Normal State,0
+2026-10-19 22:00:00,0,Normal State,0
+2026-10-19 23:00:00,0,Normal State,0

@@ -1,0 +1,4 @@
+file,rows,start,end,matches_expected_current_source,class_0,class_1,class_2
+weather_features_faults_s42.csv,720,2026-09-14 00:00:00,2026-10-13 23:00:00,False,610,58,52
+weather_features_v1.0.csv,720,2026-09-14 00:00:00,2026-10-13 23:00:00,False,610,58,52
+weather_processed_current.csv,720,2026-09-14 00:00:00,2026-10-13 23:00:00,False,610,58,52

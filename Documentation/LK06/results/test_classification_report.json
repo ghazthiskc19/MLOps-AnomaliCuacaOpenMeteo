@@ -1,0 +1,28 @@
+{
+  "classes": {
+    "0": {
+      "precision": 0.9690721649484536,
+      "recall": 1.0,
+      "f1": 0.9842931937172775,
+      "support": 94,
+      "predicted_count": 97
+    },
+    "1": {
+      "precision": 1.0,
+      "recall": 0.6153846153846154,
+      "f1": 0.7619047619047619,
+      "support": 13,
+      "predicted_count": 8
+    },
+    "2": {
+      "precision": 0.9333333333333333,
+      "recall": 1.0,
+      "f1": 0.9655172413793104,
+      "support": 28,
+      "predicted_count": 30
+    }
+  },
+  "absent_true_classes": [],
+  "macro_f1_policy": "fixed labels [0,1,2]; undefined terms contribute 0",
+  "balanced_accuracy_policy": "mean recall over classes present in y_true"
+}

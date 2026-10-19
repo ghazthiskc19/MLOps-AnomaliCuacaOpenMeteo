@@ -41,11 +41,14 @@ MLOps-AnomaliCuacaOpenMeteo/
 ├── models/                     # Model artifacts (.pkl, .joblib)
 ├── src/                        # Source code Python utama
 │   ├── __init__.py
-│   ├── data_ingestion.py       # Modul ingestion API Open-Meteo & buffer 30 hari
-│   ├── ingest_data.py          # Entrypoint / CLI wrapper ingestion
-│   ├── data_preprocessing.py   # Pipeline ETL, Quality Gate, Anomaly Labeling, & Feature Eng.
-│   ├── preprocess.py           # Entrypoint / CLI wrapper preprocessing
-│   └── simulate_data.py        # Data simulasi: hardware fault & data drift
+│   ├── 0_data_ingestion.py      # Mengambil data API Open-Meteo
+│   ├── 1_data_preprocessing.py  # Cleaning, label aturan, dan fitur
+│   ├── 2_r2_sync.py             # Sinkronisasi Cloudflare R2
+│   ├── 3_simulate_data.py       # Simulasi hardware fault dan drift
+│   ├── 4_training_data.py       # Validasi data dan konteks histori
+│   ├── 5_model_evaluation.py    # Split temporal dan metrik
+│   ├── 6_ingest_data.py         # Wrapper CLI untuk modul nomor 0
+│   └── 7_preprocess.py          # Wrapper CLI untuk modul nomor 1
 ├── notebooks/                  # Jupyter notebooks (EDA, PoC, eksperimen)
 ├── tests/                      # Unit tests komprehensif
 │   ├── test_dags.py            # Pengujian DAG Airflow
@@ -104,10 +107,10 @@ Mengambil data cuaca per jam untuk Kota Malang dengan mekanisme retry backoff da
 
 ```bash
 # Menjalankan modul ingestion utama
-python src/data_ingestion.py
+python src/0_data_ingestion.py
 
 # Atau melalui entrypoint wrapper
-python src/ingest_data.py --past-days 30 --buffer-size 720
+python src/6_ingest_data.py --past-days 30 --buffer-size 720
 ```
 
 #### 2. Data Preprocessing & Feature Engineering
@@ -115,14 +118,14 @@ Mengeksekusi Quality Gate, pelabelan anomali 3-kelas (Normal, Hardware Fault, Ex
 
 ```bash
 # Menjalankan modul preprocessing utama
-python src/data_preprocessing.py
+python src/1_data_preprocessing.py
 
 # Atau melalui entrypoint wrapper
-python src/preprocess.py --input-path data/raw/weather_raw_current.csv --output-path data/processed/weather_features_v1.0.csv
+python src/7_preprocess.py --input-path data/raw/weather_raw_current.csv --output-path data/processed/weather_features_v1.0.csv
 ```
 
 #### 2b. Data Simulasi (Hardware Fault & Data Drift)
-Open-Meteo adalah data model cuaca yang selalu bersih, sehingga Class 1 (Hardware Fault) tidak pernah muncul secara alami dan drift musiman butuh waktu berbulan-bulan untuk teramati. `src/simulate_data.py` membuat salinan data yang dimodifikasi di `data/simulated/` tanpa mengubah data asli di `data/raw/`. Label tetap diberikan oleh `AnomalyLabeler` saat preprocessing.
+Open-Meteo adalah data model cuaca yang selalu bersih, sehingga Class 1 (Hardware Fault) tidak pernah muncul secara alami dan drift musiman butuh waktu berbulan-bulan untuk teramati. `src/3_simulate_data.py` membuat salinan data yang dimodifikasi di `data/simulated/` tanpa mengubah data asli di `data/raw/`. Label tetap diberikan oleh `AnomalyLabeler` saat preprocessing.
 
 | Skenario | Perubahan | Kegunaan |
 |---|---|---|
@@ -130,25 +133,50 @@ Open-Meteo adalah data model cuaca yang selalu bersih, sehingga Class 1 (Hardwar
 | `drift` | Suhu +3°C, kelembaban −15%, presipitasi ×2 (meniru pergantian musim) | Pengujian Data Drift |
 
 ```bash
-python src/simulate_data.py --scenario faults --fault-rate 0.05 --seed 42   # -> data/simulated/weather_faults_s42.csv
-python src/simulate_data.py --scenario drift --temp-shift 3 --humidity-shift -15 --precip-scale 2
+python src/3_simulate_data.py --scenario faults --fault-rate 0.05 --seed 42   # -> data/simulated/weather_faults_s42.csv
+python src/3_simulate_data.py --scenario drift --temp-shift 3 --humidity-shift -15 --precip-scale 2
 
 # Proses data simulasi dengan pipeline yang sama
-python src/preprocess.py --input-path data/simulated/weather_faults_s42.csv \
+python src/7_preprocess.py --input-path data/simulated/weather_faults_s42.csv \
     --output-path data/processed/weather_features_faults_s42.csv --current-path ""
 ```
 
 Seed yang sama selalu menghasilkan file yang identik, sehingga dataset simulasi dapat direproduksi.
 
-#### 3. Menjalankan Unit Tests
-Menjalankan seluruh 85 unit tests yang mencakup pengujian DAG Airflow, modul ingestion, preprocessing, simulasi data, dan sinkronisasi R2.
+#### 3. Training Random Forest dan MLflow (LK06)
+
+```bash
+dvc pull
+python train.py
+python -m mlflow ui --backend-store-uri sqlite:///mlflow.db --host 127.0.0.1 --port 5000 --workers 1
+```
+
+Buka `http://127.0.0.1:5000`, pilih **Model training**, lalu eksperimen
+`LK06-Weather-RandomForest`. Training memverifikasi hash DVC, membangun ulang
+37 fitur dari snapshot raw simulasi, memakai 48 jam awal sebagai konteks,
+dan membandingkan tiga konfigurasi RF dengan walk-forward validation.
+20% observasi terakhir dipakai sebagai final test setelah parameter dipilih.
+Model terpilih didaftarkan ke registry setelah pemeriksaan pemuatan ulang.
+
+Hasil awal: RF tanpa class weighting menang dengan mean CV macro F1 0.8122;
+test macro F1 0.9039. Recall hardware fault hanya 8/13 (61.54%). Label berasal
+dari aturan dan fault sintetis; ini belum validasi sensor lapangan. Metadata,
+kontrak inferensi berbasis histori, dan bukti lengkap ada pada
+[dokumentasi LK06](Documentation/LK06/README.md).
+
+SQLite dan artefak MLflow bersifat lokal, diabaikan Git; jalankan ulang training
+di Codespaces untuk membuat tracking store di sana.
+
+#### 4. Menjalankan Unit Tests
+Menjalankan 99 unit/integration tests yang mencakup DAG Airflow, ingestion,
+preprocessing, simulasi, R2, kontrak training temporal, dan pemuatan model MLflow.
 
 ```bash
 # Menjalankan seluruh rangkaian tes unit
 python -m unittest discover tests
 ```
 
-#### 4. Menjalankan Apache Airflow DAG (Opsional / VM Server)
+#### 5. Menjalankan Apache Airflow DAG (Opsional / VM Server)
 ```bash
 # Verifikasi integritas DAG
 python dags/weather_ingestion_dag.py
@@ -253,7 +281,7 @@ Buffer data cuaca bersifat bergulir (30 hari / 720 baris): setiap jam data lama 
 
 ```bash
 # 1. Ambil data tambahan (buffer diperbesar agar baris benar-benar bertambah)
-python src/ingest_data.py --buffer-size 1000
+python src/6_ingest_data.py --buffer-size 1000
 
 # 2. Catat versi baru: hash di file .dvc berubah
 dvc add data/raw/weather_raw_current.csv
@@ -286,7 +314,7 @@ git checkout <branch>       && dvc checkout   # CSV kembali ke versi terbaru
 
 ### Sinkronisasi otomatis Airflow (VPS) ke R2
 
-Selain versi beku lewat DVC, DAG `weather_data_ingestion` punya task `upload_raw_to_r2` yang berjalan setelah ingestion dan mengunggah CSV lewat `src/r2_sync.py`:
+Selain versi beku lewat DVC, DAG `weather_data_ingestion` punya task `upload_raw_to_r2` yang berjalan setelah ingestion dan mengunggah CSV lewat `src/2_r2_sync.py`:
 
 | Key di bucket | Isi |
 |---|---|
@@ -296,9 +324,9 @@ Selain versi beku lewat DVC, DAG `weather_data_ingestion` punya task `upload_raw
 Kredensial dibaca dari `.env` di root repo (salin dari `.env.example`, sudah di-`.gitignore`).
 
 ```bash
-python src/r2_sync.py upload      # dijalankan Airflow di VPS
-python src/r2_sync.py list        # lihat snapshot di bucket
-python src/r2_sync.py download    # laptop: ambil raw/latest.csv ke data/raw/
+python src/2_r2_sync.py upload      # dijalankan Airflow di VPS
+python src/2_r2_sync.py list        # lihat snapshot di bucket
+python src/2_r2_sync.py download    # laptop: ambil raw/latest.csv ke data/raw/
 ```
 
 Alur lengkap: Airflow upload ke R2, laptop `download` data terbaru, lalu bila ingin dibekukan sebagai versi training: `dvc add` + `git commit` + `dvc push`.
@@ -328,6 +356,7 @@ Alur lengkap: Airflow upload ke R2, laptop `download` data terbaru, lalu bila in
 | [LK03 - Perancangan Arsitektur Data](Documentation/LK03/LK03-Perancangan-Arsitektur-Data.md) | Desain pipeline ETL, skema data awal & DVC |
 | [LK04 - Ingestion & Preprocessing](Documentation/LK04/LK04-Muhammad%20Ghazy%20Humaidi-245150200111071.pdf) | Implementasi Airflow ingestion, Quality Gate, Anomaly Labeling, & Feature Engineering |
 | [LK05 - Data Versioning DVC](Documentation/LK05/LK05-Muhammad%20Ghazy%20Humaidi-245150200111071.pdf) | Pelacakan dataset dengan DVC, simulasi data baru, & audit diff antar versi |
+| [LK06 - Random Forest & MLflow](Documentation/LK06/README.md) | EDA, walk-forward tuning, registry, metadata model, dan laporan eksperimen |
 | [GitHub Flow Guide](Documentation/LK02/GITHUB_FLOW.md) | Panduan branching strategy |
 
 ---

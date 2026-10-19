@@ -1,9 +1,9 @@
 """
-simulate_data.py - Pembuat data cuaca simulasi dari data mentah Open-Meteo asli.
+3_simulate_data.py - Pembuat data cuaca simulasi dari data mentah Open-Meteo asli.
 
 Data asli (data/raw/weather_raw_current.csv) tidak pernah diubah. Script ini membaca data asli,
 menerapkan satu skenario, lalu menulis hasilnya ke data/simulated/ dengan skema kolom yang sama,
-sehingga dapat langsung diproses oleh src/preprocess.py.
+sehingga dapat langsung diproses oleh src/7_preprocess.py.
 
 Skenario:
 1. faults : merusak sebagian kecil baris (out-of-bounds, nilai negatif, spike, glitch radiasi malam,
@@ -16,8 +16,8 @@ Skenario:
 Semua skenario deterministik terhadap --seed agar dataset dapat direproduksi.
 
 Contoh:
-    python src/simulate_data.py --scenario faults --fault-rate 0.05 --seed 42
-    python src/simulate_data.py --scenario drift --temp-shift 3 --humidity-shift -15 --precip-scale 2
+    python src/3_simulate_data.py --scenario faults --fault-rate 0.05 --seed 42
+    python src/3_simulate_data.py --scenario drift --temp-shift 3 --humidity-shift -15 --precip-scale 2
 """
 
 import argparse

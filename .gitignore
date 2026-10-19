@@ -54,3 +54,7 @@ logs/
 
 # Docker (for later phases)
 mlruns/
+mlflow.db
+mlflow.db-*
+mlartifacts/
+Documentation/LK06/.pdf-review/

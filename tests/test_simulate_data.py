@@ -1,5 +1,5 @@
 """
-tests/test_simulate_data.py - Pengujian src/simulate_data.py (skenario faults dan drift).
+tests/test_simulate_data.py - Pengujian src/3_simulate_data.py (skenario faults dan drift).
 """
 
 from pathlib import Path

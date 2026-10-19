@@ -1,0 +1,13 @@
+reason,rows
+Normal State,590
+Extreme Weather: Severe Dry Air,68
+Hardware Fault: Temperature spike,31
+Hardware Fault: Temperature sensor stuck,7
+Hardware Fault: Temperature OOB,7
+Hardware Fault: Humidity OOB,6
+Hardware Fault: Soil moisture OOB,5
+Hardware Fault: Negative wind speed,2
+Hardware Fault: Night radiation glitch,1
+Hardware Fault: Negative radiation,1
+Hardware Fault: Negative precipitation,1
+Extreme Weather: Heatwave / Heat Stress,1

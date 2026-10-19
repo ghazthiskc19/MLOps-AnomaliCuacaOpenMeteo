@@ -6,7 +6,7 @@ Fungsi utama:
 2. Menyediakan resolusi path dinamis untuk REPO_ROOT dan Python virtual environment
    (mendukung Windows .venv/Scripts/python.exe & venv/Scripts/python.exe,
     serta Linux .venv/bin/python & venv/bin/python, dengan fallback ke sys.executable).
-3. Mengeksekusi modul src/data_ingestion.py menggunakan BashOperator dengan direktori kerja (cwd)
+3. Mengeksekusi modul src/0_data_ingestion.py menggunakan BashOperator dengan direktori kerja (cwd)
    ditetapkan ke REPO_ROOT.
 4. Memiliki mekanisme graceful fallback jika pustaka apache-airflow atau pendulum belum terpasang
    pada lingkungan runtime pengujian lokal.
@@ -344,8 +344,8 @@ def create_weather_ingestion_dag(repo_root: Optional[Union[str, Path]] = None):
     root = get_repo_root(repo_root) if repo_root is not None else REPO_ROOT
     python_executable = get_python_interpreter(root)
 
-    # Command BashOperator: mengeksekusi src/data_ingestion.py relatif terhadap cwd REPO_ROOT
-    bash_command = f'"{python_executable}" src/data_ingestion.py'
+    # Command BashOperator: mengeksekusi src/0_data_ingestion.py relatif terhadap cwd REPO_ROOT
+    bash_command = f'"{python_executable}" src/0_data_ingestion.py'
 
     with DAG(
         dag_id="weather_data_ingestion",
@@ -370,7 +370,7 @@ def create_weather_ingestion_dag(repo_root: Optional[Union[str, Path]] = None):
         # Unggah hasil ingestion ke Cloudflare R2 agar bisa diambil dari mana saja (tanpa wifi UB)
         upload_task = BashOperator(
             task_id="upload_raw_to_r2",
-            bash_command=f'"{python_executable}" src/r2_sync.py upload',
+            bash_command=f'"{python_executable}" src/2_r2_sync.py upload',
             cwd=str(root),
             execution_timeout=timedelta(minutes=5),
             retries=2,

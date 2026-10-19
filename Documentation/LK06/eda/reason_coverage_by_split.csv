@@ -1,0 +1,13 @@
+anomaly_reason,train,validation,test
+Extreme Weather: Heatwave / Heat Stress,0,0,1
+Extreme Weather: Severe Dry Air,35,6,27
+Hardware Fault: Humidity OOB,4,0,2
+Hardware Fault: Negative precipitation,0,1,0
+Hardware Fault: Negative radiation,1,0,0
+Hardware Fault: Negative wind speed,0,1,1
+Hardware Fault: Night radiation glitch,1,0,0
+Hardware Fault: Soil moisture OOB,1,1,3
+Hardware Fault: Temperature OOB,3,2,2
+Hardware Fault: Temperature sensor stuck,7,0,0
+Hardware Fault: Temperature spike,20,6,5
+Normal State,360,127,103

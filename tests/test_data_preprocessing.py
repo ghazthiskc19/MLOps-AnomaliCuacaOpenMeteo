@@ -1,5 +1,5 @@
 """
-test_data_preprocessing.py - Unit tests untuk modul src/data_preprocessing.py dan src/preprocess.py.
+test_data_preprocessing.py - Unit tests untuk modul src/1_data_preprocessing.py dan src/7_preprocess.py.
 
 Menguji secara mendalam:
 1. DataCleaner (Quality Gate): parsing timestamp, pembuangan NaT, deduplikasi, skema kolom.
