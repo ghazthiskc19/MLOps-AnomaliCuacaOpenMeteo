@@ -1,0 +1,5 @@
+outs:
+- md5: 87b8f4eedbe1e53ffb383e0b34790dc4
+  size: 33915
+  hash: md5
+  path: weather_lk07_download.csv

@@ -1,0 +1,5 @@
+outs:
+- md5: 668d3997dd8da1df3fa473b12acc0a9e
+  size: 35782
+  hash: md5
+  path: weather_lk07_history.csv

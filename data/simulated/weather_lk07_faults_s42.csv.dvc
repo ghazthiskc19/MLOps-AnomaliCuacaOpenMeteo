@@ -1,0 +1,5 @@
+outs:
+- md5: e37325821734e2576273e5715b6a6c88
+  size: 36273
+  hash: md5
+  path: weather_lk07_faults_s42.csv
