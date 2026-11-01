@@ -1,0 +1,13 @@
+Verified at UTC: 2026-11-01T12:17:32.922710+00:00
+Version 1: Production; duplicate_of=None
+Version 2: None; duplicate_of=None
+Version 3: None; duplicate_of=2
+V1: accuracy=0.9851; macro F1=0.6224; fault recall=0.8750
+V2: accuracy=0.9701; macro F1=0.5662; fault recall=0.6250
+URI: models:/WeatherAnomalyRandomForest/Production
+Resolved version: 1
+Input shape: (1, 37)
+Prediction: [0]
+Production matches explicit V1 on all 134 holdout rows: PASS
+V2 matches original training test predictions: PASS
+VERIFIKASI INFERENSI BERHASIL

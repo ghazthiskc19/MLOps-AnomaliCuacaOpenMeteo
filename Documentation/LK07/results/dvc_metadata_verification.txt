@@ -1,0 +1,8 @@
+Metadata: Documentation/LK07/production_model.yaml
+Pointer MD5: aa9ddedfa8e07f4f90917ecb479fe583
+Size: 5397 bytes
+Local bytes match DVC pointer: PASS
+Command: dvc status [REPO]\Documentation\LK07\production_model.yaml.dvc
+Data and pipelines are up to date.
+Command: dvc status --cloud [REPO]\Documentation\LK07\production_model.yaml.dvc
+Cache and remote 'r2' are in sync.

@@ -1,0 +1,201 @@
+{
+  "verified_at_utc": "2026-11-01T12:17:32.922710+00:00",
+  "model_name": "WeatherAnomalyRandomForest",
+  "registry_versions": [
+    {
+      "version": "1",
+      "stage": "Production",
+      "run_id": "044402f101154e1c8c295161c0542077",
+      "source": "models:/m-5179955d3af649e49fbd4b8a6f8f0bc3",
+      "duplicate_of": null
+    },
+    {
+      "version": "2",
+      "stage": "None",
+      "run_id": "1e6c8d1bb00940f8a2e5212a11bd68af",
+      "source": "models:/m-a10337e46db44dc6bfe8ca0d00c683ab",
+      "duplicate_of": null
+    },
+    {
+      "version": "3",
+      "stage": "None",
+      "run_id": "1e6c8d1bb00940f8a2e5212a11bd68af",
+      "source": "models:/m-a10337e46db44dc6bfe8ca0d00c683ab",
+      "duplicate_of": "2"
+    }
+  ],
+  "evaluation_dataset": {
+    "path": "data/simulated/weather_lk07_faults_s42.csv",
+    "md5": "e37325821734e2576273e5715b6a6c88",
+    "bytes": 36273,
+    "dataset_tag": "dataset-v4.0.0",
+    "dataset_tag_commit": "ec3a5d82e462a6bc65e3c3385e55f7306e5768c0",
+    "pointer_sha256": "289f817b97faec79dbeeb7e6cc7001d7e131e24370631fd8d6b7d2e9d28696a6"
+  },
+  "test": {
+    "rows": 134,
+    "start_wib": "2026-10-27 04:00:00",
+    "end_wib": "2026-11-01 17:00:00",
+    "class_counts": {
+      "0": 126,
+      "1": 8,
+      "2": 0
+    }
+  },
+  "comparison": [
+    {
+      "version": "1",
+      "accuracy": 0.9850746268656716,
+      "f1_macro": 0.6223544973544973,
+      "balanced_accuracy": 0.933531746031746,
+      "support_class_0": 126.0,
+      "f1_class_0": 0.9920634920634921,
+      "recall_class_0": 0.9920634920634921,
+      "precision_class_0": 0.9920634920634921,
+      "support_class_1": 8.0,
+      "f1_class_1": 0.875,
+      "recall_class_1": 0.875,
+      "precision_class_1": 0.875,
+      "support_class_2": 0.0,
+      "f1_class_2": 0.0
+    },
+    {
+      "version": "2",
+      "accuracy": 0.9701492537313433,
+      "f1_macro": 0.5661792275965505,
+      "balanced_accuracy": 0.808531746031746,
+      "support_class_0": 126.0,
+      "f1_class_0": 0.984251968503937,
+      "recall_class_0": 0.9920634920634921,
+      "precision_class_0": 0.9765625,
+      "support_class_1": 8.0,
+      "f1_class_1": 0.7142857142857143,
+      "recall_class_1": 0.625,
+      "precision_class_1": 0.8333333333333334,
+      "support_class_2": 0.0,
+      "f1_class_2": 0.0
+    }
+  ],
+  "confusion_matrices": {
+    "1": {
+      "matrix": [
+        [
+          125,
+          1,
+          0
+        ],
+        [
+          1,
+          7,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "report": {
+        "classes": {
+          "0": {
+            "precision": 0.9920634920634921,
+            "recall": 0.9920634920634921,
+            "f1": 0.9920634920634921,
+            "support": 126,
+            "predicted_count": 126
+          },
+          "1": {
+            "precision": 0.875,
+            "recall": 0.875,
+            "f1": 0.875,
+            "support": 8,
+            "predicted_count": 8
+          },
+          "2": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_count": 0
+          }
+        },
+        "absent_true_classes": [
+          2
+        ],
+        "macro_f1_policy": "fixed labels [0,1,2]; undefined terms contribute 0",
+        "balanced_accuracy_policy": "mean recall over classes present in y_true"
+      }
+    },
+    "2": {
+      "matrix": [
+        [
+          125,
+          1,
+          0
+        ],
+        [
+          3,
+          5,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "report": {
+        "classes": {
+          "0": {
+            "precision": 0.9765625,
+            "recall": 0.9920634920634921,
+            "f1": 0.984251968503937,
+            "support": 126,
+            "predicted_count": 128
+          },
+          "1": {
+            "precision": 0.8333333333333334,
+            "recall": 0.625,
+            "f1": 0.7142857142857143,
+            "support": 8,
+            "predicted_count": 6
+          },
+          "2": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_count": 0
+          }
+        },
+        "absent_true_classes": [
+          2
+        ],
+        "macro_f1_policy": "fixed labels [0,1,2]; undefined terms contribute 0",
+        "balanced_accuracy_policy": "mean recall over classes present in y_true"
+      }
+    }
+  },
+  "production_inference": {
+    "uri": "models:/WeatherAnomalyRandomForest/Production",
+    "resolved_version": "1",
+    "input_shape": [
+      1,
+      37
+    ],
+    "history_rows": 49,
+    "timestamp_wib": "2026-11-01 17:00:00",
+    "prediction": [
+      0
+    ],
+    "matches_explicit_v1_on_all_test_rows": true,
+    "v2_matches_original_test_predictions": true
+  },
+  "policy": "fixed labels [0,1,2]; absent-class F1 contributes zero; balanced accuracy averages present classes",
+  "limitations": [
+    "pseudo-labels and synthetic faults",
+    "test has no extreme-weather class",
+    "comparison informed deployment selection; no independent post-selection test",
+    "data and tree count changed together; no causal attribution to n_estimators"
+  ]
+}

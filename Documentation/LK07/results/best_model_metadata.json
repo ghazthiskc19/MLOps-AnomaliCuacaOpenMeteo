@@ -1,0 +1,120 @@
+{
+  "name": "WeatherAnomalyRandomForest",
+  "version": "2",
+  "registry_uri": "models:/WeatherAnomalyRandomForest/2",
+  "run_id": "1e6c8d1bb00940f8a2e5212a11bd68af",
+  "model_uri": "models:/m-a10337e46db44dc6bfe8ca0d00c683ab",
+  "parameters": {
+    "n_estimators": 150,
+    "max_depth": null,
+    "min_samples_leaf": 1,
+    "class_weight": null,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "selection_metric": "cv_val_f1_macro_mean",
+  "cv_value": 0.6379618514862996,
+  "test_metrics": {
+    "accuracy": 0.9701492537313433,
+    "f1_macro": 0.5661792275965505,
+    "balanced_accuracy": 0.808531746031746,
+    "support_class_0": 126.0,
+    "f1_class_0": 0.984251968503937,
+    "recall_class_0": 0.9920634920634921,
+    "precision_class_0": 0.9765625,
+    "support_class_1": 8.0,
+    "f1_class_1": 0.7142857142857143,
+    "recall_class_1": 0.625,
+    "precision_class_1": 0.8333333333333334,
+    "support_class_2": 0.0,
+    "f1_class_2": 0.0
+  },
+  "fit_scope": {
+    "rows": 532,
+    "start_wib": "2026-10-05 00:00:00",
+    "end_wib": "2026-10-27 03:00:00",
+    "class_counts": {
+      "0": 445,
+      "1": 48,
+      "2": 39
+    }
+  },
+  "dataset": {
+    "path": "data/simulated/weather_lk07_faults_s42.csv",
+    "md5": "e37325821734e2576273e5715b6a6c88",
+    "bytes": 36273,
+    "dataset_tag": "dataset-v4.0.0",
+    "dataset_tag_commit": "ec3a5d82e462a6bc65e3c3385e55f7306e5768c0",
+    "pointer_sha256": "289f817b97faec79dbeeb7e6cc7001d7e131e24370631fd8d6b7d2e9d28696a6"
+  },
+  "feature_contract": {
+    "feature_names": [
+      "temperature_2m_C",
+      "humidity_percent",
+      "precipitation_mm",
+      "soil_moisture",
+      "radiation_wm2",
+      "wind_speed_kmh",
+      "hour",
+      "hour_sin",
+      "hour_cos",
+      "day_of_week",
+      "is_weekend",
+      "month",
+      "month_sin",
+      "month_cos",
+      "vpd_kpa",
+      "dew_point_C",
+      "temp_diff_1h",
+      "temp_diff_24h",
+      "humidity_diff_1h",
+      "soil_diff_1h",
+      "soil_diff_24h",
+      "radiation_diff_1h",
+      "temp_rolling_mean_3h",
+      "temp_rolling_std_3h",
+      "temp_rolling_mean_6h",
+      "temp_rolling_std_6h",
+      "temp_rolling_mean_24h",
+      "temp_rolling_std_24h",
+      "temp_rolling_min_24h",
+      "temp_rolling_max_24h",
+      "humidity_rolling_mean_6h",
+      "humidity_rolling_mean_24h",
+      "precip_rolling_sum_6h",
+      "precip_rolling_sum_24h",
+      "soil_rolling_mean_24h",
+      "wind_rolling_mean_6h",
+      "wind_rolling_max_24h"
+    ],
+    "feature_dtype": "float64",
+    "labels": {
+      "0": "normal",
+      "1": "hardware fault",
+      "2": "extreme weather"
+    },
+    "input": "37 engineered numeric features; not raw single-row weather",
+    "raw_history_helper": "src.training_data.latest_features",
+    "minimum_raw_history_rows": 49,
+    "timezone": "Asia/Jakarta",
+    "naive_timestamp_means": "Asia/Jakarta",
+    "raw_interval": "1 hour, ordered, unique, finite sensor values",
+    "warmup_policy": "first 48 raw hours context only, never fit/scored",
+    "missing_policy": "reject raw missing/nonfinite and derived nonfinite explicitly",
+    "fault_priority": "hardware fault overrides extreme weather",
+    "limitations": [
+      "rule agreement is not independent field accuracy",
+      "one location, 30 days, fault seed 42",
+      "some fault subtypes absent from validation/test",
+      "not approved for actuator control"
+    ]
+  },
+  "source_sha256": {
+    "train.py": "32acfab2a9dd6a12d50b72b395a4d0cc22078dd7ed3e917cd33f63462dc3ee8f",
+    "src/__init__.py": "a826b1663ab9fd0af55a8c75a12207ba3dbe1203e9d244265477f7c7ea403285",
+    "src/4_training_data.py": "dc99f9f9de6ae5c2ac293d9a41cd6f34ccfbb087cdd7daa0989fa6ab803f7e5f",
+    "src/5_model_evaluation.py": "8a56e1d58eb386283bac6eaa1de42a1b0587ccf97f1b264e168c9aaec6700be4",
+    "src/1_data_preprocessing.py": "956398d0f20895010f6ea1dfb5002eb001138cf702d7f65149b8004d93c03037",
+    "requirements.txt": "86950f631c9c2772474e550877ea68b66ae43dad5946f2d80316db34dfb06719"
+  }
+}

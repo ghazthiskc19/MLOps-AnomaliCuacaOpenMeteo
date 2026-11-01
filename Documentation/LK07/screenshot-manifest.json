@@ -1,0 +1,57 @@
+﻿[
+    {
+        "original":  "model version 1.png",
+        "renamed":  "screenshots/01-v1-run-metrics.png",
+        "sha256":  "a187bb7dc43f5f5952918c3c0391b7c7a5afbddf6195ea9be5f124597005ca2c"
+    },
+    {
+        "original":  "model version 1_rf baseline.png",
+        "renamed":  "screenshots/02-v1-source-run.png",
+        "sha256":  "75041e5eef4f2768fbb8be16c5d94144b9a10d950b14d1843bfdb2bc013bb031"
+    },
+    {
+        "original":  "Screenshot 2026-11-01 181302.png",
+        "renamed":  "screenshots/03-v1-parameters.png",
+        "sha256":  "255875be457d0e356bb778c56f3cf95c86300fc07e607e5fa413a0ed9a52e634"
+    },
+    {
+        "original":  "Screenshot 2026-11-01 183637.png",
+        "renamed":  "screenshots/04-v2-run-metrics.png",
+        "sha256":  "4a17f06c90adadadb655fa85c04c8128b769af4c848a94752ae83217df6b4cac"
+    },
+    {
+        "original":  "model version 2_rf baseline.png",
+        "renamed":  "screenshots/05-v2-registry-detail.png",
+        "sha256":  "be7dcf8688ca56bccf3407cc9324488878b048be485dd1a19b7eaef8128c3d60"
+    },
+    {
+        "original":  "Screenshot 2026-11-01 191420.png",
+        "renamed":  "screenshots/06-v2-parameters.png",
+        "sha256":  "4d61b7ef7e13d757a9aec470236cd113d8ac9be928881a130e971abb947ed728"
+    },
+    {
+        "original":  "Screenshot 2026-11-01 191359.png",
+        "renamed":  "screenshots/07-registry-versions.png",
+        "sha256":  "9f4d6b19df448ba9e3e3b23c99850faab99a5fbaf4bae3a3bc0c18c1283638ee"
+    },
+    {
+        "original":  "Screenshot 2026-11-01 185340.png",
+        "renamed":  "screenshots/08-v1-staging.png",
+        "sha256":  "a33ae7d218696cc57830e9b1ff4fbe73b8b364cfb8b85e3d6f9343fe1daf0a38"
+    },
+    {
+        "original":  "Screenshot 2026-11-01 185349.png",
+        "renamed":  "screenshots/09-v1-production.png",
+        "sha256":  "f56d4e50d88d7880ea99f4b9c32f24ae1410dd19f1bdd83d696360a6f74115b5"
+    },
+    {
+        "original":  "Screenshot 2026-11-01 190954.png",
+        "renamed":  "screenshots/10-production-inference.png",
+        "sha256":  "7570ecbe81692001d9fcaa43bd37fcbf3d57edff859c8df95ce26e0d5a406ed1"
+    },
+    {
+        "original":  "Screenshot 2026-11-01 191037.png",
+        "renamed":  "screenshots/11-v1-none-intermediate.png",
+        "sha256":  "573f582dc74095e2351bf1f343e2e0f755bc44daf587b611a46e8d954bc8441b"
+    }
+]

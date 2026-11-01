@@ -1,7 +1,7 @@
 # LK07 Model Registry, Versioning, dan Kesiapan Inferensi
 
 Sumber: instruksi tugas yang diberikan pengguna pada 31 Oktober 2026.
-Status: instruksi disimpan sebagai acuan; implementasi LK07 belum dimulai.
+Status pengerjaan dan hasil implementasi tersedia pada [README LK07](README.md).
 
 - Opened: Wednesday, 28 October 2026, 12:00 AM
 - Due: Monday, 2 November 2026, 12:00 AM

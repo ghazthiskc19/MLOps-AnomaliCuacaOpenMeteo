@@ -167,6 +167,27 @@ kontrak inferensi berbasis histori, dan bukti lengkap ada pada
 SQLite dan artefak MLflow bersifat lokal, diabaikan Git; jalankan ulang training
 di Codespaces untuk membuat tracking store di sana.
 
+#### 3b. Model Registry dan inferensi Production (LK07)
+
+Model aktif adalah **WeatherAnomalyRandomForest versi 1**, dengan stage
+**Production** dan URI `models:/WeatherAnomalyRandomForest/Production`.
+Pada 134 observasi holdout LK07 yang sama, V1 memiliki macro F1 0.6224
+dan recall hardware fault 7/8; V2 memperoleh 0.5662 dan 5/8. V2 memakai
+150 pohon dan dataset v4; V1 tetap dipertahankan. V3 merupakan registrasi
+ulang artefak V2. Holdout tidak memiliki kelas extreme weather sehingga
+keputusan ini terbatas pada simulasi akademik, belum validasi lapangan.
+
+```bash
+dvc pull Documentation/LK07/production_model.yaml.dvc
+python scripts/verify_lk07_registry.py
+```
+
+Pemuatan model memerlukan tracking store dan artefak MLflow lokal yang cocok.
+Script verifikasi memperbarui bukti dan metadata lokal; jika hasilnya dibekukan
+kembali, perbarui pointer metadata dengan DVC. Lihat
+[dokumentasi LK07](Documentation/LK07/README.md) untuk lineage, transisi stage,
+kontrak 37 fitur dari histori 49 jam, dan laporan PDF.
+
 #### 4. Menjalankan Unit Tests
 Menjalankan 99 unit/integration tests yang mencakup DAG Airflow, ingestion,
 preprocessing, simulasi, R2, kontrak training temporal, dan pemuatan model MLflow.
@@ -357,6 +378,7 @@ Alur lengkap: Airflow upload ke R2, laptop `download` data terbaru, lalu bila in
 | [LK04 - Ingestion & Preprocessing](Documentation/LK04/LK04-Muhammad%20Ghazy%20Humaidi-245150200111071.pdf) | Implementasi Airflow ingestion, Quality Gate, Anomaly Labeling, & Feature Engineering |
 | [LK05 - Data Versioning DVC](Documentation/LK05/LK05-Muhammad%20Ghazy%20Humaidi-245150200111071.pdf) | Pelacakan dataset dengan DVC, simulasi data baru, & audit diff antar versi |
 | [LK06 - Random Forest & MLflow](Documentation/LK06/README.md) | EDA, walk-forward tuning, registry, metadata model, dan laporan eksperimen |
+| [LK07 - Model Registry & Kesiapan Inferensi](Documentation/LK07/README.md) | Versioning, transisi stage, metadata DVC, pemilihan Production, dan bukti inferensi |
 | [GitHub Flow Guide](Documentation/LK02/GITHUB_FLOW.md) | Panduan branching strategy |
 
 ---

@@ -1,0 +1,20 @@
+{
+  "checked_at_utc": "2026-11-01T12:26:25.697249+00:00",
+  "screenshots_unchanged": 11,
+  "pdf_pages": 12,
+  "pdf_visual_review": "all pages inspected; table correction rerendered and unchanged pages verified by image hashes",
+  "tests": {
+    "command": "python -m unittest discover -s tests -q",
+    "count": 99,
+    "result": "OK",
+    "elapsed_seconds": 30.018
+  },
+  "production_version": 1,
+  "production_metadata_md5": "aa9ddedfa8e07f4f90917ecb479fe583",
+  "dvc_cloud_status": "Cache and remote r2 are in sync",
+  "source_sha256": {
+    "scripts/verify_lk07_registry.py": "98d359f886de001a4b16d9089e759cb0ae8211b52928f1fedc1c78a7fb59bd0d",
+    "scripts/generate_lk07_report.py": "dbaaa3205c86eedecd212ed94801a67bace771ea8d5912ab57d63a2c3fdaecd0",
+    "train.py": "32acfab2a9dd6a12d50b72b395a4d0cc22078dd7ed3e917cd33f63462dc3ee8f"
+  }
+}

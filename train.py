@@ -103,7 +103,10 @@ def run_training(
     dataset_tag="dataset-v3.0.0", tracking_uri=None,
     output_dir=REPO_ROOT / "Documentation/LK06/results",
     experiment_name=EXPERIMENT_NAME, model_name=MODEL_NAME, seed=42,
+    n_estimators=None,
 ):
+    if n_estimators is not None and (type(n_estimators) is not int or n_estimators < 1):
+        raise ValueError("n_estimators harus integer positif.")
     output_dir = Path(output_dir)
     input_path = Path(input_path).resolve()
     identity = verify_dataset(input_path, dataset_tag)
@@ -177,7 +180,11 @@ def run_training(
         for source in provenance["source_sha256"]:
             mlflow.log_artifact(str(REPO_ROOT / source), "source")
         with tempfile.TemporaryDirectory(prefix="lk06-") as scratch:
-            configurations = [("dummy_normal", {})] + CONFIGURATIONS
+            rf_configurations = [
+                (name, {**params, **({"n_estimators": n_estimators} if n_estimators is not None else {})})
+                for name, params in CONFIGURATIONS
+            ]
+            configurations = [("dummy_normal", {})] + rf_configurations
             for config_index, (name, params) in enumerate(configurations):
                 with mlflow.start_run(experiment_id=experiment_id, run_name=name, nested=True, tags={**tags, "role": "baseline" if not params else "candidate"}) as run:
                     mlflow.log_params(params or {"strategy": "constant", "constant": 0})
@@ -293,8 +300,10 @@ def main():
     parser.add_argument("--experiment-name", default=EXPERIMENT_NAME)
     parser.add_argument("--model-name", default=MODEL_NAME)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--n-estimators", type=int, default=None,
+                        help="Override jumlah pohon seluruh kandidat RF; default mengikuti konfigurasi LK06.")
     args = parser.parse_args()
-    run_training(args.input_path, args.dataset_tag, args.tracking_uri, args.output_dir, args.experiment_name, args.model_name, args.seed)
+    run_training(args.input_path, args.dataset_tag, args.tracking_uri, args.output_dir, args.experiment_name, args.model_name, args.seed, n_estimators=args.n_estimators)
 
 
 if __name__ == "__main__":
