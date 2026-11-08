@@ -12,4 +12,11 @@ if __name__ == "__main__":
     args=parser.parse_args()
     result=evaluate_candidate(args.candidate_dir)
     print(json.dumps(result,indent=2))
+    if __import__("os").environ.get("GITHUB_ACTIONS"):
+        m=result["combined"]["metrics"]
+        level="notice" if result["passed"] else "error"
+        print(f"::{level} title=Quality gate {result['status']}::combined macro F1={m['f1_macro']:.4f} (threshold > 0.85), "
+              f"support={int(m['support_class_0'])}/{int(m['support_class_1'])}/{int(m['support_class_2'])}, "
+              f"fault recall={m['recall_class_1']:.4f}, false alarm={result['combined']['false_alarm_rate']:.4f}, "
+              f"scenario kinds passed={sum(g['passed'] for g in result['scenarios'].values())}/{len(result['scenarios'])}")
     raise SystemExit(0 if result['passed'] else 1)

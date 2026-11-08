@@ -20,9 +20,9 @@ from src.validation import validation_decision
 from src.weather_model import CONTRACT_VERSION, TRUSTED_TYPES, GuardedWeatherClassifier, model_frame
 
 CONFIGURATIONS = [
-    {"n_estimators":100,"max_depth":None,"min_samples_leaf":1,"class_weight":None},
-    {"n_estimators":100,"max_depth":10,"min_samples_leaf":2,"class_weight":None},
-    {"n_estimators":100,"max_depth":10,"min_samples_leaf":1,"class_weight":"balanced"},
+    {"n_estimators":150,"max_depth":None,"min_samples_leaf":1,"class_weight":None},
+    {"n_estimators":150,"max_depth":10,"min_samples_leaf":2,"class_weight":None},
+    {"n_estimators":150,"max_depth":10,"min_samples_leaf":1,"class_weight":"balanced"},
 ]
 
 
