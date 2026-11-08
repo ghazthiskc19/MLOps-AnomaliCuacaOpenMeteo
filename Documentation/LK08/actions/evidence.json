@@ -1,0 +1,260 @@
+{
+  "initial": {
+    "label": "initial",
+    "run_id": "42501642880",
+    "url": "https://github.com/ghazthiskc19/MLOps-AnomaliCuacaOpenMeteo/actions/runs/42501642880",
+    "event": "push",
+    "branch": "main",
+    "head_sha": "30424f23d506890a36bf5bd3477f56e9f0f74a80",
+    "run_number": 1,
+    "commit_message": "feat(lk08): pipeline GitHub Actions test, training, evaluasi, dan Staging",
+    "files_changed": [
+      ".devcontainer/devcontainer.json",
+      ".github/workflows/mlops-automation.yaml",
+      ".gitignore",
+      "Documentation/LK08/Audit-model-sebelum-otomatisasi.md",
+      "Documentation/LK08/Perbaikan-dan-pengujian.md",
+      "Documentation/LK08/audit/audit_overview.png",
+      "Documentation/LK08/audit/audit_results.json",
+      "Documentation/LK08/audit/errors.csv",
+      "Documentation/LK08/audit/exploratory_challenges.csv",
+      "Documentation/LK08/audit/injections.csv",
+      "Documentation/LK08/cache-refresh.json",
+      "Documentation/LK08/runs/fix-v2-complete/feature_contract.json",
+      "Documentation/LK08/runs/fix-v2-complete/scenario_predictions.csv",
+      "Documentation/LK08/runs/fix-v2-complete/summary.json",
+      "Documentation/LK08/runs/fix-v2-complete/temporal_predictions.csv",
+      "Documentation/LK08/runs/fix-v2-complete/validation.json",
+      "Documentation/LK08/verification.json",
+      "README.md",
+      "configs/lk08.yaml",
+      "docs/project-scan-lk08.md"
+    ],
+    "created_at": "2026-11-08T16:47:07Z",
+    "updated_at": "2026-11-08T16:50:03Z",
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "pipeline",
+        "conclusion": "success",
+        "url": "https://github.com/ghazthiskc19/MLOps-AnomaliCuacaOpenMeteo/actions/runs/42501642880/job/128795467413",
+        "duration_s": 173,
+        "steps": [
+          {
+            "number": 1,
+            "name": "Set up job",
+            "conclusion": "success",
+            "duration_s": 0
+          },
+          {
+            "number": 2,
+            "name": "Run actions/checkout@v4",
+            "conclusion": "success",
+            "duration_s": 3
+          },
+          {
+            "number": 3,
+            "name": "Run actions/setup-python@v5",
+            "conclusion": "success",
+            "duration_s": 9
+          },
+          {
+            "number": 4,
+            "name": "Install and verify dependencies",
+            "conclusion": "success",
+            "duration_s": 72
+          },
+          {
+            "number": 5,
+            "name": "Pull frozen DVC snapshots",
+            "conclusion": "success",
+            "duration_s": 4
+          },
+          {
+            "number": 6,
+            "name": "Automated testing",
+            "conclusion": "success",
+            "duration_s": 23
+          },
+          {
+            "number": 7,
+            "name": "Automated training (candidate only)",
+            "conclusion": "success",
+            "duration_s": 49
+          },
+          {
+            "number": 8,
+            "name": "Model evaluation and coverage validation",
+            "conclusion": "success",
+            "duration_s": 3
+          },
+          {
+            "number": 9,
+            "name": "Register validated candidate in Staging",
+            "conclusion": "success",
+            "duration_s": 4
+          },
+          {
+            "number": 10,
+            "name": "Preserve results even when gate rejects candidate",
+            "conclusion": "success",
+            "duration_s": 1
+          },
+          {
+            "number": 19,
+            "name": "Post Run actions/setup-python@v5",
+            "conclusion": "success",
+            "duration_s": 2
+          },
+          {
+            "number": 20,
+            "name": "Post Run actions/checkout@v4",
+            "conclusion": "success",
+            "duration_s": 0
+          },
+          {
+            "number": 21,
+            "name": "Complete job",
+            "conclusion": "success",
+            "duration_s": 0
+          }
+        ],
+        "annotations": [
+          {
+            "level": "warning",
+            "title": "",
+            "message": "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+          }
+        ]
+      }
+    ],
+    "log_saved": "unavailable: HTTP Error 403: Forbidden"
+  },
+  "simulation": {
+    "label": "simulation",
+    "run_id": "42502026204",
+    "url": "https://github.com/ghazthiskc19/MLOps-AnomaliCuacaOpenMeteo/actions/runs/42502026204",
+    "event": "push",
+    "branch": "main",
+    "head_sha": "8de19282f194c4defe1d690abd4ac5f72f0517fe",
+    "run_number": 2,
+    "commit_message": "exp(lk08): simulasi perubahan hyperparameter n_estimators 100 -> 150",
+    "files_changed": [
+      "scripts/collect_lk08_actions_evidence.py",
+      "scripts/evaluate_candidate.py",
+      "scripts/register_candidate.py",
+      "src/automation.py"
+    ],
+    "created_at": "2026-11-08T16:51:44Z",
+    "updated_at": "2026-11-08T16:53:40Z",
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "pipeline",
+        "conclusion": "success",
+        "url": "https://github.com/ghazthiskc19/MLOps-AnomaliCuacaOpenMeteo/actions/runs/42502026204/job/128796647140",
+        "duration_s": 113,
+        "steps": [
+          {
+            "number": 1,
+            "name": "Set up job",
+            "conclusion": "success",
+            "duration_s": 1
+          },
+          {
+            "number": 2,
+            "name": "Run actions/checkout@v4",
+            "conclusion": "success",
+            "duration_s": 2
+          },
+          {
+            "number": 3,
+            "name": "Run actions/setup-python@v5",
+            "conclusion": "success",
+            "duration_s": 12
+          },
+          {
+            "number": 4,
+            "name": "Install and verify dependencies",
+            "conclusion": "success",
+            "duration_s": 37
+          },
+          {
+            "number": 5,
+            "name": "Pull frozen DVC snapshots",
+            "conclusion": "success",
+            "duration_s": 3
+          },
+          {
+            "number": 6,
+            "name": "Automated testing",
+            "conclusion": "success",
+            "duration_s": 16
+          },
+          {
+            "number": 7,
+            "name": "Automated training (candidate only)",
+            "conclusion": "success",
+            "duration_s": 33
+          },
+          {
+            "number": 8,
+            "name": "Model evaluation and coverage validation",
+            "conclusion": "success",
+            "duration_s": 2
+          },
+          {
+            "number": 9,
+            "name": "Register validated candidate in Staging",
+            "conclusion": "success",
+            "duration_s": 3
+          },
+          {
+            "number": 10,
+            "name": "Preserve results even when gate rejects candidate",
+            "conclusion": "success",
+            "duration_s": 1
+          },
+          {
+            "number": 19,
+            "name": "Post Run actions/setup-python@v5",
+            "conclusion": "success",
+            "duration_s": 0
+          },
+          {
+            "number": 20,
+            "name": "Post Run actions/checkout@v4",
+            "conclusion": "success",
+            "duration_s": 0
+          },
+          {
+            "number": 21,
+            "name": "Complete job",
+            "conclusion": "success",
+            "duration_s": 0
+          }
+        ],
+        "annotations": [
+          {
+            "level": "warning",
+            "title": "",
+            "message": "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+          },
+          {
+            "level": "notice",
+            "title": "MLflow Registry",
+            "message": "WeatherAnomalyGuardedRF version 1 stage=Staging run_id=405d241aac9747b1b4c7d11f87dd77d4"
+          },
+          {
+            "level": "notice",
+            "title": "Quality gate passed",
+            "message": "combined macro F1=1.0000 (threshold > 0.85), support=134/120/64, fault recall=1.0000, false alarm=0.0000, scenario kinds passed=23/23"
+          }
+        ]
+      }
+    ],
+    "log_saved": "unavailable: HTTP Error 403: Forbidden"
+  }
+}

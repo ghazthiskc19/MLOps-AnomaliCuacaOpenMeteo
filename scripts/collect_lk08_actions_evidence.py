@@ -47,6 +47,8 @@ def collect(label, run_id):
             "steps": [{"number": s["number"], "name": s["name"], "conclusion": s["conclusion"],
                        "duration_s": seconds(s["started_at"], s["completed_at"])} for s in job["steps"]],
         })
+        record["jobs"][-1]["annotations"] = [{"level": a["annotation_level"], "title": a.get("title"), "message": a["message"]}
+            for a in get(f"{API}/check-runs/{job['id']}/annotations")]
         try:
             log = get(f"{API}/actions/jobs/{job['id']}/logs", raw=True)
             (OUT / f"{label}-job.log").write_text(log, encoding="utf-8")
