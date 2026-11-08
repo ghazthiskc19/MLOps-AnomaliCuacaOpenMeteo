@@ -1,0 +1,65 @@
+name: MLOps code-trigger pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mlops-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      MPLBACKEND: Agg
+      PYTHONUTF8: '1'
+      MLFLOW_ENABLE_ARTIFACTS_PROGRESS_BAR: 'false'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.3'
+          cache: pip
+      - name: Install and verify dependencies
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip check
+      - name: Pull frozen DVC snapshots
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+        run: |
+          if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$AWS_SECRET_ACCESS_KEY" ]; then
+            echo '::error::R2 secrets required to restore private DVC data. Fork PRs do not receive repository secrets.'
+            exit 1
+          fi
+          python -m dvc pull -r r2 data/simulated/weather_faults_s42.csv.dvc data/raw/weather_raw_current.csv.dvc data/simulated/weather_lk07_faults_s42.csv.dvc data/raw/weather_lk07_history.csv.dvc
+      - name: Automated testing
+        run: python -m pytest tests -q --junitxml=artifacts/pytest.xml
+      - name: Automated training (candidate only)
+        run: python train.py --config configs/lk08.yaml --output-dir artifacts/lk08
+      - name: Model evaluation and coverage validation
+        run: python scripts/evaluate_candidate.py --candidate-dir artifacts/lk08
+      - name: Register validated candidate in Staging
+        run: python scripts/register_candidate.py --candidate-dir artifacts/lk08
+      - name: Preserve results even when gate rejects candidate
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lk08-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/
+            mlruns/lk08/
+          if-no-files-found: warn
+          retention-days: 30

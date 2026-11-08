@@ -1,0 +1,19 @@
+protocol: weather-guarded-v2
+input_path: data/simulated/weather_lk07_faults_s42.csv
+scenario_input_path: data/raw/weather_lk07_history.csv
+dataset_tag: dataset-v4.0.0
+model_name: WeatherAnomalyGuardedRF
+experiment_name: LK08-Guarded-Weather
+seed: 42
+scenarios:
+  train_seed: 20261104
+  validation_seed: 20261105
+  test_seed: 20261106
+  train_contexts_per_kind: 12
+  evaluation_contexts_per_kind: 8
+validation:
+  threshold: 0.85
+  min_support: 5
+  min_fault_recall: 0.85
+  max_false_alarm_rate: 0.05
+  scenario_min_agreement: 0.80

@@ -1,0 +1,545 @@
+kind,timestamp,model_version,rule_label,rule_reason,prediction,confidence,correct
+clean,2026-10-05 00:00:00,1,0,Normal State,0,1.0,True
+clean,2026-10-05 00:00:00,2,0,Normal State,0,0.9933333333333333,True
+clean,2026-10-06 02:00:00,1,0,Normal State,0,1.0,True
+clean,2026-10-06 02:00:00,2,0,Normal State,0,1.0,True
+clean,2026-10-07 08:00:00,1,0,Normal State,0,1.0,True
+clean,2026-10-07 08:00:00,2,0,Normal State,0,1.0,True
+clean,2026-10-08 11:00:00,1,0,Normal State,0,1.0,True
+clean,2026-10-08 11:00:00,2,0,Normal State,0,0.98,True
+clean,2026-10-09 14:00:00,1,0,Normal State,0,1.0,True
+clean,2026-10-09 14:00:00,2,0,Normal State,0,0.9933333333333333,True
+clean,2026-10-10 17:00:00,1,0,Normal State,0,1.0,True
+clean,2026-10-10 17:00:00,2,0,Normal State,0,1.0,True
+clean,2026-10-11 20:00:00,1,0,Normal State,0,0.99,True
+clean,2026-10-11 20:00:00,2,0,Normal State,0,1.0,True
+clean,2026-10-12 23:00:00,1,0,Normal State,0,1.0,True
+clean,2026-10-12 23:00:00,2,0,Normal State,0,1.0,True
+clean,2026-10-14 08:00:00,1,0,Normal State,0,1.0,True
+clean,2026-10-14 08:00:00,2,0,Normal State,0,0.94,True
+clean,2026-10-16 00:00:00,1,0,Normal State,0,0.9,True
+clean,2026-10-16 00:00:00,2,0,Normal State,0,1.0,True
+clean,2026-10-17 09:00:00,1,0,Normal State,0,0.88,True
+clean,2026-10-17 09:00:00,2,0,Normal State,0,0.9333333333333333,True
+clean,2026-10-18 19:00:00,1,0,Normal State,0,0.99,True
+clean,2026-10-18 19:00:00,2,0,Normal State,0,1.0,True
+clean,2026-10-20 04:00:00,1,0,Normal State,0,0.98,True
+clean,2026-10-20 04:00:00,2,0,Normal State,0,0.9933333333333333,True
+clean,2026-10-21 10:00:00,1,0,Normal State,0,0.95,True
+clean,2026-10-21 10:00:00,2,0,Normal State,0,0.9933333333333333,True
+clean,2026-10-22 14:00:00,1,0,Normal State,0,1.0,True
+clean,2026-10-22 14:00:00,2,0,Normal State,0,0.9866666666666667,True
+clean,2026-10-23 17:00:00,1,0,Normal State,0,1.0,True
+clean,2026-10-23 17:00:00,2,0,Normal State,0,1.0,True
+clean,2026-10-24 20:00:00,1,0,Normal State,0,0.74,True
+clean,2026-10-24 20:00:00,2,0,Normal State,0,0.9733333333333334,True
+clean,2026-10-25 23:00:00,1,0,Normal State,0,0.77,True
+clean,2026-10-25 23:00:00,2,0,Normal State,0,1.0,True
+clean,2026-10-27 02:00:00,1,0,Normal State,0,0.74,True
+clean,2026-10-27 02:00:00,2,0,Normal State,0,0.9933333333333333,True
+clean,2026-10-28 05:00:00,1,0,Normal State,0,0.81,True
+clean,2026-10-28 05:00:00,2,0,Normal State,0,0.9733333333333334,True
+clean,2026-10-29 08:00:00,1,0,Normal State,0,0.83,True
+clean,2026-10-29 08:00:00,2,0,Normal State,0,0.9933333333333333,True
+clean,2026-10-30 11:00:00,1,0,Normal State,0,0.96,True
+clean,2026-10-30 11:00:00,2,0,Normal State,0,0.9733333333333334,True
+clean,2026-10-31 14:00:00,1,0,Normal State,0,0.98,True
+clean,2026-10-31 14:00:00,2,0,Normal State,0,0.9866666666666667,True
+clean,2026-11-01 17:00:00,1,0,Normal State,0,1.0,True
+clean,2026-11-01 17:00:00,2,0,Normal State,0,1.0,True
+temp_oob,2026-10-05 00:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.87,True
+temp_oob,2026-10-05 00:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.9266666666666666,True
+temp_oob,2026-10-06 02:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.83,True
+temp_oob,2026-10-06 02:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.9266666666666666,True
+temp_oob,2026-10-07 08:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.83,True
+temp_oob,2026-10-07 08:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.9266666666666666,True
+temp_oob,2026-10-08 11:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.8,True
+temp_oob,2026-10-08 11:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.78,True
+temp_oob,2026-10-09 14:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.79,True
+temp_oob,2026-10-09 14:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.7933333333333333,True
+temp_oob,2026-10-10 17:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.74,True
+temp_oob,2026-10-10 17:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.7733333333333333,True
+temp_oob,2026-10-11 20:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.81,True
+temp_oob,2026-10-11 20:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.8733333333333333,True
+temp_oob,2026-10-12 23:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.83,True
+temp_oob,2026-10-12 23:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.7866666666666666,True
+temp_oob,2026-10-14 08:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.84,True
+temp_oob,2026-10-14 08:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.8333333333333334,True
+temp_oob,2026-10-16 00:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.84,True
+temp_oob,2026-10-16 00:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.92,True
+temp_oob,2026-10-17 09:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.82,True
+temp_oob,2026-10-17 09:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.7933333333333333,True
+temp_oob,2026-10-18 19:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.8,True
+temp_oob,2026-10-18 19:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.8533333333333334,True
+temp_oob,2026-10-20 04:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.82,True
+temp_oob,2026-10-20 04:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.88,True
+temp_oob,2026-10-21 10:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.83,True
+temp_oob,2026-10-21 10:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.7866666666666666,True
+temp_oob,2026-10-22 14:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.68,True
+temp_oob,2026-10-22 14:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.6733333333333333,True
+temp_oob,2026-10-23 17:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.8,True
+temp_oob,2026-10-23 17:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.8333333333333334,True
+temp_oob,2026-10-24 20:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.78,True
+temp_oob,2026-10-24 20:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.8866666666666667,True
+temp_oob,2026-10-25 23:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.77,True
+temp_oob,2026-10-25 23:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.9,True
+temp_oob,2026-10-27 02:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.79,True
+temp_oob,2026-10-27 02:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.9133333333333333,True
+temp_oob,2026-10-28 05:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.83,True
+temp_oob,2026-10-28 05:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.9,True
+temp_oob,2026-10-29 08:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.81,True
+temp_oob,2026-10-29 08:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.92,True
+temp_oob,2026-10-30 11:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.82,True
+temp_oob,2026-10-30 11:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.78,True
+temp_oob,2026-10-31 14:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.72,True
+temp_oob,2026-10-31 14:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.7466666666666667,True
+temp_oob,2026-11-01 17:00:00,1,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.74,True
+temp_oob,2026-11-01 17:00:00,2,1,"Hardware Fault: Temperature OOB (65.0°C, range: -20 s.d. 55°C)",1,0.7866666666666666,True
+humidity_oob,2026-10-05 00:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.62,False
+humidity_oob,2026-10-05 00:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.7933333333333333,False
+humidity_oob,2026-10-06 02:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.61,False
+humidity_oob,2026-10-06 02:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.7866666666666666,False
+humidity_oob,2026-10-07 08:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.53,True
+humidity_oob,2026-10-07 08:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.5266666666666666,False
+humidity_oob,2026-10-08 11:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.8,True
+humidity_oob,2026-10-08 11:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.7133333333333334,True
+humidity_oob,2026-10-09 14:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.81,True
+humidity_oob,2026-10-09 14:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.7666666666666667,True
+humidity_oob,2026-10-10 17:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.71,True
+humidity_oob,2026-10-10 17:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.7,True
+humidity_oob,2026-10-11 20:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.56,True
+humidity_oob,2026-10-11 20:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.5466666666666666,False
+humidity_oob,2026-10-12 23:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.61,True
+humidity_oob,2026-10-12 23:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.56,False
+humidity_oob,2026-10-14 08:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.8,True
+humidity_oob,2026-10-14 08:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.8533333333333334,True
+humidity_oob,2026-10-16 00:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.57,True
+humidity_oob,2026-10-16 00:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.6333333333333333,False
+humidity_oob,2026-10-17 09:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.86,True
+humidity_oob,2026-10-17 09:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.78,True
+humidity_oob,2026-10-18 19:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.59,True
+humidity_oob,2026-10-18 19:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.52,False
+humidity_oob,2026-10-20 04:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.5,True
+humidity_oob,2026-10-20 04:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.68,False
+humidity_oob,2026-10-21 10:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.87,True
+humidity_oob,2026-10-21 10:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.7866666666666666,True
+humidity_oob,2026-10-22 14:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.87,True
+humidity_oob,2026-10-22 14:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.7266666666666667,True
+humidity_oob,2026-10-23 17:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.66,True
+humidity_oob,2026-10-23 17:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.56,True
+humidity_oob,2026-10-24 20:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.52,True
+humidity_oob,2026-10-24 20:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.7466666666666667,False
+humidity_oob,2026-10-25 23:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.51,False
+humidity_oob,2026-10-25 23:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.7733333333333333,False
+humidity_oob,2026-10-27 02:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.52,False
+humidity_oob,2026-10-27 02:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.7933333333333333,False
+humidity_oob,2026-10-28 05:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.56,False
+humidity_oob,2026-10-28 05:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.7933333333333333,False
+humidity_oob,2026-10-29 08:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.7,True
+humidity_oob,2026-10-29 08:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.5933333333333334,True
+humidity_oob,2026-10-30 11:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.82,True
+humidity_oob,2026-10-30 11:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.7866666666666666,True
+humidity_oob,2026-10-31 14:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.81,True
+humidity_oob,2026-10-31 14:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",1,0.7466666666666667,True
+humidity_oob,2026-11-01 17:00:00,1,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.5,False
+humidity_oob,2026-11-01 17:00:00,2,1,"Hardware Fault: Humidity OOB (115.0%, range: 0 s.d. 100%)",0,0.5533333333333333,False
+soil_oob,2026-10-05 00:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.65,True
+soil_oob,2026-10-05 00:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.6666666666666666,True
+soil_oob,2026-10-06 02:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.65,True
+soil_oob,2026-10-06 02:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.68,True
+soil_oob,2026-10-07 08:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.65,True
+soil_oob,2026-10-07 08:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.66,True
+soil_oob,2026-10-08 11:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.58,True
+soil_oob,2026-10-08 11:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.5733333333333334,True
+soil_oob,2026-10-09 14:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.65,True
+soil_oob,2026-10-09 14:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.5933333333333334,True
+soil_oob,2026-10-10 17:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.71,True
+soil_oob,2026-10-10 17:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.6333333333333333,True
+soil_oob,2026-10-11 20:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.66,True
+soil_oob,2026-10-11 20:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.6533333333333333,True
+soil_oob,2026-10-12 23:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.67,True
+soil_oob,2026-10-12 23:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.68,True
+soil_oob,2026-10-14 08:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.65,True
+soil_oob,2026-10-14 08:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.66,True
+soil_oob,2026-10-16 00:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.68,True
+soil_oob,2026-10-16 00:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.6466666666666666,True
+soil_oob,2026-10-17 09:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.56,True
+soil_oob,2026-10-17 09:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.5933333333333334,True
+soil_oob,2026-10-18 19:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.68,True
+soil_oob,2026-10-18 19:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.6333333333333333,True
+soil_oob,2026-10-20 04:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.65,True
+soil_oob,2026-10-20 04:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.6533333333333333,True
+soil_oob,2026-10-21 10:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.58,True
+soil_oob,2026-10-21 10:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.6,True
+soil_oob,2026-10-22 14:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.59,True
+soil_oob,2026-10-22 14:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.56,True
+soil_oob,2026-10-23 17:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.66,True
+soil_oob,2026-10-23 17:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.66,True
+soil_oob,2026-10-24 20:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.68,True
+soil_oob,2026-10-24 20:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.6266666666666667,True
+soil_oob,2026-10-25 23:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.74,True
+soil_oob,2026-10-25 23:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",0,0.58,False
+soil_oob,2026-10-27 02:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.76,True
+soil_oob,2026-10-27 02:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",0,0.5666666666666667,False
+soil_oob,2026-10-28 05:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.71,True
+soil_oob,2026-10-28 05:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",0,0.6066666666666667,False
+soil_oob,2026-10-29 08:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.7,True
+soil_oob,2026-10-29 08:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",0,0.5866666666666667,False
+soil_oob,2026-10-30 11:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.59,True
+soil_oob,2026-10-30 11:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",0,0.58,False
+soil_oob,2026-10-31 14:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.63,True
+soil_oob,2026-10-31 14:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.56,True
+soil_oob,2026-11-01 17:00:00,1,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.71,True
+soil_oob,2026-11-01 17:00:00,2,1,"Hardware Fault: Soil moisture OOB (0.700 m³/m³, range: 0.0 s.d. 0.55)",1,0.64,True
+negative_rain,2026-10-05 00:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,1.0,False
+negative_rain,2026-10-05 00:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.8466666666666667,False
+negative_rain,2026-10-06 02:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,1.0,False
+negative_rain,2026-10-06 02:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.8666666666666667,False
+negative_rain,2026-10-07 08:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,1.0,False
+negative_rain,2026-10-07 08:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.8666666666666667,False
+negative_rain,2026-10-08 11:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,1.0,False
+negative_rain,2026-10-08 11:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.8466666666666667,False
+negative_rain,2026-10-09 14:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.99,False
+negative_rain,2026-10-09 14:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.8933333333333333,False
+negative_rain,2026-10-10 17:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,1.0,False
+negative_rain,2026-10-10 17:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.86,False
+negative_rain,2026-10-11 20:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.98,False
+negative_rain,2026-10-11 20:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.8733333333333333,False
+negative_rain,2026-10-12 23:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,1.0,False
+negative_rain,2026-10-12 23:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.88,False
+negative_rain,2026-10-14 08:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,1.0,False
+negative_rain,2026-10-14 08:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.8066666666666666,False
+negative_rain,2026-10-16 00:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.9,False
+negative_rain,2026-10-16 00:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.8733333333333333,False
+negative_rain,2026-10-17 09:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.88,False
+negative_rain,2026-10-17 09:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.8133333333333334,False
+negative_rain,2026-10-18 19:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.99,False
+negative_rain,2026-10-18 19:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.86,False
+negative_rain,2026-10-20 04:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.98,False
+negative_rain,2026-10-20 04:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.8533333333333334,False
+negative_rain,2026-10-21 10:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.94,False
+negative_rain,2026-10-21 10:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.86,False
+negative_rain,2026-10-22 14:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,1.0,False
+negative_rain,2026-10-22 14:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.86,False
+negative_rain,2026-10-23 17:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,1.0,False
+negative_rain,2026-10-23 17:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.8466666666666667,False
+negative_rain,2026-10-24 20:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.74,False
+negative_rain,2026-10-24 20:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.8666666666666667,False
+negative_rain,2026-10-25 23:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.77,False
+negative_rain,2026-10-25 23:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.88,False
+negative_rain,2026-10-27 02:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.73,False
+negative_rain,2026-10-27 02:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.88,False
+negative_rain,2026-10-28 05:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.81,False
+negative_rain,2026-10-28 05:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.86,False
+negative_rain,2026-10-29 08:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.83,False
+negative_rain,2026-10-29 08:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.8733333333333333,False
+negative_rain,2026-10-30 11:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.96,False
+negative_rain,2026-10-30 11:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.8533333333333334,False
+negative_rain,2026-10-31 14:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.98,False
+negative_rain,2026-10-31 14:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.84,False
+negative_rain,2026-11-01 17:00:00,1,1,Hardware Fault: Negative precipitation (-5.00 mm),0,1.0,False
+negative_rain,2026-11-01 17:00:00,2,1,Hardware Fault: Negative precipitation (-5.00 mm),0,0.8333333333333334,False
+temp_spike,2026-10-05 00:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.85,True
+temp_spike,2026-10-05 00:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.9066666666666666,True
+temp_spike,2026-10-06 02:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.81,True
+temp_spike,2026-10-06 02:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.8666666666666667,True
+temp_spike,2026-10-07 08:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.83,True
+temp_spike,2026-10-07 08:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.9133333333333333,True
+temp_spike,2026-10-08 11:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.77,True
+temp_spike,2026-10-08 11:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.82,True
+temp_spike,2026-10-09 14:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.81,True
+temp_spike,2026-10-09 14:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.8,True
+temp_spike,2026-10-10 17:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.8,True
+temp_spike,2026-10-10 17:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.8533333333333334,True
+temp_spike,2026-10-11 20:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.86,True
+temp_spike,2026-10-11 20:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.9066666666666666,True
+temp_spike,2026-10-12 23:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.84,True
+temp_spike,2026-10-12 23:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.8533333333333334,True
+temp_spike,2026-10-14 08:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.6,True
+temp_spike,2026-10-14 08:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.7133333333333334,True
+temp_spike,2026-10-16 00:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.88,True
+temp_spike,2026-10-16 00:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.9266666666666666,True
+temp_spike,2026-10-17 09:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.56,True
+temp_spike,2026-10-17 09:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.6133333333333333,True
+temp_spike,2026-10-18 19:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.85,True
+temp_spike,2026-10-18 19:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.8933333333333333,True
+temp_spike,2026-10-20 04:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.85,True
+temp_spike,2026-10-20 04:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.84,True
+temp_spike,2026-10-21 10:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.77,True
+temp_spike,2026-10-21 10:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.78,True
+temp_spike,2026-10-22 14:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.68,True
+temp_spike,2026-10-22 14:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.66,True
+temp_spike,2026-10-23 17:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.83,True
+temp_spike,2026-10-23 17:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.8466666666666667,True
+temp_spike,2026-10-24 20:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.78,True
+temp_spike,2026-10-24 20:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.8866666666666667,True
+temp_spike,2026-10-25 23:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.82,True
+temp_spike,2026-10-25 23:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.88,True
+temp_spike,2026-10-27 02:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.78,True
+temp_spike,2026-10-27 02:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.8733333333333333,True
+temp_spike,2026-10-28 05:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.79,True
+temp_spike,2026-10-28 05:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.86,True
+temp_spike,2026-10-29 08:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.8,True
+temp_spike,2026-10-29 08:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.8866666666666667,True
+temp_spike,2026-10-30 11:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.74,True
+temp_spike,2026-10-30 11:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.7666666666666667,True
+temp_spike,2026-10-31 14:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.69,True
+temp_spike,2026-10-31 14:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.74,True
+temp_spike,2026-11-01 17:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.83,True
+temp_spike,2026-11-01 17:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.0°C/hr without rain),1,0.8,True
+night_radiation,2026-10-05 00:00:00,1,1,Hardware Fault: Night radiation glitch (250.0 W/m² at 00:00 WIB),0,0.98,False
+night_radiation,2026-10-05 00:00:00,2,1,Hardware Fault: Night radiation glitch (250.0 W/m² at 00:00 WIB),0,0.9933333333333333,False
+night_radiation,2026-10-06 02:00:00,1,1,Hardware Fault: Night radiation glitch (250.0 W/m² at 02:00 WIB),0,0.98,False
+night_radiation,2026-10-06 02:00:00,2,1,Hardware Fault: Night radiation glitch (250.0 W/m² at 02:00 WIB),0,1.0,False
+night_radiation,2026-10-11 20:00:00,1,1,Hardware Fault: Night radiation glitch (250.0 W/m² at 20:00 WIB),0,0.98,False
+night_radiation,2026-10-11 20:00:00,2,1,Hardware Fault: Night radiation glitch (250.0 W/m² at 20:00 WIB),0,1.0,False
+night_radiation,2026-10-12 23:00:00,1,1,Hardware Fault: Night radiation glitch (250.0 W/m² at 23:00 WIB),0,0.98,False
+night_radiation,2026-10-12 23:00:00,2,1,Hardware Fault: Night radiation glitch (250.0 W/m² at 23:00 WIB),0,1.0,False
+night_radiation,2026-10-16 00:00:00,1,1,Hardware Fault: Night radiation glitch (250.0 W/m² at 00:00 WIB),0,0.88,False
+night_radiation,2026-10-16 00:00:00,2,1,Hardware Fault: Night radiation glitch (250.0 W/m² at 00:00 WIB),0,1.0,False
+night_radiation,2026-10-24 20:00:00,1,1,Hardware Fault: Night radiation glitch (250.0 W/m² at 20:00 WIB),0,0.73,False
+night_radiation,2026-10-24 20:00:00,2,1,Hardware Fault: Night radiation glitch (250.0 W/m² at 20:00 WIB),0,0.9733333333333334,False
+night_radiation,2026-10-25 23:00:00,1,1,Hardware Fault: Night radiation glitch (250.0 W/m² at 23:00 WIB),0,0.75,False
+night_radiation,2026-10-25 23:00:00,2,1,Hardware Fault: Night radiation glitch (250.0 W/m² at 23:00 WIB),0,1.0,False
+night_radiation,2026-10-27 02:00:00,1,1,Hardware Fault: Night radiation glitch (250.0 W/m² at 02:00 WIB),0,0.74,False
+night_radiation,2026-10-27 02:00:00,2,1,Hardware Fault: Night radiation glitch (250.0 W/m² at 02:00 WIB),0,0.9933333333333333,False
+temp_stuck_18h,2026-10-05 00:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.75,False
+temp_stuck_18h,2026-10-05 00:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.8866666666666667,False
+temp_stuck_18h,2026-10-06 02:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),1,0.7,True
+temp_stuck_18h,2026-10-06 02:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),1,0.7866666666666666,True
+temp_stuck_18h,2026-10-07 08:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),1,0.56,True
+temp_stuck_18h,2026-10-07 08:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),1,0.78,True
+temp_stuck_18h,2026-10-08 11:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.87,False
+temp_stuck_18h,2026-10-08 11:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.88,False
+temp_stuck_18h,2026-10-09 14:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.76,False
+temp_stuck_18h,2026-10-09 14:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.88,False
+temp_stuck_18h,2026-10-10 17:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.88,False
+temp_stuck_18h,2026-10-10 17:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.9466666666666667,False
+temp_stuck_18h,2026-10-11 20:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.78,False
+temp_stuck_18h,2026-10-11 20:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.8533333333333334,False
+temp_stuck_18h,2026-10-12 23:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.83,False
+temp_stuck_18h,2026-10-12 23:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.86,False
+temp_stuck_18h,2026-10-14 08:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.82,False
+temp_stuck_18h,2026-10-14 08:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.82,False
+temp_stuck_18h,2026-10-16 00:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.74,False
+temp_stuck_18h,2026-10-16 00:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.8933333333333333,False
+temp_stuck_18h,2026-10-17 09:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.8,False
+temp_stuck_18h,2026-10-17 09:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.8266666666666667,False
+temp_stuck_18h,2026-10-18 19:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.86,False
+temp_stuck_18h,2026-10-18 19:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.8933333333333333,False
+temp_stuck_18h,2026-10-20 04:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),1,0.76,True
+temp_stuck_18h,2026-10-20 04:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),1,0.7066666666666667,True
+temp_stuck_18h,2026-10-21 10:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.91,False
+temp_stuck_18h,2026-10-21 10:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.86,False
+temp_stuck_18h,2026-10-22 14:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.87,False
+temp_stuck_18h,2026-10-22 14:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.8733333333333333,False
+temp_stuck_18h,2026-10-23 17:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.88,False
+temp_stuck_18h,2026-10-23 17:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.9466666666666667,False
+temp_stuck_18h,2026-10-24 20:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.66,False
+temp_stuck_18h,2026-10-24 20:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.8733333333333333,False
+temp_stuck_18h,2026-10-25 23:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.74,False
+temp_stuck_18h,2026-10-25 23:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.92,False
+temp_stuck_18h,2026-10-27 02:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),1,0.73,True
+temp_stuck_18h,2026-10-27 02:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),1,0.74,True
+temp_stuck_18h,2026-10-28 05:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.54,False
+temp_stuck_18h,2026-10-28 05:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),1,0.5066666666666667,True
+temp_stuck_18h,2026-10-29 08:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.81,False
+temp_stuck_18h,2026-10-29 08:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.9266666666666666,False
+temp_stuck_18h,2026-10-30 11:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.86,False
+temp_stuck_18h,2026-10-30 11:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.9,False
+temp_stuck_18h,2026-10-31 14:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.8,False
+temp_stuck_18h,2026-10-31 14:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.8933333333333333,False
+temp_stuck_18h,2026-11-01 17:00:00,1,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.83,False
+temp_stuck_18h,2026-11-01 17:00:00,2,1,Hardware Fault: Temperature sensor stuck (constant value for 12 hours),0,0.9666666666666667,False
+humidity_stuck_24h,2026-10-05 00:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.87,False
+humidity_stuck_24h,2026-10-05 00:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.9866666666666667,False
+humidity_stuck_24h,2026-10-06 02:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.83,False
+humidity_stuck_24h,2026-10-06 02:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.9933333333333333,False
+humidity_stuck_24h,2026-10-07 08:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.73,False
+humidity_stuck_24h,2026-10-07 08:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.8466666666666667,False
+humidity_stuck_24h,2026-10-08 11:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,1,0.6,True
+humidity_stuck_24h,2026-10-08 11:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.5666666666666667,False
+humidity_stuck_24h,2026-10-09 14:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,1,0.6,True
+humidity_stuck_24h,2026-10-09 14:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.5466666666666666,False
+humidity_stuck_24h,2026-10-10 17:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.51,False
+humidity_stuck_24h,2026-10-10 17:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.62,False
+humidity_stuck_24h,2026-10-11 20:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.72,False
+humidity_stuck_24h,2026-10-11 20:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.8666666666666667,False
+humidity_stuck_24h,2026-10-12 23:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.68,False
+humidity_stuck_24h,2026-10-12 23:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.98,False
+humidity_stuck_24h,2026-10-14 08:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,1,0.59,True
+humidity_stuck_24h,2026-10-14 08:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,1,0.52,True
+humidity_stuck_24h,2026-10-16 00:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.69,False
+humidity_stuck_24h,2026-10-16 00:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.9466666666666667,False
+humidity_stuck_24h,2026-10-17 09:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,1,0.66,True
+humidity_stuck_24h,2026-10-17 09:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.5266666666666666,False
+humidity_stuck_24h,2026-10-18 19:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.71,False
+humidity_stuck_24h,2026-10-18 19:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.8466666666666667,False
+humidity_stuck_24h,2026-10-20 04:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.79,False
+humidity_stuck_24h,2026-10-20 04:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.98,False
+humidity_stuck_24h,2026-10-21 10:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,1,0.68,True
+humidity_stuck_24h,2026-10-21 10:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.5333333333333333,False
+humidity_stuck_24h,2026-10-22 14:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,1,0.66,True
+humidity_stuck_24h,2026-10-22 14:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.5266666666666666,False
+humidity_stuck_24h,2026-10-23 17:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.66,False
+humidity_stuck_24h,2026-10-23 17:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.84,False
+humidity_stuck_24h,2026-10-24 20:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.64,False
+humidity_stuck_24h,2026-10-24 20:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.9466666666666667,False
+humidity_stuck_24h,2026-10-25 23:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.69,False
+humidity_stuck_24h,2026-10-25 23:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.98,False
+humidity_stuck_24h,2026-10-27 02:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.73,False
+humidity_stuck_24h,2026-10-27 02:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,1.0,False
+humidity_stuck_24h,2026-10-28 05:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.76,False
+humidity_stuck_24h,2026-10-28 05:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.96,False
+humidity_stuck_24h,2026-10-29 08:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,1,0.55,True
+humidity_stuck_24h,2026-10-29 08:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.66,False
+humidity_stuck_24h,2026-10-30 11:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,1,0.63,True
+humidity_stuck_24h,2026-10-30 11:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.52,False
+humidity_stuck_24h,2026-10-31 14:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,1,0.62,True
+humidity_stuck_24h,2026-10-31 14:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.54,False
+humidity_stuck_24h,2026-11-01 17:00:00,1,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.77,False
+humidity_stuck_24h,2026-11-01 17:00:00,2,1,Hardware Fault: Humidity saturated 100% stuck for >24 hours,0,0.8933333333333333,False
+wind_stuck_48h,2026-10-05 00:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.97,False
+wind_stuck_48h,2026-10-05 00:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9933333333333333,False
+wind_stuck_48h,2026-10-06 02:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.97,False
+wind_stuck_48h,2026-10-06 02:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9933333333333333,False
+wind_stuck_48h,2026-10-07 08:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.97,False
+wind_stuck_48h,2026-10-07 08:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,1.0,False
+wind_stuck_48h,2026-10-08 11:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.96,False
+wind_stuck_48h,2026-10-08 11:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9666666666666667,False
+wind_stuck_48h,2026-10-09 14:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.97,False
+wind_stuck_48h,2026-10-09 14:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9666666666666667,False
+wind_stuck_48h,2026-10-10 17:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.97,False
+wind_stuck_48h,2026-10-10 17:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9866666666666667,False
+wind_stuck_48h,2026-10-11 20:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.96,False
+wind_stuck_48h,2026-10-11 20:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9866666666666667,False
+wind_stuck_48h,2026-10-12 23:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.97,False
+wind_stuck_48h,2026-10-12 23:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9866666666666667,False
+wind_stuck_48h,2026-10-14 08:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.96,False
+wind_stuck_48h,2026-10-14 08:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9333333333333333,False
+wind_stuck_48h,2026-10-16 00:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.89,False
+wind_stuck_48h,2026-10-16 00:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9933333333333333,False
+wind_stuck_48h,2026-10-17 09:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.87,False
+wind_stuck_48h,2026-10-17 09:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9266666666666666,False
+wind_stuck_48h,2026-10-18 19:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.94,False
+wind_stuck_48h,2026-10-18 19:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.98,False
+wind_stuck_48h,2026-10-20 04:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.93,False
+wind_stuck_48h,2026-10-20 04:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9733333333333334,False
+wind_stuck_48h,2026-10-21 10:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.92,False
+wind_stuck_48h,2026-10-21 10:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.94,False
+wind_stuck_48h,2026-10-22 14:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.95,False
+wind_stuck_48h,2026-10-22 14:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.94,False
+wind_stuck_48h,2026-10-23 17:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.97,False
+wind_stuck_48h,2026-10-23 17:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9933333333333333,False
+wind_stuck_48h,2026-10-24 20:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.7,False
+wind_stuck_48h,2026-10-24 20:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9666666666666667,False
+wind_stuck_48h,2026-10-25 23:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.73,False
+wind_stuck_48h,2026-10-25 23:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9866666666666667,False
+wind_stuck_48h,2026-10-27 02:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.72,False
+wind_stuck_48h,2026-10-27 02:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9933333333333333,False
+wind_stuck_48h,2026-10-28 05:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.77,False
+wind_stuck_48h,2026-10-28 05:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9733333333333334,False
+wind_stuck_48h,2026-10-29 08:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.79,False
+wind_stuck_48h,2026-10-29 08:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9933333333333333,False
+wind_stuck_48h,2026-10-30 11:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.93,False
+wind_stuck_48h,2026-10-30 11:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9466666666666667,False
+wind_stuck_48h,2026-10-31 14:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.97,False
+wind_stuck_48h,2026-10-31 14:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9533333333333334,False
+wind_stuck_48h,2026-11-01 17:00:00,1,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.97,False
+wind_stuck_48h,2026-11-01 17:00:00,2,1,Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours,0,0.9866666666666667,False
+heat_36C,2026-10-05 00:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=14.5°C/hr without rain),1,0.89,True
+heat_36C,2026-10-05 00:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=14.5°C/hr without rain),1,0.9333333333333333,True
+heat_36C,2026-10-06 02:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=15.2°C/hr without rain),1,0.88,True
+heat_36C,2026-10-06 02:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=15.2°C/hr without rain),1,0.9266666666666666,True
+heat_36C,2026-10-07 08:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=14.2°C/hr without rain),1,0.89,True
+heat_36C,2026-10-07 08:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=14.2°C/hr without rain),1,0.9333333333333333,True
+heat_36C,2026-10-08 11:00:00,1,2,Extreme Weather: Heatwave / Heat Stress (36.0°C > 33.5°C),1,0.77,False
+heat_36C,2026-10-08 11:00:00,2,2,Extreme Weather: Heatwave / Heat Stress (36.0°C > 33.5°C),1,0.78,False
+heat_36C,2026-10-09 14:00:00,1,2,Extreme Weather: Heatwave / Heat Stress (36.0°C > 33.5°C),1,0.78,False
+heat_36C,2026-10-09 14:00:00,2,2,Extreme Weather: Heatwave / Heat Stress (36.0°C > 33.5°C),1,0.76,False
+heat_36C,2026-10-10 17:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=9.7°C/hr without rain),1,0.81,True
+heat_36C,2026-10-10 17:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=9.7°C/hr without rain),1,0.84,True
+heat_36C,2026-10-11 20:00:00,1,2,Extreme Weather: Heatwave / Heat Stress (36.0°C > 33.5°C),1,0.89,False
+heat_36C,2026-10-11 20:00:00,2,2,Extreme Weather: Heatwave / Heat Stress (36.0°C > 33.5°C),1,0.9066666666666666,False
+heat_36C,2026-10-12 23:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=13.6°C/hr without rain),1,0.9,True
+heat_36C,2026-10-12 23:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=13.6°C/hr without rain),1,0.8666666666666667,True
+heat_36C,2026-10-14 08:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=13.0°C/hr without rain),1,0.76,True
+heat_36C,2026-10-14 08:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=13.0°C/hr without rain),1,0.84,True
+heat_36C,2026-10-16 00:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=13.2°C/hr without rain),1,0.93,True
+heat_36C,2026-10-16 00:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=13.2°C/hr without rain),1,0.9533333333333334,True
+heat_36C,2026-10-17 09:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=10.4°C/hr without rain),1,0.55,True
+heat_36C,2026-10-17 09:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=10.4°C/hr without rain),1,0.6466666666666666,True
+heat_36C,2026-10-18 19:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=11.5°C/hr without rain),1,0.88,True
+heat_36C,2026-10-18 19:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=11.5°C/hr without rain),1,0.9133333333333333,True
+heat_36C,2026-10-20 04:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=13.9°C/hr without rain),1,0.91,True
+heat_36C,2026-10-20 04:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=13.9°C/hr without rain),1,0.8933333333333333,True
+heat_36C,2026-10-21 10:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=8.2°C/hr without rain),1,0.77,True
+heat_36C,2026-10-21 10:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=8.2°C/hr without rain),1,0.74,True
+heat_36C,2026-10-22 14:00:00,1,2,Extreme Weather: Heatwave / Heat Stress (36.0°C > 33.5°C),0,0.46,False
+heat_36C,2026-10-22 14:00:00,2,2,Extreme Weather: Heatwave / Heat Stress (36.0°C > 33.5°C),1,0.6066666666666667,False
+heat_36C,2026-10-23 17:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=11.3°C/hr without rain),1,0.88,True
+heat_36C,2026-10-23 17:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=11.3°C/hr without rain),1,0.8533333333333334,True
+heat_36C,2026-10-24 20:00:00,1,2,Extreme Weather: Heatwave / Heat Stress (36.0°C > 33.5°C),1,0.81,False
+heat_36C,2026-10-24 20:00:00,2,2,Extreme Weather: Heatwave / Heat Stress (36.0°C > 33.5°C),1,0.88,False
+heat_36C,2026-10-25 23:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=14.0°C/hr without rain),1,0.8,True
+heat_36C,2026-10-25 23:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=14.0°C/hr without rain),1,0.8933333333333333,True
+heat_36C,2026-10-27 02:00:00,1,2,Extreme Weather: Heatwave / Heat Stress (36.0°C > 33.5°C),1,0.81,False
+heat_36C,2026-10-27 02:00:00,2,2,Extreme Weather: Heatwave / Heat Stress (36.0°C > 33.5°C),1,0.88,False
+heat_36C,2026-10-28 05:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=14.9°C/hr without rain),1,0.86,True
+heat_36C,2026-10-28 05:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=14.9°C/hr without rain),1,0.8933333333333333,True
+heat_36C,2026-10-29 08:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=12.7°C/hr without rain),1,0.81,True
+heat_36C,2026-10-29 08:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=12.7°C/hr without rain),1,0.88,True
+heat_36C,2026-10-30 11:00:00,1,1,Hardware Fault: Temperature spike (|ΔT|=8.2°C/hr without rain),1,0.76,True
+heat_36C,2026-10-30 11:00:00,2,1,Hardware Fault: Temperature spike (|ΔT|=8.2°C/hr without rain),1,0.7466666666666667,True
+heat_36C,2026-10-31 14:00:00,1,2,Extreme Weather: Heatwave / Heat Stress (36.0°C > 33.5°C),1,0.66,False
+heat_36C,2026-10-31 14:00:00,2,2,Extreme Weather: Heatwave / Heat Stress (36.0°C > 33.5°C),1,0.6733333333333333,False
+heat_36C,2026-11-01 17:00:00,1,2,Extreme Weather: Heatwave / Heat Stress (36.0°C > 33.5°C),1,0.81,False
+heat_36C,2026-11-01 17:00:00,2,2,Extreme Weather: Heatwave / Heat Stress (36.0°C > 33.5°C),1,0.86,False
+soil_drought,2026-10-05 00:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.96,False
+soil_drought,2026-10-05 00:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.9866666666666667,False
+soil_drought,2026-10-06 02:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.97,False
+soil_drought,2026-10-06 02:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.9733333333333334,False
+soil_drought,2026-10-07 08:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.96,False
+soil_drought,2026-10-07 08:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.9933333333333333,False
+soil_drought,2026-10-08 11:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.97,False
+soil_drought,2026-10-08 11:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.9733333333333334,False
+soil_drought,2026-10-09 14:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.98,False
+soil_drought,2026-10-09 14:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.9733333333333334,False
+soil_drought,2026-10-10 17:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.98,False
+soil_drought,2026-10-10 17:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.9866666666666667,False
+soil_drought,2026-10-11 20:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.98,False
+soil_drought,2026-10-11 20:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.9866666666666667,False
+soil_drought,2026-10-12 23:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.99,False
+soil_drought,2026-10-12 23:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.98,False
+soil_drought,2026-10-14 08:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.96,False
+soil_drought,2026-10-14 08:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.9266666666666666,False
+soil_drought,2026-10-16 00:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.89,False
+soil_drought,2026-10-16 00:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.98,False
+soil_drought,2026-10-17 09:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.87,False
+soil_drought,2026-10-17 09:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.9133333333333333,False
+soil_drought,2026-10-18 19:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.96,False
+soil_drought,2026-10-18 19:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.9733333333333334,False
+soil_drought,2026-10-20 04:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.94,False
+soil_drought,2026-10-20 04:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.9733333333333334,False
+soil_drought,2026-10-21 10:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.93,False
+soil_drought,2026-10-21 10:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.9933333333333333,False
+soil_drought,2026-10-22 14:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.95,False
+soil_drought,2026-10-22 14:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.98,False
+soil_drought,2026-10-23 17:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.98,False
+soil_drought,2026-10-23 17:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.9866666666666667,False
+soil_drought,2026-10-24 20:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.87,False
+soil_drought,2026-10-24 20:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.96,False
+soil_drought,2026-10-25 23:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.77,False
+soil_drought,2026-10-25 23:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.98,False
+soil_drought,2026-10-27 02:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.74,False
+soil_drought,2026-10-27 02:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.9666666666666667,False
+soil_drought,2026-10-28 05:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.8,False
+soil_drought,2026-10-28 05:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.9533333333333334,False
+soil_drought,2026-10-29 08:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.8,False
+soil_drought,2026-10-29 08:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.9666666666666667,False
+soil_drought,2026-10-30 11:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.94,False
+soil_drought,2026-10-30 11:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.96,False
+soil_drought,2026-10-31 14:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.95,False
+soil_drought,2026-10-31 14:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.98,False
+soil_drought,2026-11-01 17:00:00,1,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.97,False
+soil_drought,2026-11-01 17:00:00,2,2,Extreme Weather: Critical Drought / Wilting Point (0.050 m³/m³ < 0.08),0,0.9866666666666667,False

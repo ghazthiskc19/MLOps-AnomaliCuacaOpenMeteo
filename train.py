@@ -1,6 +1,7 @@
-"""LK06: frozen DVC data -> chronological RF experiments -> MLflow candidate.
+"""DVC snapshot -> temporal training -> portable evaluated MLflow candidate.
 
-Run from the repository root: python train.py
+Run from the repository root: python train.py --output-dir artifacts/lk08
+Use --legacy explicitly for the historical LK06 training protocol.
 No API ingestion, data regeneration, clipping, random train/test split, or
 hyperparameter selection on the final test set occurs here.
 """
@@ -103,7 +104,7 @@ def run_training(
     dataset_tag="dataset-v3.0.0", tracking_uri=None,
     output_dir=REPO_ROOT / "Documentation/LK06/results",
     experiment_name=EXPERIMENT_NAME, model_name=MODEL_NAME, seed=42,
-    n_estimators=None,
+    n_estimators=None, register=False,
 ):
     if n_estimators is not None and (type(n_estimators) is not int or n_estimators < 1):
         raise ValueError("n_estimators harus integer positif.")
@@ -256,21 +257,29 @@ def run_training(
             # Detect concurrent data changes before declaring the experiment valid.
             if verify_dataset(input_path, dataset_tag) != identity:
                 raise ValueError("Dataset berubah selama eksperimen; jangan gunakan hasil ini.")
-            version = mlflow.register_model(winner["model_uri"], model_name)
-            registry_uri = f"models:/{model_name}/{version.version}"
-            registered = mlflow.sklearn.load_model(registry_uri)
-            np.testing.assert_array_equal(registered.predict(X_test), test_predictions)
-            client.set_model_version_tag(model_name, version.version, "validation_status", "pseudo_label_candidate_not_field_validated")
-            client.set_model_version_tag(model_name, version.version, "dataset_tag", dataset_tag)
-            client.update_model_version(model_name, version.version, description="Random Forest selected by chronological CV macro F1; refit on development only. Test excluded. Rule pseudo-labels and synthetic hardware faults; not field validated.")
+            from src.validation import validation_decision
+            validation = validation_decision(test.anomaly_class, test_predictions)
+            write_json(output_dir / "validation.json", validation)
+            version, registry_uri = None, None
+            if register:
+                if not validation["passed"]:
+                    raise ValueError(f"Registry blocked: {validation['status']}")
+                version = mlflow.register_model(winner["model_uri"], model_name)
+                registry_uri = f"models:/{model_name}/{version.version}"
+                registered = mlflow.sklearn.load_model(registry_uri)
+                np.testing.assert_array_equal(registered.predict(X_test), test_predictions)
+                client.set_model_version_tag(model_name, version.version, "validation_status", "academic_rule_agreement_passed")
+                client.set_model_version_tag(model_name, version.version, "dataset_tag", dataset_tag)
+                client.transition_model_version_stage(model_name, version.version, "Staging", archive_existing_versions=False)
             summary = {
                 "experiment_name": experiment_name, "experiment_id": experiment_id,
                 "session_run_id": parent_id, "tracking_uri": tracking_uri,
                 "baseline": baseline, "candidates": results, "best": winner,
                 "test_metrics": test_metrics, "model_name": model_name,
-                "model_version": str(version.version), "registry_uri": registry_uri,
+                "model_version": str(version.version) if version else None, "registry_uri": registry_uri,
+                "validation": validation,
                 "provenance": provenance, "feature_contract": contract, "split": split_metadata,
-                "reload_checks": {"sklearn": True, "pyfunc": True, "registry": True, "raw_history_matches_batch": True},
+                "reload_checks": {"sklearn": True, "pyfunc": True, "registry": bool(version), "raw_history_matches_batch": True},
                 "beats_dummy_cv": winner["cv_val_f1_macro_mean"] > baseline["cv_val_f1_macro_mean"],
                 "deployment_status": "academic candidate; not field validated",
             }
@@ -279,7 +288,7 @@ def run_training(
                 (output_dir / f"test_{name}").write_bytes((final_dir / name).read_bytes())
             write_json(output_dir / "summary.json", summary)
             write_json(output_dir / "best_model_metadata.json", {
-                "name": model_name, "version": str(version.version), "registry_uri": registry_uri,
+                "name": model_name, "version": str(version.version) if version else None, "registry_uri": registry_uri,
                 "run_id": winner["run_id"], "model_uri": winner["model_uri"],
                 "parameters": {**winner["parameters"], "random_state": seed, "n_jobs": -1},
                 "selection_metric": "cv_val_f1_macro_mean", "cv_value": winner["cv_val_f1_macro_mean"],
@@ -291,7 +300,7 @@ def run_training(
     return summary
 
 
-def main():
+def legacy_main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input-path", type=Path, default=REPO_ROOT / "data/simulated/weather_faults_s42.csv")
     parser.add_argument("--dataset-tag", default="dataset-v3.0.0")
@@ -302,8 +311,24 @@ def main():
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--n-estimators", type=int, default=None,
                         help="Override jumlah pohon seluruh kandidat RF; default mengikuti konfigurasi LK06.")
+    parser.add_argument("--register", action="store_true", help="Register Staging only after validation passes")
     args = parser.parse_args()
-    run_training(args.input_path, args.dataset_tag, args.tracking_uri, args.output_dir, args.experiment_name, args.model_name, args.seed, n_estimators=args.n_estimators)
+    run_training(args.input_path, args.dataset_tag, args.tracking_uri, args.output_dir, args.experiment_name, args.model_name, args.seed, n_estimators=args.n_estimators, register=args.register)
+
+
+def main():
+    if "--legacy" in sys.argv:
+        sys.argv.remove("--legacy")
+        return legacy_main()
+    from datetime import datetime, timezone
+    from src.automation import train_candidate
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--config", type=Path, default=REPO_ROOT/"configs/lk08.yaml")
+    parser.add_argument("--output-dir", type=Path, default=REPO_ROOT/"Documentation/LK08/runs"/datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"))
+    parser.add_argument("--tracking-uri", default=None)
+    parser.add_argument("--n-estimators", type=int, default=None)
+    args = parser.parse_args()
+    return train_candidate(args.config,args.output_dir,tracking_uri=args.tracking_uri,n_estimators=args.n_estimators)
 
 
 if __name__ == "__main__":

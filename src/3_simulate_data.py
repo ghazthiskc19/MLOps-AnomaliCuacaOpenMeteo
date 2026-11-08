@@ -8,7 +8,7 @@ sehingga dapat langsung diproses oleh src/7_preprocess.py.
 Skenario:
 1. faults : merusak sebagian kecil baris (out-of-bounds, nilai negatif, spike, glitch radiasi malam,
             sensor stuck) untuk menyediakan contoh Class 1 (Hardware Fault). Open-Meteo adalah data
-            model cuaca yang selalu bersih sehingga Class 1 tidak pernah muncul secara alami.
+            model cuaca, bukan telemetry kerusakan sensor fisik; fault harus disimulasikan.
             Label tetap diberikan oleh AnomalyLabeler, bukan oleh script ini.
 2. drift  : menggeser distribusi input (suhu, kelembaban, presipitasi) untuk meniru pergantian musim,
             dipakai untuk pengujian Data Drift.

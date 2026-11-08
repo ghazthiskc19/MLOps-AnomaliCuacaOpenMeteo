@@ -1,0 +1,1574 @@
+{
+  "git_commit": "bef00d430bbb477bfc201ae7d6c063b1248db34b",
+  "registry": [
+    {
+      "name": "WeatherAnomalyRandomForest",
+      "version": 1,
+      "current_stage": "Production",
+      "source": "models:/m-5179955d3af649e49fbd4b8a6f8f0bc3",
+      "run_id": "044402f101154e1c8c295161c0542077"
+    },
+    {
+      "name": "WeatherAnomalyRandomForest",
+      "version": 2,
+      "current_stage": "None",
+      "source": "models:/m-a10337e46db44dc6bfe8ca0d00c683ab",
+      "run_id": "1e6c8d1bb00940f8a2e5212a11bd68af"
+    },
+    {
+      "name": "WeatherAnomalyRandomForest",
+      "version": 3,
+      "current_stage": "None",
+      "source": "models:/m-a10337e46db44dc6bfe8ca0d00c683ab",
+      "run_id": "1e6c8d1bb00940f8a2e5212a11bd68af"
+    }
+  ],
+  "artifacts": {
+    "1": {
+      "model_sha256": "6738807233ebee78439b1aed6e912e03cb252172f86c336fa67eb3f5855df03e",
+      "artifact_directory": "mlruns\\artifacts\\models\\m-5179955d3af649e49fbd4b8a6f8f0bc3\\artifacts",
+      "trees": 100
+    },
+    "2": {
+      "model_sha256": "a52d322469f097b6beb9cc5f58ac8a802fcd968858837f2ae49e46a184b11a2d",
+      "artifact_directory": "mlruns\\artifacts\\models\\m-a10337e46db44dc6bfe8ca0d00c683ab\\artifacts",
+      "trees": 150
+    }
+  },
+  "datasets": {
+    "dataset-v3.0.0": {
+      "identity": {
+        "path": "data/simulated/weather_faults_s42.csv",
+        "md5": "64d906e7d0086d1814f5e61b359e22fe",
+        "bytes": 36622,
+        "dataset_tag": "dataset-v3.0.0",
+        "dataset_tag_commit": "5ad793089485d56a3de1ffc46e9807b68638c275",
+        "pointer_sha256": "4578272cb96691f2085d8e55d73e21dff728afed9cb971387d4706aceb89dcfc"
+      },
+      "raw_identity": {
+        "path": "data/raw/weather_raw_current.csv",
+        "md5": "9684e1329ae170b08883d1ea643eb174",
+        "bytes": 33964,
+        "dataset_tag": "dataset-v3.0.0",
+        "dataset_tag_commit": "5ad793089485d56a3de1ffc46e9807b68638c275",
+        "pointer_sha256": "881469e855f8d149e706a0759c3cac699672a7d3207af9dd29c81ef0187fde52"
+      },
+      "raw_rows": 720,
+      "start": "2026-09-20 00:00:00",
+      "end": "2026-10-19 23:00:00",
+      "schema": [
+        "timestamp",
+        "temperature_2m_C",
+        "humidity_percent",
+        "precipitation_mm",
+        "soil_moisture",
+        "radiation_wm2",
+        "wind_speed_kmh"
+      ],
+      "missing": 0,
+      "duplicate_times": 0,
+      "max_interval_hours": 1.0,
+      "raw_ranges": {
+        "temperature_2m_C": {
+          "min": 17.6,
+          "max": 34.0
+        },
+        "humidity_percent": {
+          "min": 21.0,
+          "max": 100.0
+        },
+        "precipitation_mm": {
+          "min": 0.0,
+          "max": 4.1
+        },
+        "soil_moisture": {
+          "min": 0.102,
+          "max": 0.326
+        },
+        "radiation_wm2": {
+          "min": 0.0,
+          "max": 1065.0
+        },
+        "wind_speed_kmh": {
+          "min": 0.4,
+          "max": 14.2
+        }
+      },
+      "raw_rule_counts": {
+        "0": 595,
+        "1": 0,
+        "2": 77
+      },
+      "raw_rule_reasons": {
+        "Normal State": 595,
+        "Extreme Weather: Severe Dry Air": 76,
+        "Extreme Weather: Heatwave / Heat Stress": 1
+      },
+      "simulated_counts": {
+        "0": 546,
+        "1": 59,
+        "2": 67
+      },
+      "changed_raw_rows": 53,
+      "point_injections": {
+        "temp_spike": 13,
+        "temp_oob": 7,
+        "humidity_oob": 6,
+        "soil_oob": 5,
+        "negative_value": 4,
+        "night_radiation": 1
+      },
+      "stuck_block": {
+        "start_row": 82,
+        "start": "2026-09-23 10:00:00",
+        "hours": 18
+      },
+      "fault_labels_with_unchanged_current_raw": 17,
+      "feature_changed_rows": 522,
+      "normal_rows_with_changed_features": 412,
+      "feature_changes": {
+        "temperature_2m_C": 36,
+        "humidity_percent": 6,
+        "precipitation_mm": 1,
+        "soil_moisture": 5,
+        "radiation_wm2": 2,
+        "wind_speed_kmh": 2,
+        "hour": 0,
+        "hour_sin": 0,
+        "hour_cos": 0,
+        "day_of_week": 0,
+        "is_weekend": 0,
+        "month": 0,
+        "month_sin": 0,
+        "month_cos": 0,
+        "vpd_kpa": 42,
+        "dew_point_C": 42,
+        "temp_diff_1h": 56,
+        "temp_diff_24h": 71,
+        "humidity_diff_1h": 12,
+        "soil_diff_1h": 10,
+        "soil_diff_24h": 9,
+        "radiation_diff_1h": 4,
+        "temp_rolling_mean_3h": 76,
+        "temp_rolling_std_3h": 76,
+        "temp_rolling_mean_6h": 139,
+        "temp_rolling_std_6h": 139,
+        "temp_rolling_mean_24h": 387,
+        "temp_rolling_std_24h": 387,
+        "temp_rolling_min_24h": 200,
+        "temp_rolling_max_24h": 227,
+        "humidity_rolling_mean_6h": 36,
+        "humidity_rolling_mean_24h": 133,
+        "precip_rolling_sum_6h": 6,
+        "precip_rolling_sum_24h": 24,
+        "soil_rolling_mean_24h": 87,
+        "wind_rolling_mean_6h": 12,
+        "wind_rolling_max_24h": 0
+      },
+      "development": {
+        "counts": {
+          "0": 452,
+          "1": 46,
+          "2": 39
+        },
+        "reasons": {
+          "Normal State": 452,
+          "Extreme Weather: Severe Dry Air": 39,
+          "Hardware Fault: Temperature spike": 24,
+          "Hardware Fault: Temperature sensor stuck": 7,
+          "Hardware Fault: Temperature OOB": 5,
+          "Hardware Fault: Humidity OOB": 4,
+          "Hardware Fault: Soil moisture OOB": 2,
+          "Hardware Fault: Night radiation glitch": 1,
+          "Hardware Fault: Negative radiation": 1,
+          "Hardware Fault: Negative wind speed": 1,
+          "Hardware Fault: Negative precipitation": 1
+        }
+      },
+      "test": {
+        "counts": {
+          "0": 94,
+          "1": 13,
+          "2": 28
+        },
+        "reasons": {
+          "Normal State": 94,
+          "Extreme Weather: Severe Dry Air": 27,
+          "Hardware Fault: Temperature spike": 5,
+          "Hardware Fault: Soil moisture OOB": 3,
+          "Hardware Fault: Temperature OOB": 2,
+          "Hardware Fault: Humidity OOB": 2,
+          "Extreme Weather: Heatwave / Heat Stress": 1,
+          "Hardware Fault: Negative wind speed": 1
+        }
+      },
+      "folds": [
+        {
+          "train_counts": {
+            "0": 97,
+            "1": 19,
+            "2": 19
+          },
+          "validation_counts": {
+            "0": 118,
+            "1": 5,
+            "2": 11
+          },
+          "validation_reasons": {
+            "Normal State": 118,
+            "Extreme Weather: Severe Dry Air": 11,
+            "Hardware Fault: Humidity OOB": 2,
+            "Hardware Fault: Temperature spike": 2,
+            "Hardware Fault: Night radiation glitch": 1
+          }
+        },
+        {
+          "train_counts": {
+            "0": 215,
+            "1": 24,
+            "2": 30
+          },
+          "validation_counts": {
+            "0": 120,
+            "1": 11,
+            "2": 3
+          },
+          "validation_reasons": {
+            "Normal State": 120,
+            "Hardware Fault: Temperature spike": 7,
+            "Extreme Weather: Severe Dry Air": 3,
+            "Hardware Fault: Humidity OOB": 1,
+            "Hardware Fault: Negative radiation": 1,
+            "Hardware Fault: Soil moisture OOB": 1,
+            "Hardware Fault: Temperature OOB": 1
+          }
+        },
+        {
+          "train_counts": {
+            "0": 335,
+            "1": 35,
+            "2": 33
+          },
+          "validation_counts": {
+            "0": 117,
+            "1": 11,
+            "2": 6
+          },
+          "validation_reasons": {
+            "Normal State": 117,
+            "Hardware Fault: Temperature spike": 6,
+            "Extreme Weather: Severe Dry Air": 6,
+            "Hardware Fault: Temperature OOB": 2,
+            "Hardware Fault: Negative wind speed": 1,
+            "Hardware Fault: Soil moisture OOB": 1,
+            "Hardware Fault: Negative precipitation": 1
+          }
+        }
+      ],
+      "last_extreme_label": "2026-10-19 14:00:00",
+      "feature_importance": [
+        [
+          "humidity_percent",
+          0.16260115834741462
+        ],
+        [
+          "dew_point_C",
+          0.15447147871666883
+        ],
+        [
+          "vpd_kpa",
+          0.10150326954297893
+        ],
+        [
+          "temp_diff_1h",
+          0.09119194509988116
+        ],
+        [
+          "temperature_2m_C",
+          0.07493856927679961
+        ],
+        [
+          "temp_rolling_std_3h",
+          0.06642447190507628
+        ],
+        [
+          "temp_diff_24h",
+          0.04733790019084945
+        ],
+        [
+          "temp_rolling_mean_3h",
+          0.041774596411892705
+        ],
+        [
+          "radiation_wm2",
+          0.025809846504797434
+        ],
+        [
+          "temp_rolling_std_6h",
+          0.025485625386616157
+        ],
+        [
+          "wind_speed_kmh",
+          0.02302188271895985
+        ],
+        [
+          "soil_moisture",
+          0.01651076768893335
+        ],
+        [
+          "humidity_rolling_mean_6h",
+          0.015888843106338802
+        ],
+        [
+          "humidity_diff_1h",
+          0.013912327199884698
+        ],
+        [
+          "soil_diff_24h",
+          0.010928588084004291
+        ],
+        [
+          "radiation_diff_1h",
+          0.010812127465648715
+        ],
+        [
+          "soil_diff_1h",
+          0.010720374797392856
+        ],
+        [
+          "temp_rolling_std_24h",
+          0.010433176532658985
+        ],
+        [
+          "wind_rolling_mean_6h",
+          0.010376208201549187
+        ],
+        [
+          "precipitation_mm",
+          0.009276738710906004
+        ],
+        [
+          "temp_rolling_mean_6h",
+          0.009059386390421453
+        ],
+        [
+          "temp_rolling_max_24h",
+          0.009030749624156008
+        ],
+        [
+          "temp_rolling_mean_24h",
+          0.007618512203227562
+        ],
+        [
+          "hour",
+          0.006669267092975078
+        ],
+        [
+          "soil_rolling_mean_24h",
+          0.006631305389410902
+        ],
+        [
+          "wind_rolling_max_24h",
+          0.006398685753998553
+        ],
+        [
+          "precip_rolling_sum_6h",
+          0.0057747087106940435
+        ],
+        [
+          "humidity_rolling_mean_24h",
+          0.00571896616339657
+        ],
+        [
+          "hour_cos",
+          0.004816622930275099
+        ],
+        [
+          "temp_rolling_min_24h",
+          0.003992320556975736
+        ],
+        [
+          "precip_rolling_sum_24h",
+          0.00294666063926196
+        ],
+        [
+          "hour_sin",
+          0.002487613818022716
+        ],
+        [
+          "day_of_week",
+          0.0012955432903462528
+        ],
+        [
+          "month_sin",
+          0.0012334637855483028
+        ],
+        [
+          "month_cos",
+          0.0011782315723867735
+        ],
+        [
+          "month",
+          0.0010357075228703378
+        ],
+        [
+          "is_weekend",
+          0.0006923586667806959
+        ]
+      ],
+      "all_test_context_max_abs_delta": 4.676647957779778e-12,
+      "stored_predictions_reproduced": true,
+      "causality_checks": {
+        "316": true,
+        "585": true,
+        "719": true
+      }
+    },
+    "dataset-v4.0.0": {
+      "identity": {
+        "path": "data/simulated/weather_lk07_faults_s42.csv",
+        "md5": "e37325821734e2576273e5715b6a6c88",
+        "bytes": 36273,
+        "dataset_tag": "dataset-v4.0.0",
+        "dataset_tag_commit": "ec3a5d82e462a6bc65e3c3385e55f7306e5768c0",
+        "pointer_sha256": "289f817b97faec79dbeeb7e6cc7001d7e131e24370631fd8d6b7d2e9d28696a6"
+      },
+      "raw_identity": {
+        "path": "data/raw/weather_lk07_history.csv",
+        "md5": "668d3997dd8da1df3fa473b12acc0a9e",
+        "bytes": 35782,
+        "dataset_tag": "dataset-v4.0.0",
+        "dataset_tag_commit": "ec3a5d82e462a6bc65e3c3385e55f7306e5768c0",
+        "pointer_sha256": "e1b83603928dd70d73fa2356ed5e1dab8dc971423d63552dd1dda3ff19796c36"
+      },
+      "raw_rows": 714,
+      "start": "2026-10-03 00:00:00",
+      "end": "2026-11-01 17:00:00",
+      "schema": [
+        "timestamp",
+        "temperature_2m_C",
+        "humidity_percent",
+        "precipitation_mm",
+        "soil_moisture",
+        "radiation_wm2",
+        "wind_speed_kmh"
+      ],
+      "missing": 0,
+      "duplicate_times": 0,
+      "max_interval_hours": 1.0,
+      "raw_ranges": {
+        "temperature_2m_C": {
+          "min": 19.1,
+          "max": 34.0
+        },
+        "humidity_percent": {
+          "min": 21.0,
+          "max": 100.0
+        },
+        "precipitation_mm": {
+          "min": 0.0,
+          "max": 11.8
+        },
+        "soil_moisture": {
+          "min": 0.096,
+          "max": 0.423
+        },
+        "radiation_wm2": {
+          "min": 0.0,
+          "max": 1065.0
+        },
+        "wind_speed_kmh": {
+          "min": 0.2,
+          "max": 15.5
+        }
+      },
+      "raw_rule_counts": {
+        "0": 621,
+        "1": 0,
+        "2": 45
+      },
+      "raw_rule_reasons": {
+        "Normal State": 621,
+        "Extreme Weather: Severe Dry Air": 43,
+        "Extreme Weather: Heatwave / Heat Stress": 2
+      },
+      "simulated_counts": {
+        "0": 571,
+        "1": 56,
+        "2": 39
+      },
+      "changed_raw_rows": 53,
+      "point_injections": {
+        "temp_spike": 12,
+        "temp_oob": 9,
+        "humidity_oob": 6,
+        "soil_oob": 5,
+        "negative_value": 4
+      },
+      "stuck_block": {
+        "start_row": 81,
+        "start": "2026-10-06 09:00:00",
+        "hours": 18
+      },
+      "fault_labels_with_unchanged_current_raw": 14,
+      "feature_changed_rows": 518,
+      "normal_rows_with_changed_features": 430,
+      "feature_changes": {
+        "temperature_2m_C": 37,
+        "humidity_percent": 6,
+        "precipitation_mm": 1,
+        "soil_moisture": 5,
+        "radiation_wm2": 1,
+        "wind_speed_kmh": 2,
+        "hour": 0,
+        "hour_sin": 0,
+        "hour_cos": 0,
+        "day_of_week": 0,
+        "is_weekend": 0,
+        "month": 0,
+        "month_sin": 0,
+        "month_cos": 0,
+        "vpd_kpa": 43,
+        "dew_point_C": 43,
+        "temp_diff_1h": 57,
+        "temp_diff_24h": 73,
+        "humidity_diff_1h": 12,
+        "soil_diff_1h": 10,
+        "soil_diff_24h": 10,
+        "radiation_diff_1h": 2,
+        "temp_rolling_mean_3h": 77,
+        "temp_rolling_std_3h": 77,
+        "temp_rolling_mean_6h": 140,
+        "temp_rolling_std_6h": 140,
+        "temp_rolling_mean_24h": 391,
+        "temp_rolling_std_24h": 391,
+        "temp_rolling_min_24h": 188,
+        "temp_rolling_max_24h": 321,
+        "humidity_rolling_mean_6h": 36,
+        "humidity_rolling_mean_24h": 132,
+        "precip_rolling_sum_6h": 6,
+        "precip_rolling_sum_24h": 24,
+        "soil_rolling_mean_24h": 102,
+        "wind_rolling_mean_6h": 12,
+        "wind_rolling_max_24h": 0
+      },
+      "development": {
+        "counts": {
+          "0": 445,
+          "1": 48,
+          "2": 39
+        },
+        "reasons": {
+          "Normal State": 445,
+          "Extreme Weather: Severe Dry Air": 38,
+          "Hardware Fault: Temperature spike": 23,
+          "Hardware Fault: Temperature sensor stuck": 7,
+          "Hardware Fault: Temperature OOB": 7,
+          "Hardware Fault: Humidity OOB": 4,
+          "Hardware Fault: Soil moisture OOB": 3,
+          "Hardware Fault: Negative wind speed": 2,
+          "Hardware Fault: Negative precipitation": 1,
+          "Extreme Weather: Heatwave / Heat Stress": 1,
+          "Hardware Fault: Negative radiation": 1
+        }
+      },
+      "test": {
+        "counts": {
+          "0": 126,
+          "1": 8,
+          "2": 0
+        },
+        "reasons": {
+          "Normal State": 126,
+          "Hardware Fault: Soil moisture OOB": 2,
+          "Hardware Fault: Temperature OOB": 2,
+          "Hardware Fault: Temperature spike": 2,
+          "Hardware Fault: Humidity OOB": 2
+        }
+      },
+      "folds": [
+        {
+          "train_counts": {
+            "0": 112,
+            "1": 18,
+            "2": 3
+          },
+          "validation_counts": {
+            "0": 108,
+            "1": 6,
+            "2": 19
+          },
+          "validation_reasons": {
+            "Normal State": 108,
+            "Extreme Weather: Severe Dry Air": 19,
+            "Hardware Fault: Temperature spike": 3,
+            "Hardware Fault: Humidity OOB": 2,
+            "Hardware Fault: Temperature OOB": 1
+          }
+        },
+        {
+          "train_counts": {
+            "0": 220,
+            "1": 24,
+            "2": 22
+          },
+          "validation_counts": {
+            "0": 104,
+            "1": 12,
+            "2": 17
+          },
+          "validation_reasons": {
+            "Normal State": 104,
+            "Extreme Weather: Severe Dry Air": 16,
+            "Hardware Fault: Temperature spike": 7,
+            "Hardware Fault: Soil moisture OOB": 2,
+            "Hardware Fault: Humidity OOB": 1,
+            "Hardware Fault: Negative precipitation": 1,
+            "Hardware Fault: Temperature OOB": 1,
+            "Extreme Weather: Heatwave / Heat Stress": 1
+          }
+        },
+        {
+          "train_counts": {
+            "0": 324,
+            "1": 36,
+            "2": 39
+          },
+          "validation_counts": {
+            "0": 121,
+            "1": 12,
+            "2": 0
+          },
+          "validation_reasons": {
+            "Normal State": 121,
+            "Hardware Fault: Temperature spike": 5,
+            "Hardware Fault: Temperature OOB": 3,
+            "Hardware Fault: Negative wind speed": 2,
+            "Hardware Fault: Soil moisture OOB": 1,
+            "Hardware Fault: Negative radiation": 1
+          }
+        }
+      ],
+      "last_extreme_label": "2026-10-21 13:00:00",
+      "feature_importance": [
+        [
+          "dew_point_C",
+          0.17054983349551545
+        ],
+        [
+          "humidity_percent",
+          0.16951060067753027
+        ],
+        [
+          "vpd_kpa",
+          0.10236254219501563
+        ],
+        [
+          "temp_diff_1h",
+          0.08316083376142207
+        ],
+        [
+          "temp_diff_24h",
+          0.07067881539267537
+        ],
+        [
+          "temp_rolling_std_3h",
+          0.060410927595022895
+        ],
+        [
+          "temperature_2m_C",
+          0.05186701138726822
+        ],
+        [
+          "radiation_wm2",
+          0.029234701559810727
+        ],
+        [
+          "temp_rolling_std_6h",
+          0.026541931741110122
+        ],
+        [
+          "temp_rolling_mean_3h",
+          0.024712296700669996
+        ],
+        [
+          "humidity_rolling_mean_6h",
+          0.01893007636988552
+        ],
+        [
+          "soil_diff_24h",
+          0.018866758542894376
+        ],
+        [
+          "soil_diff_1h",
+          0.017363589177032072
+        ],
+        [
+          "wind_speed_kmh",
+          0.01568971013361818
+        ],
+        [
+          "soil_moisture",
+          0.015362725456400385
+        ],
+        [
+          "humidity_diff_1h",
+          0.015320515706738841
+        ],
+        [
+          "humidity_rolling_mean_24h",
+          0.011292551480618817
+        ],
+        [
+          "temp_rolling_std_24h",
+          0.01116227426218519
+        ],
+        [
+          "temp_rolling_mean_6h",
+          0.010213395825481182
+        ],
+        [
+          "soil_rolling_mean_24h",
+          0.008369586732309534
+        ],
+        [
+          "wind_rolling_mean_6h",
+          0.007857172596910083
+        ],
+        [
+          "temp_rolling_max_24h",
+          0.007216291464564614
+        ],
+        [
+          "temp_rolling_mean_24h",
+          0.0068730578236939795
+        ],
+        [
+          "hour_cos",
+          0.006792647999666898
+        ],
+        [
+          "precip_rolling_sum_24h",
+          0.0060447810358615055
+        ],
+        [
+          "precipitation_mm",
+          0.005526759340711215
+        ],
+        [
+          "hour_sin",
+          0.005287344480634753
+        ],
+        [
+          "temp_rolling_min_24h",
+          0.004929029047498914
+        ],
+        [
+          "hour",
+          0.004305325367712685
+        ],
+        [
+          "radiation_diff_1h",
+          0.00421252092788281
+        ],
+        [
+          "day_of_week",
+          0.0035440056211171475
+        ],
+        [
+          "wind_rolling_max_24h",
+          0.0028203586651627606
+        ],
+        [
+          "precip_rolling_sum_6h",
+          0.0024432897682752142
+        ],
+        [
+          "is_weekend",
+          0.0005467376671024044
+        ],
+        [
+          "month",
+          0.0
+        ],
+        [
+          "month_sin",
+          0.0
+        ],
+        [
+          "month_cos",
+          0.0
+        ]
+      ],
+      "all_test_context_max_abs_delta": 5.6310095475353705e-12,
+      "stored_predictions_reproduced": true,
+      "causality_checks": {
+        "314": true,
+        "580": true,
+        "713": true
+      }
+    }
+  },
+  "holdout_scores": [
+    {
+      "dataset": "dataset-v3.0.0",
+      "model_version": 1,
+      "accuracy": 0.9629629629629629,
+      "f1_macro": 0.9039050656671166,
+      "balanced_accuracy": 0.8717948717948718,
+      "support_class_0": 94.0,
+      "f1_class_0": 0.9842931937172775,
+      "recall_class_0": 1.0,
+      "precision_class_0": 0.9690721649484536,
+      "support_class_1": 13.0,
+      "f1_class_1": 0.7619047619047619,
+      "recall_class_1": 0.6153846153846154,
+      "precision_class_1": 1.0,
+      "support_class_2": 28.0,
+      "f1_class_2": 0.9655172413793104,
+      "recall_class_2": 1.0,
+      "precision_class_2": 0.9333333333333333,
+      "confusion_matrix": [
+        [
+          94,
+          0,
+          0
+        ],
+        [
+          3,
+          8,
+          2
+        ],
+        [
+          0,
+          0,
+          28
+        ]
+      ],
+      "scope": "own_holdout"
+    },
+    {
+      "dataset": "dataset-v3.0.0",
+      "model_version": 2,
+      "accuracy": 0.9481481481481482,
+      "f1_macro": 0.8570631509988121,
+      "balanced_accuracy": 0.8205128205128206,
+      "support_class_0": 94.0,
+      "f1_class_0": 0.9740932642487047,
+      "recall_class_0": 1.0,
+      "precision_class_0": 0.9494949494949495,
+      "support_class_1": 13.0,
+      "f1_class_1": 0.631578947368421,
+      "recall_class_1": 0.46153846153846156,
+      "precision_class_1": 1.0,
+      "support_class_2": 28.0,
+      "f1_class_2": 0.9655172413793104,
+      "recall_class_2": 1.0,
+      "precision_class_2": 0.9333333333333333,
+      "confusion_matrix": [
+        [
+          94,
+          0,
+          0
+        ],
+        [
+          5,
+          6,
+          2
+        ],
+        [
+          0,
+          0,
+          28
+        ]
+      ],
+      "scope": "overlaps_v2_development_not_independent"
+    },
+    {
+      "dataset": "dataset-v4.0.0",
+      "model_version": 1,
+      "accuracy": 0.9850746268656716,
+      "f1_macro": 0.6223544973544973,
+      "balanced_accuracy": 0.933531746031746,
+      "support_class_0": 126.0,
+      "f1_class_0": 0.9920634920634921,
+      "recall_class_0": 0.9920634920634921,
+      "precision_class_0": 0.9920634920634921,
+      "support_class_1": 8.0,
+      "f1_class_1": 0.875,
+      "recall_class_1": 0.875,
+      "precision_class_1": 0.875,
+      "support_class_2": 0.0,
+      "f1_class_2": 0.0,
+      "confusion_matrix": [
+        [
+          125,
+          1,
+          0
+        ],
+        [
+          1,
+          7,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "scope": "forward_holdout"
+    },
+    {
+      "dataset": "dataset-v4.0.0",
+      "model_version": 2,
+      "accuracy": 0.9701492537313433,
+      "f1_macro": 0.5661792275965505,
+      "balanced_accuracy": 0.808531746031746,
+      "support_class_0": 126.0,
+      "f1_class_0": 0.984251968503937,
+      "recall_class_0": 0.9920634920634921,
+      "precision_class_0": 0.9765625,
+      "support_class_1": 8.0,
+      "f1_class_1": 0.7142857142857143,
+      "recall_class_1": 0.625,
+      "precision_class_1": 0.8333333333333334,
+      "support_class_2": 0.0,
+      "f1_class_2": 0.0,
+      "confusion_matrix": [
+        [
+          125,
+          1,
+          0
+        ],
+        [
+          3,
+          5,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "scope": "own_holdout"
+    }
+  ],
+  "snapshot_overlap": {
+    "rows": 408,
+    "start": "2026-10-03 00:00:00",
+    "end": "2026-10-19 23:00:00",
+    "changed_values": {
+      "temperature_2m_C": 16,
+      "humidity_percent": 16,
+      "precipitation_mm": 0,
+      "soil_moisture": 13,
+      "radiation_wm2": 10,
+      "wind_speed_kmh": 17
+    }
+  },
+  "processed_caches": [
+    {
+      "path": "data\\processed\\weather_features_faults_s42.csv",
+      "rows": 720,
+      "start": "2026-09-14 00:00:00",
+      "end": "2026-10-13 23:00:00",
+      "classes": {
+        "0": 610,
+        "1": 58,
+        "2": 52
+      }
+    },
+    {
+      "path": "data\\processed\\weather_features_v1.0.csv",
+      "rows": 720,
+      "start": "2026-09-14 00:00:00",
+      "end": "2026-10-13 23:00:00",
+      "classes": {
+        "0": 610,
+        "1": 58,
+        "2": 52
+      }
+    },
+    {
+      "path": "data\\processed\\weather_processed_current.csv",
+      "rows": 720,
+      "start": "2026-09-14 00:00:00",
+      "end": "2026-10-13 23:00:00",
+      "classes": {
+        "0": 610,
+        "1": 58,
+        "2": 52
+      }
+    }
+  ],
+  "exploratory_factorial_common_v4_holdout": [
+    {
+      "dataset_version": 1,
+      "trees": 100,
+      "metrics": {
+        "accuracy": 0.9850746268656716,
+        "f1_macro": 0.6223544973544973,
+        "balanced_accuracy": 0.933531746031746,
+        "support_class_0": 126.0,
+        "f1_class_0": 0.9920634920634921,
+        "recall_class_0": 0.9920634920634921,
+        "precision_class_0": 0.9920634920634921,
+        "support_class_1": 8.0,
+        "f1_class_1": 0.875,
+        "recall_class_1": 0.875,
+        "precision_class_1": 0.875,
+        "support_class_2": 0.0,
+        "f1_class_2": 0.0
+      },
+      "report": {
+        "classes": {
+          "0": {
+            "precision": 0.9920634920634921,
+            "recall": 0.9920634920634921,
+            "f1": 0.9920634920634921,
+            "support": 126,
+            "predicted_count": 126
+          },
+          "1": {
+            "precision": 0.875,
+            "recall": 0.875,
+            "f1": 0.875,
+            "support": 8,
+            "predicted_count": 8
+          },
+          "2": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_count": 0
+          }
+        },
+        "absent_true_classes": [
+          2
+        ],
+        "macro_f1_policy": "fixed labels [0,1,2]; undefined terms contribute 0",
+        "balanced_accuracy_policy": "mean recall over classes present in y_true"
+      },
+      "confusion_matrix": [
+        [
+          125,
+          1,
+          0
+        ],
+        [
+          1,
+          7,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "dataset_version": 1,
+      "trees": 150,
+      "metrics": {
+        "accuracy": 0.9776119402985075,
+        "f1_macro": 0.5960474308300395,
+        "balanced_accuracy": 0.871031746031746,
+        "support_class_0": 126.0,
+        "f1_class_0": 0.9881422924901185,
+        "recall_class_0": 0.9920634920634921,
+        "precision_class_0": 0.984251968503937,
+        "support_class_1": 8.0,
+        "f1_class_1": 0.8,
+        "recall_class_1": 0.75,
+        "precision_class_1": 0.8571428571428571,
+        "support_class_2": 0.0,
+        "f1_class_2": 0.0
+      },
+      "report": {
+        "classes": {
+          "0": {
+            "precision": 0.984251968503937,
+            "recall": 0.9920634920634921,
+            "f1": 0.9881422924901185,
+            "support": 126,
+            "predicted_count": 127
+          },
+          "1": {
+            "precision": 0.8571428571428571,
+            "recall": 0.75,
+            "f1": 0.8,
+            "support": 8,
+            "predicted_count": 7
+          },
+          "2": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_count": 0
+          }
+        },
+        "absent_true_classes": [
+          2
+        ],
+        "macro_f1_policy": "fixed labels [0,1,2]; undefined terms contribute 0",
+        "balanced_accuracy_policy": "mean recall over classes present in y_true"
+      },
+      "confusion_matrix": [
+        [
+          125,
+          1,
+          0
+        ],
+        [
+          2,
+          6,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "dataset_version": 2,
+      "trees": 100,
+      "metrics": {
+        "accuracy": 0.9701492537313433,
+        "f1_macro": 0.5661792275965505,
+        "balanced_accuracy": 0.808531746031746,
+        "support_class_0": 126.0,
+        "f1_class_0": 0.984251968503937,
+        "recall_class_0": 0.9920634920634921,
+        "precision_class_0": 0.9765625,
+        "support_class_1": 8.0,
+        "f1_class_1": 0.7142857142857143,
+        "recall_class_1": 0.625,
+        "precision_class_1": 0.8333333333333334,
+        "support_class_2": 0.0,
+        "f1_class_2": 0.0
+      },
+      "report": {
+        "classes": {
+          "0": {
+            "precision": 0.9765625,
+            "recall": 0.9920634920634921,
+            "f1": 0.984251968503937,
+            "support": 126,
+            "predicted_count": 128
+          },
+          "1": {
+            "precision": 0.8333333333333334,
+            "recall": 0.625,
+            "f1": 0.7142857142857143,
+            "support": 8,
+            "predicted_count": 6
+          },
+          "2": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_count": 0
+          }
+        },
+        "absent_true_classes": [
+          2
+        ],
+        "macro_f1_policy": "fixed labels [0,1,2]; undefined terms contribute 0",
+        "balanced_accuracy_policy": "mean recall over classes present in y_true"
+      },
+      "confusion_matrix": [
+        [
+          125,
+          1,
+          0
+        ],
+        [
+          3,
+          5,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "dataset_version": 2,
+      "trees": 150,
+      "metrics": {
+        "accuracy": 0.9701492537313433,
+        "f1_macro": 0.5661792275965505,
+        "balanced_accuracy": 0.808531746031746,
+        "support_class_0": 126.0,
+        "f1_class_0": 0.984251968503937,
+        "recall_class_0": 0.9920634920634921,
+        "precision_class_0": 0.9765625,
+        "support_class_1": 8.0,
+        "f1_class_1": 0.7142857142857143,
+        "recall_class_1": 0.625,
+        "precision_class_1": 0.8333333333333334,
+        "support_class_2": 0.0,
+        "f1_class_2": 0.0
+      },
+      "report": {
+        "classes": {
+          "0": {
+            "precision": 0.9765625,
+            "recall": 0.9920634920634921,
+            "f1": 0.984251968503937,
+            "support": 126,
+            "predicted_count": 128
+          },
+          "1": {
+            "precision": 0.8333333333333334,
+            "recall": 0.625,
+            "f1": 0.7142857142857143,
+            "support": 8,
+            "predicted_count": 6
+          },
+          "2": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "support": 0,
+            "predicted_count": 0
+          }
+        },
+        "absent_true_classes": [
+          2
+        ],
+        "macro_f1_policy": "fixed labels [0,1,2]; undefined terms contribute 0",
+        "balanced_accuracy_policy": "mean recall over classes present in y_true"
+      },
+      "confusion_matrix": [
+        [
+          125,
+          1,
+          0
+        ],
+        [
+          3,
+          5,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  ],
+  "challenge_summary": [
+    {
+      "model_version": 1,
+      "kind": "clean",
+      "rule_label": 0,
+      "n": 24,
+      "correct": 24,
+      "agreement": 1.0
+    },
+    {
+      "model_version": 1,
+      "kind": "heat_36C",
+      "rule_label": 1,
+      "n": 16,
+      "correct": 16,
+      "agreement": 1.0
+    },
+    {
+      "model_version": 1,
+      "kind": "heat_36C",
+      "rule_label": 2,
+      "n": 8,
+      "correct": 0,
+      "agreement": 0.0
+    },
+    {
+      "model_version": 1,
+      "kind": "humidity_oob",
+      "rule_label": 1,
+      "n": 24,
+      "correct": 18,
+      "agreement": 0.75
+    },
+    {
+      "model_version": 1,
+      "kind": "humidity_stuck_24h",
+      "rule_label": 1,
+      "n": 24,
+      "correct": 9,
+      "agreement": 0.375
+    },
+    {
+      "model_version": 1,
+      "kind": "negative_rain",
+      "rule_label": 1,
+      "n": 24,
+      "correct": 0,
+      "agreement": 0.0
+    },
+    {
+      "model_version": 1,
+      "kind": "night_radiation",
+      "rule_label": 1,
+      "n": 8,
+      "correct": 0,
+      "agreement": 0.0
+    },
+    {
+      "model_version": 1,
+      "kind": "soil_drought",
+      "rule_label": 2,
+      "n": 24,
+      "correct": 0,
+      "agreement": 0.0
+    },
+    {
+      "model_version": 1,
+      "kind": "soil_oob",
+      "rule_label": 1,
+      "n": 24,
+      "correct": 24,
+      "agreement": 1.0
+    },
+    {
+      "model_version": 1,
+      "kind": "temp_oob",
+      "rule_label": 1,
+      "n": 24,
+      "correct": 24,
+      "agreement": 1.0
+    },
+    {
+      "model_version": 1,
+      "kind": "temp_spike",
+      "rule_label": 1,
+      "n": 24,
+      "correct": 24,
+      "agreement": 1.0
+    },
+    {
+      "model_version": 1,
+      "kind": "temp_stuck_18h",
+      "rule_label": 1,
+      "n": 24,
+      "correct": 4,
+      "agreement": 0.16666666666666666
+    },
+    {
+      "model_version": 1,
+      "kind": "wind_stuck_48h",
+      "rule_label": 1,
+      "n": 24,
+      "correct": 0,
+      "agreement": 0.0
+    },
+    {
+      "model_version": 2,
+      "kind": "clean",
+      "rule_label": 0,
+      "n": 24,
+      "correct": 24,
+      "agreement": 1.0
+    },
+    {
+      "model_version": 2,
+      "kind": "heat_36C",
+      "rule_label": 1,
+      "n": 16,
+      "correct": 16,
+      "agreement": 1.0
+    },
+    {
+      "model_version": 2,
+      "kind": "heat_36C",
+      "rule_label": 2,
+      "n": 8,
+      "correct": 0,
+      "agreement": 0.0
+    },
+    {
+      "model_version": 2,
+      "kind": "humidity_oob",
+      "rule_label": 1,
+      "n": 24,
+      "correct": 11,
+      "agreement": 0.4583333333333333
+    },
+    {
+      "model_version": 2,
+      "kind": "humidity_stuck_24h",
+      "rule_label": 1,
+      "n": 24,
+      "correct": 1,
+      "agreement": 0.041666666666666664
+    },
+    {
+      "model_version": 2,
+      "kind": "negative_rain",
+      "rule_label": 1,
+      "n": 24,
+      "correct": 0,
+      "agreement": 0.0
+    },
+    {
+      "model_version": 2,
+      "kind": "night_radiation",
+      "rule_label": 1,
+      "n": 8,
+      "correct": 0,
+      "agreement": 0.0
+    },
+    {
+      "model_version": 2,
+      "kind": "soil_drought",
+      "rule_label": 2,
+      "n": 24,
+      "correct": 0,
+      "agreement": 0.0
+    },
+    {
+      "model_version": 2,
+      "kind": "soil_oob",
+      "rule_label": 1,
+      "n": 24,
+      "correct": 19,
+      "agreement": 0.7916666666666666
+    },
+    {
+      "model_version": 2,
+      "kind": "temp_oob",
+      "rule_label": 1,
+      "n": 24,
+      "correct": 24,
+      "agreement": 1.0
+    },
+    {
+      "model_version": 2,
+      "kind": "temp_spike",
+      "rule_label": 1,
+      "n": 24,
+      "correct": 24,
+      "agreement": 1.0
+    },
+    {
+      "model_version": 2,
+      "kind": "temp_stuck_18h",
+      "rule_label": 1,
+      "n": 24,
+      "correct": 5,
+      "agreement": 0.20833333333333334
+    },
+    {
+      "model_version": 2,
+      "kind": "wind_stuck_48h",
+      "rule_label": 1,
+      "n": 24,
+      "correct": 0,
+      "agreement": 0.0
+    }
+  ],
+  "contract_probes": {
+    "missing": {
+      "accepted": false,
+      "message": "Sensor memiliki NaN/inf; dukungan missing memerlukan kebijakan eksplisit."
+    },
+    "infinite": {
+      "accepted": false,
+      "message": "Sensor memiliki NaN/inf; dukungan missing memerlukan kebijakan eksplisit."
+    },
+    "singular_dewpoint": {
+      "accepted": false,
+      "message": "Fitur harus finite dan muat float32 setelah engineering: ['dew_point_C']"
+    },
+    "time_gap": {
+      "accepted": false,
+      "message": "Timestamp harus terurut dengan interval tepat satu jam; ada gap/urutan salah."
+    },
+    "reverse_time": {
+      "accepted": false,
+      "message": "Timestamp harus terurut dengan interval tepat satu jam; ada gap/urutan salah."
+    },
+    "utc_equivalence": {
+      "accepted": true
+    }
+  },
+  "source_hash_comparison": {
+    "1": [
+      {
+        "path": "train.py",
+        "exists_now": true,
+        "matches_now": false
+      },
+      {
+        "path": "src/training_data.py",
+        "exists_now": false,
+        "matches_now": false
+      },
+      {
+        "path": "src/model_evaluation.py",
+        "exists_now": false,
+        "matches_now": false
+      },
+      {
+        "path": "src/data_preprocessing.py",
+        "exists_now": false,
+        "matches_now": false
+      },
+      {
+        "path": "requirements.txt",
+        "exists_now": true,
+        "matches_now": true
+      }
+    ],
+    "2": [
+      {
+        "path": "train.py",
+        "exists_now": true,
+        "matches_now": true
+      },
+      {
+        "path": "src/__init__.py",
+        "exists_now": true,
+        "matches_now": true
+      },
+      {
+        "path": "src/4_training_data.py",
+        "exists_now": true,
+        "matches_now": true
+      },
+      {
+        "path": "src/5_model_evaluation.py",
+        "exists_now": true,
+        "matches_now": true
+      },
+      {
+        "path": "src/1_data_preprocessing.py",
+        "exists_now": true,
+        "matches_now": true
+      },
+      {
+        "path": "requirements.txt",
+        "exists_now": true,
+        "matches_now": true
+      }
+    ]
+  },
+  "v1_exported_preprocessing_semantics": {
+    "1_data_preprocessing.py": true,
+    "4_training_data.py": true,
+    "5_model_evaluation.py": true
+  },
+  "source_bytes_unchanged": true
+}

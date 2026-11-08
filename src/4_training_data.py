@@ -20,7 +20,7 @@ LOCAL_TIMEZONE = "Asia/Jakarta"
 EXCLUDED_COLUMNS = {"timestamp", "anomaly_class", "anomaly_reason"}
 
 
-def normalize_raw(frame: pd.DataFrame) -> pd.DataFrame:
+def normalize_raw(frame: pd.DataFrame, *, allow_nonfinite: bool = False) -> pd.DataFrame:
     """Require unambiguous, finite, unique, ordered hourly observations."""
     if frame.empty or len(frame.columns) != len(RAW_COLUMNS) or set(frame.columns) != set(RAW_COLUMNS):
         raise ValueError(f"Input harus nonempty dengan tepat kolom raw: {RAW_COLUMNS}")
@@ -45,7 +45,7 @@ def normalize_raw(frame: pd.DataFrame) -> pd.DataFrame:
         result[sensors] = result[sensors].apply(pd.to_numeric, errors="raise").astype("float64")
     except (ValueError, TypeError) as exc:
         raise ValueError("Sensor harus numerik; tidak mengubah nilai rusak menjadi nol.") from exc
-    if not np.isfinite(result[sensors].to_numpy()).all():
+    if not allow_nonfinite and not np.isfinite(result[sensors].to_numpy()).all():
         raise ValueError("Sensor memiliki NaN/inf; dukungan missing memerlukan kebijakan eksplisit.")
     return result
 

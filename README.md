@@ -147,7 +147,7 @@ Seed yang sama selalu menghasilkan file yang identik, sehingga dataset simulasi 
 
 ```bash
 dvc pull
-python train.py
+python train.py --legacy --output-dir artifacts/lk06-replay
 python -m mlflow ui --backend-store-uri sqlite:///mlflow.db --host 127.0.0.1 --port 5000 --workers 1
 ```
 
@@ -156,7 +156,9 @@ Buka `http://127.0.0.1:5000`, pilih **Model training**, lalu eksperimen
 37 fitur dari snapshot raw simulasi, memakai 48 jam awal sebagai konteks,
 dan membandingkan tiga konfigurasi RF dengan walk-forward validation.
 20% observasi terakhir dipakai sebagai final test setelah parameter dipilih.
-Model terpilih didaftarkan ke registry setelah pemeriksaan pemuatan ulang.
+Model terpilih dicatat sebagai kandidat setelah pemeriksaan pemuatan ulang.
+Registrasi kini harus diminta secara eksplisit dengan `--register` dan hanya
+diizinkan jika coverage, F1, recall fault, dan false alarm memenuhi gate.
 
 Hasil awal: RF tanpa class weighting menang dengan mean CV macro F1 0.8122;
 test macro F1 0.9039. Recall hardware fault hanya 8/13 (61.54%). Label berasal
@@ -188,13 +190,67 @@ kembali, perbarui pointer metadata dengan DVC. Lihat
 [dokumentasi LK07](Documentation/LK07/README.md) untuk lineage, transisi stage,
 kontrak 37 fitur dari histori 49 jam, dan laporan PDF.
 
+#### 3c. Perbaikan model dan pipeline LK08
+
+Default `train.py` sekarang memakai kontrak `weather-guarded-v2`, snapshot
+DVC v4 terbaru yang dibekukan, serta model baru `WeatherAnomalyGuardedRF`.
+Versi Production LK07 tidak diganti. Guard deterministik menangani fault yang
+memenuhi aturan; RF mempelajari normal/extreme dari enam sensor saat ini.
+Kontrak model memiliki 41 fitur, termasuk indikator stuck yang sebelumnya
+tidak tersedia. Kontrak historis 37 fitur tetap dapat dimuat.
+
+```bash
+python -m pytest tests -q
+python train.py --config configs/lk08.yaml --output-dir artifacts/lk08
+python scripts/evaluate_candidate.py --candidate-dir artifacts/lk08
+# Hanya setelah evaluasi lolos:
+python scripts/register_candidate.py --candidate-dir artifacts/lk08
+```
+
+Gunakan output directory baru untuk setiap training. `model/` di dalam hasil
+merupakan paket portabel dengan kode dan dependency; evaluasi tidak memerlukan
+tracking store asli. Raw inference memakai
+`src.weather_model.predict_latest(model, history)` dengan minimal 49 observasi
+hourly. Input sensor saat ini yang missing/nonfinite menghasilkan input-quality
+fault; missing pada konteks menghasilkan abstain. Confidence RF tidak diberikan
+pada keputusan deterministik.
+
+Training menambah skenario hanya dari sumber development dan memilih konfigurasi
+dari CV. Test temporal asli tetap terpisah dari 23 jenis skenario sintetis,
+yang memiliki manifest nilai sebelum/sesudah, waktu sumber, dan event ID.
+Skor sintetis mengukur agreement dengan rule, bukan akurasi sensor lapangan.
+
+Gate mempertahankan macro F1 **> 0,85**, minimum support tiap kelas, recall fault,
+false alarm, dan kelulusan tiap jenis skenario. Holdout v4 saat ini tidak punya
+kelas extreme weather, sehingga evaluasi harus menghasilkan exit code 1 dengan
+status `insufficient_coverage`, meskipun prediksi kelas yang hadir benar semua.
+Registrasi Staging akan ditahan. Jangan mengubah threshold untuk memaksa lulus.
+
+Workflow `.github/workflows/mlops-automation.yaml` dipicu push/PR ke `main`.
+Repository Secrets `R2_ACCESS_KEY_ID` dan `R2_SECRET_ACCESS_KEY` diperlukan untuk
+DVC remote privat. Fork PR tidak menerima secrets tersebut dan tidak dapat
+menjalankan seluruh pipeline privat. Artefak tetap diunggah ketika gate gagal;
+registry per-run beserta paket model disimpan sebagai Actions artifact selama
+30 hari. Ini belum merupakan layanan registry terpusat atau deployment API.
+
+Cache preview lama dapat dibangun ulang tanpa mengubah raw DVC:
+
+```bash
+python scripts/refresh_processed_cache.py
+```
+
+Preprocessing sekarang menulis sidecar metadata sumber dan hash output;
+salinan `current` hanya dibuat jika `--current-path` diminta secara eksplisit.
+Lihat [laporan perbaikan dan pengujian](Documentation/LK08/Perbaikan-dan-pengujian.md).
+
 #### 4. Menjalankan Unit Tests
-Menjalankan 99 unit/integration tests yang mencakup DAG Airflow, ingestion,
-preprocessing, simulasi, R2, kontrak training temporal, dan pemuatan model MLflow.
+Menjalankan unit/integration tests yang mencakup DAG Airflow, ingestion,
+preprocessing, simulasi, R2, kontrak training temporal, quality gate, guard,
+serta pemuatan dan registrasi model pada MLflow store sementara.
 
 ```bash
 # Menjalankan seluruh rangkaian tes unit
-python -m unittest discover tests
+python -m pytest tests -q
 ```
 
 #### 5. Menjalankan Apache Airflow DAG (Opsional / VM Server)

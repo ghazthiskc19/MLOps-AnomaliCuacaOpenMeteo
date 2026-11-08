@@ -1,0 +1,65 @@
+{
+  "note": "Legacy 37-feature preview caches; first 48 rows are context, not training observations.",
+  "files": [
+    {
+      "path": "data\\processed\\weather_features_v1.0.csv",
+      "source": {
+        "path": "data/raw/weather_raw_current.csv",
+        "md5": "9684e1329ae170b08883d1ea643eb174",
+        "bytes": 33964,
+        "dataset_tag": "dataset-v3.0.0",
+        "dataset_tag_commit": "5ad793089485d56a3de1ffc46e9807b68638c275",
+        "pointer_sha256": "881469e855f8d149e706a0759c3cac699672a7d3207af9dd29c81ef0187fde52"
+      },
+      "rows": 720,
+      "start": "2026-09-20 00:00:00",
+      "end": "2026-10-19 23:00:00",
+      "classes": {
+        "0": 641,
+        "1": 0,
+        "2": 79
+      },
+      "sha256": "70a4ecf777baad7649cfed42bc070458cfc1443d24d59c263517f57f2f7f575e"
+    },
+    {
+      "path": "data\\processed\\weather_features_faults_s42.csv",
+      "source": {
+        "path": "data/simulated/weather_faults_s42.csv",
+        "md5": "64d906e7d0086d1814f5e61b359e22fe",
+        "bytes": 36622,
+        "dataset_tag": "dataset-v3.0.0",
+        "dataset_tag_commit": "5ad793089485d56a3de1ffc46e9807b68638c275",
+        "pointer_sha256": "4578272cb96691f2085d8e55d73e21dff728afed9cb971387d4706aceb89dcfc"
+      },
+      "rows": 720,
+      "start": "2026-09-20 00:00:00",
+      "end": "2026-10-19 23:00:00",
+      "classes": {
+        "0": 590,
+        "1": 61,
+        "2": 69
+      },
+      "sha256": "4a67de08292c42d79f89fd008235bb0c0678ac7fabbb0849f81e86a4bb8814db"
+    },
+    {
+      "path": "data\\processed\\weather_processed_current.csv",
+      "source": {
+        "path": "data/raw/weather_lk07_history.csv",
+        "md5": "668d3997dd8da1df3fa473b12acc0a9e",
+        "bytes": 35782,
+        "dataset_tag": "dataset-v4.0.0",
+        "dataset_tag_commit": "ec3a5d82e462a6bc65e3c3385e55f7306e5768c0",
+        "pointer_sha256": "e1b83603928dd70d73fa2356ed5e1dab8dc971423d63552dd1dda3ff19796c36"
+      },
+      "rows": 714,
+      "start": "2026-10-03 00:00:00",
+      "end": "2026-11-01 17:00:00",
+      "classes": {
+        "0": 667,
+        "1": 0,
+        "2": 47
+      },
+      "sha256": "817dd91bd08b976e06bd6d24995c5067de64542f361b1b06a4da8325c9240ba7"
+    }
+  ]
+}

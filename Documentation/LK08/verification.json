@@ -1,0 +1,65 @@
+{
+  "candidate_directory": "Documentation\\LK08\\runs\\fix-v2-complete",
+  "training_run_id": "4ca0b98fef004bbfae7c9f4ca61b08c3",
+  "training_status": "FINISHED",
+  "tests": {
+    "tests": 133,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "cli_checks": {
+    "evaluate_candidate": {
+      "exit_code": 1,
+      "expected_exit_code": 1
+    },
+    "register_candidate": {
+      "exit_code": 1,
+      "expected_exit_code": 1
+    }
+  },
+  "temporal_metrics": {
+    "accuracy": 1.0,
+    "f1_macro": 0.6666666666666666,
+    "balanced_accuracy": 1.0,
+    "support_class_0": 126.0,
+    "f1_class_0": 1.0,
+    "recall_class_0": 1.0,
+    "precision_class_0": 1.0,
+    "support_class_1": 8.0,
+    "f1_class_1": 1.0,
+    "recall_class_1": 1.0,
+    "precision_class_1": 1.0,
+    "support_class_2": 0.0,
+    "f1_class_2": 0.0
+  },
+  "synthetic_metrics": {
+    "accuracy": 1.0,
+    "f1_macro": 1.0,
+    "balanced_accuracy": 1.0,
+    "support_class_0": 8.0,
+    "f1_class_0": 1.0,
+    "recall_class_0": 1.0,
+    "precision_class_0": 1.0,
+    "support_class_1": 112.0,
+    "f1_class_1": 1.0,
+    "recall_class_1": 1.0,
+    "precision_class_1": 1.0,
+    "support_class_2": 64.0,
+    "f1_class_2": 1.0,
+    "recall_class_2": 1.0,
+    "precision_class_2": 1.0
+  },
+  "scenario_types": 23,
+  "scenario_types_passed": 23,
+  "gate_status": "insufficient_coverage",
+  "original_registry_unchanged": true,
+  "original_production_version": 1,
+  "actual_candidate_versions_registered": 0,
+  "limitations": [
+    "no real-world sensor ground truth",
+    "natural temporal holdout lacks class 2",
+    "GitHub Actions not executed by this local verification",
+    "dependency dry-run is not a clean-environment runtime test"
+  ]
+}

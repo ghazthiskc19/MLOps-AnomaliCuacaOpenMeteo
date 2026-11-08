@@ -1,0 +1,359 @@
+{
+  "passed": true,
+  "status": "passed",
+  "gate_basis": "combined temporal holdout + held-out scenario test",
+  "combined": {
+    "passed": true,
+    "status": "passed",
+    "under_supported_classes": [],
+    "performance_failures": [],
+    "metrics": {
+      "accuracy": 1.0,
+      "f1_macro": 1.0,
+      "balanced_accuracy": 1.0,
+      "support_class_0": 134.0,
+      "f1_class_0": 1.0,
+      "recall_class_0": 1.0,
+      "precision_class_0": 1.0,
+      "support_class_1": 120.0,
+      "f1_class_1": 1.0,
+      "recall_class_1": 1.0,
+      "precision_class_1": 1.0,
+      "support_class_2": 64.0,
+      "f1_class_2": 1.0,
+      "recall_class_2": 1.0,
+      "precision_class_2": 1.0
+    },
+    "false_alarm_rate": 0.0,
+    "report": {
+      "classes": {
+        "0": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 134,
+          "predicted_count": 134
+        },
+        "1": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 120,
+          "predicted_count": 120
+        },
+        "2": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 64,
+          "predicted_count": 64
+        }
+      },
+      "absent_true_classes": [],
+      "macro_f1_policy": "fixed labels [0,1,2]; undefined terms contribute 0",
+      "balanced_accuracy_policy": "mean recall over classes present in y_true"
+    },
+    "confusion_matrix": [
+      [
+        134,
+        0,
+        0
+      ],
+      [
+        0,
+        120,
+        0
+      ],
+      [
+        0,
+        0,
+        64
+      ]
+    ],
+    "policy": {
+      "threshold": 0.85,
+      "comparison": ">",
+      "min_support": 5,
+      "min_fault_recall": 0.85,
+      "max_false_alarm_rate": 0.05,
+      "scope": "rule pseudo-label agreement, not field validation"
+    }
+  },
+  "temporal_performance_failures": [],
+  "temporal": {
+    "passed": false,
+    "status": "insufficient_coverage",
+    "under_supported_classes": [
+      "2"
+    ],
+    "performance_failures": [
+      "macro_f1_not_strictly_above_threshold"
+    ],
+    "metrics": {
+      "accuracy": 1.0,
+      "f1_macro": 0.6666666666666666,
+      "balanced_accuracy": 1.0,
+      "support_class_0": 126.0,
+      "f1_class_0": 1.0,
+      "recall_class_0": 1.0,
+      "precision_class_0": 1.0,
+      "support_class_1": 8.0,
+      "f1_class_1": 1.0,
+      "recall_class_1": 1.0,
+      "precision_class_1": 1.0,
+      "support_class_2": 0.0,
+      "f1_class_2": 0.0
+    },
+    "false_alarm_rate": 0.0,
+    "report": {
+      "classes": {
+        "0": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 126,
+          "predicted_count": 126
+        },
+        "1": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 8,
+          "predicted_count": 8
+        },
+        "2": {
+          "precision": null,
+          "recall": null,
+          "f1": null,
+          "support": 0,
+          "predicted_count": 0
+        }
+      },
+      "absent_true_classes": [
+        2
+      ],
+      "macro_f1_policy": "fixed labels [0,1,2]; undefined terms contribute 0",
+      "balanced_accuracy_policy": "mean recall over classes present in y_true"
+    },
+    "confusion_matrix": [
+      [
+        126,
+        0,
+        0
+      ],
+      [
+        0,
+        8,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ]
+    ],
+    "policy": {
+      "threshold": 0.85,
+      "comparison": ">",
+      "min_support": 5,
+      "min_fault_recall": 0.85,
+      "max_false_alarm_rate": 0.05,
+      "scope": "rule pseudo-label agreement, not field validation"
+    }
+  },
+  "synthetic": {
+    "passed": true,
+    "status": "passed",
+    "under_supported_classes": [],
+    "performance_failures": [],
+    "metrics": {
+      "accuracy": 1.0,
+      "f1_macro": 1.0,
+      "balanced_accuracy": 1.0,
+      "support_class_0": 8.0,
+      "f1_class_0": 1.0,
+      "recall_class_0": 1.0,
+      "precision_class_0": 1.0,
+      "support_class_1": 112.0,
+      "f1_class_1": 1.0,
+      "recall_class_1": 1.0,
+      "precision_class_1": 1.0,
+      "support_class_2": 64.0,
+      "f1_class_2": 1.0,
+      "recall_class_2": 1.0,
+      "precision_class_2": 1.0
+    },
+    "false_alarm_rate": 0.0,
+    "report": {
+      "classes": {
+        "0": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 8,
+          "predicted_count": 8
+        },
+        "1": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 112,
+          "predicted_count": 112
+        },
+        "2": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 64,
+          "predicted_count": 64
+        }
+      },
+      "absent_true_classes": [],
+      "macro_f1_policy": "fixed labels [0,1,2]; undefined terms contribute 0",
+      "balanced_accuracy_policy": "mean recall over classes present in y_true"
+    },
+    "confusion_matrix": [
+      [
+        8,
+        0,
+        0
+      ],
+      [
+        0,
+        112,
+        0
+      ],
+      [
+        0,
+        0,
+        64
+      ]
+    ],
+    "policy": {
+      "threshold": 0.85,
+      "comparison": ">",
+      "min_support": 5,
+      "min_fault_recall": 0.85,
+      "max_false_alarm_rate": 0.05,
+      "scope": "rule pseudo-label agreement, not field validation"
+    }
+  },
+  "scenarios": {
+    "normal": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "temp_oob": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "humidity_oob": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "soil_oob": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "negative_rain": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "negative_radiation": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "negative_wind": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "temp_spike": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "night_radiation": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "temp_stuck": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "humidity_stuck": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "wind_stuck": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "discordance": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "soil_surge": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "soil_unresponsive": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "heat": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "cold": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "dry_air": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "torrential_rain": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "drought": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "waterlogging": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "solar_extreme": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    },
+    "high_wind": {
+      "events": 8,
+      "agreement": 1.0,
+      "passed": true
+    }
+  },
+  "note": "Class 2 coverage comes from held-out synthetic scenarios; this is rule pseudo-label agreement, not field validation."
+}

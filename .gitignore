@@ -59,3 +59,7 @@ mlflow.db-*
 mlartifacts/
 Documentation/LK06/.pdf-review/
 Documentation/LK07/.pdf-review/
+artifacts/
+.pytest_cache/
+Documentation/LK08/runs/*/model/
+Documentation/LK08/runs/*/scenario_manifest.json

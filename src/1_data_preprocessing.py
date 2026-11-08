@@ -11,6 +11,8 @@ Modul ini bertanggung jawab untuk tahapan ETL & Feature Engineering (LK-03 & LK-
 """
 
 import argparse
+import hashlib
+import json
 from datetime import datetime
 import logging
 import math
@@ -217,9 +219,9 @@ class AnomalyLabeler:
 
         return df_ind
 
-    def classify_row(self, row: pd.Series) -> Tuple[int, str]:
+    def classify_fault(self, row: pd.Series) -> Optional[Tuple[int, str]]:
         """
-        Mengklasifikasikan 1 baris observasi ke dalam 3 kelas anomali.
+        Pemeriksaan fault deterministik, dipakai labeler dan safety guard model.
 
         Hierarki Evaluasi:
         1. Class 1: Hardware Fault (Prioritas tertinggi - integritas instrumen)
@@ -303,6 +305,21 @@ class AnomalyLabeler:
         if wind_stuck is not None and not pd.isna(wind_stuck) and bool(wind_stuck):
             return 1, "Hardware Fault: Anemometer stuck at 0.0 km/h for >48 hours"
 
+        return None
+
+    def classify_row(self, row: pd.Series) -> Tuple[int, str]:
+        """Fault has priority; environmental thresholds are instantaneous rules.
+
+        These are pseudo-labels, not independent evidence of physical failures.
+        Waterlogging uses the current >0.48 threshold, not a 48-hour requirement.
+        """
+        fault = self.classify_fault(row)
+        if fault is not None:
+            return fault
+        temp, hum = float(row["temperature_2m_C"]), float(row["humidity_percent"])
+        precip, soil = float(row["precipitation_mm"]), float(row["soil_moisture"])
+        rad, wind = float(row["radiation_wm2"]), float(row["wind_speed_kmh"])
+
         # =====================================================================
         # CLASS 2: EXTREME ENVIRONMENTAL ANOMALY (Prioritas 2)
         # =====================================================================
@@ -328,11 +345,7 @@ class AnomalyLabeler:
             return 2, f"Extreme Weather: Critical Drought / Wilting Point ({soil:.3f} m³/m³ < 0.08)"
 
         # 2.6 Kejenuhan Berlebih / Waterlogging (> 0.48 m³/m³)
-        soil_waterlogged = row.get("soil_waterlogged_48h")
-        is_waterlogged = (
-            soil_waterlogged is not None and not pd.isna(soil_waterlogged) and bool(soil_waterlogged)
-        )
-        if is_waterlogged or soil > 0.48:
+        if soil > 0.48:
             return 2, f"Extreme Weather: Waterlogging / Root Anoxia ({soil:.3f} m³/m³ > 0.48)"
 
         # 2.7 Radiasi Matahari Ekstrem (> 1100.0 W/m²) -> Sunscald & Klorosis
@@ -551,7 +564,7 @@ class WeatherPreprocessor:
         self,
         input_path: Union[str, Path] = DEFAULT_INPUT_PATH,
         output_path: Union[str, Path] = DEFAULT_OUTPUT_PATH,
-        secondary_output_path: Optional[Union[str, Path]] = DEFAULT_CURRENT_PROCESSED_PATH,
+        secondary_output_path: Optional[Union[str, Path]] = None,
     ) -> pd.DataFrame:
         """
         Membaca data mentah dari CSV input, memproses, dan menyimpan hasilnya ke CSV output.
@@ -570,11 +583,23 @@ class WeatherPreprocessor:
 
         logger.info(f"Menyimpan data hasil pemrosesan ({len(processed_df)} baris) ke: {resolved_out}")
         _atomic_to_csv(processed_df, resolved_out, index=False)
+        metadata = {"source_path": str(resolved_in),
+                    "source_sha256": hashlib.sha256(resolved_in.read_bytes()).hexdigest(),
+                    "feature_contract": "legacy-37-feature-preview", "context_rows_not_for_fitting": 48,
+                    "rows": len(processed_df), "classes": processed_df.anomaly_class.value_counts().to_dict() if 'anomaly_class' in processed_df else {}}
+        def write_metadata(target):
+            sidecar = target.with_suffix(target.suffix + '.metadata.json')
+            metadata["output_sha256"] = hashlib.sha256(target.read_bytes()).hexdigest()
+            temporary = sidecar.with_suffix(sidecar.suffix + '.tmp')
+            temporary.write_text(json.dumps(metadata,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+            os.replace(temporary,sidecar)
+        write_metadata(resolved_out)
 
         if secondary_output_path:
             resolved_sec = resolve_path(secondary_output_path)
             logger.info(f"Menyimpan salinan dataset terkini ke: {resolved_sec}")
             _atomic_to_csv(processed_df, resolved_sec, index=False)
+            write_metadata(resolved_sec)
 
         return processed_df
 
@@ -582,7 +607,7 @@ class WeatherPreprocessor:
 def preprocess_weather_data(
     input_path: Union[str, Path] = DEFAULT_INPUT_PATH,
     output_path: Union[str, Path] = DEFAULT_OUTPUT_PATH,
-    secondary_output_path: Optional[Union[str, Path]] = DEFAULT_CURRENT_PROCESSED_PATH,
+    secondary_output_path: Optional[Union[str, Path]] = None,
 ) -> pd.DataFrame:
     """
     Fungsi fasad tingkat tinggi untuk eksekusi preprocessing data cuaca.
@@ -617,8 +642,8 @@ def main():
     parser.add_argument(
         "--current-path",
         type=str,
-        default=str(DEFAULT_CURRENT_PROCESSED_PATH),
-        help=f"Path berkas CSV fitur terkini (default: {DEFAULT_CURRENT_PROCESSED_PATH})",
+        default=None,
+        help="Salinan secondary opsional; default tidak menimpa cache current.",
     )
 
     args = parser.parse_args()
@@ -642,7 +667,7 @@ def main():
         print(f"Total kolom fitur: {len(processed_df.columns)}")
         print(f"Daftar kolom: {list(processed_df.columns)}")
 
-        print("\n[SUMMARY] Ringkasan Distribusi Anomali (Ground Truth):")
+        print("\n[SUMMARY] Ringkasan Distribusi Anomali (Rule Pseudo-Labels):")
         counts = processed_df["anomaly_class"].value_counts().to_dict()
         for cls_code, cls_name in ANOMALY_CLASSES.items():
             cnt = counts.get(cls_code, 0)
